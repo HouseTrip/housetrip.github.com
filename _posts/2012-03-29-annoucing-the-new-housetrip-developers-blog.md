@@ -1,1 +1,1 @@
-## [[HouseTrip](http://housetrip.com)]
+## [HouseTrip](http://housetrip.com)
