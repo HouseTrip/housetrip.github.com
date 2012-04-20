@@ -1,3 +1,274 @@
 body {
-  background:#EFEFEF;
+  margin:0;
+  padding:0;
+  text-align:center;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color:#424242;
+  font-size: 93%;
+  line-height: 1.5;
 }
+
+h2#logo {
+  position:absolute;
+  top:0;
+  margin:0;
+  width:100%;
+}
+
+h2#logo a {
+  background:transparent url;
+  display: block;
+  width: 255px;
+  height: 229px;
+  margin: 30px auto;
+  background: transparent url(../images/housetrip_developers_blog_logo.png) no-repeat;
+  text-indent: -10000em;
+}
+
+#content {
+  width:800px;
+  text-align:left;
+  margin: 289px auto 30px;
+  padding: 30px 0;
+  border-top:4px solid #E8E8E6;
+  position:relative;
+}
+#content .post {
+  float:left;
+  width:555px;
+  margin-bottom: 30px;
+}
+
+#side {
+  font-size:12px;
+  border-left: 4px solid #E8E8E6;
+  float:right;
+  text-align:left;
+  width:200px;
+  padding:0 0 0 15px;
+  margin:0 0 30px 26px;
+}
+
+#side h3 {
+  margin:0;
+  padding:0 0 15px 0;
+  font-size:16px;
+}
+
+#side .top h3 {
+  padding-bottom:0;
+}
+
+#side .panel {
+  border-top:4px solid #E8E8E6;
+  padding:15px 0 15px 0;
+}
+
+#side .top.panel {
+  border:none;
+  padding:0;
+}
+
+#side .developers ul {
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+
+#side .developers ul li {
+  margin:0;
+  padding:5px 0;
+}
+
+#side .developers ul img {
+  vertical-align:middle;
+  border:1px solid #CECECE;
+  padding: 2px;
+  margin-right:4px;
+}
+
+a, a:visited, a:active {
+  text-decoration: none;
+  color: #3C89A7;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+#footer {
+  border-top:4px solid #E8E8E6;
+  clear:both;
+  display: block;
+  margin:60px auto 0 auto;
+  width:800px
+}
+
+#footer ul {
+  display: block;
+  background: #BAE5EB;
+  border: 3px solid #61C6CF;
+  font-size: 14px;
+  padding: 10px 20px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  text-align: center;
+  width: 50%;
+  padding: 1em;
+  margin: 2em auto;
+  text-shadow:#FFF 0px 1px 0px;
+}
+
+#footer ul li {
+  display: inline;
+  border-right: 1px solid #555;
+  padding: 0 8px;
+}
+
+#footer ul li a {
+  color: #424242;
+}
+
+#footer ul li a:hover {
+  text-decoration: none;
+  color: #000;
+}
+
+#footer ul li.last {
+  border: none;
+}
+
+#footer .terms {
+  color: #878787;
+  display: block;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-shadow: #FFF 0px 1px 0px;
+  padding-bottom:15px;
+}
+
+
+/*body {
+text-align:center;
+}
+
+#content {
+  text-align:left;
+  width:80%;
+  margin:0 auto;
+}
+
+a img {
+border:none;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  padding: 0;
+  text-shadow: #FFFFFF 0px 2px 0px;
+}
+
+h1 {
+  text-align: center;
+  padding: 44px 0 22px 0;
+  font-size: 3em;
+}
+
+h2 {
+  margin: 1em auto 0 auto;
+  padding-top: 1em;
+  border-top: 1px solid #BBB;
+  clear:both;
+}
+
+p {
+  margin: 1em 0;
+  color: #555;
+}
+
+span, cite, .terms {
+  color: #919191;
+  display: block;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-shadow: #FFF 0px 1px 0px;
+}
+
+a, a:visited, a:active {
+  text-decoration: none;
+  color: #3C89A7;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  list-style: none;
+  padding: 0 1em;
+  margin:0 0 2em 0;
+}
+
+ul li {
+  padding:1em 0 0 0;
+}
+
+p.left, p.right {
+  float:left;
+  margin:0 1em 1em 1em;
+}
+
+p.right {
+  margin:0 1em 1em 0em;
+}
+
+p img {
+  float:none;
+  margin:0.5em 0em 1em 0em;
+  padding:0;
+  width:360px;
+  display:block;
+}
+
+
+
+/*h1, h1 a, h1 a:visited {
+color: #424242;
+font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
+letter-spacing:0.1em;
+text-align:center;
+margin: 40px auto 0;
+text-transform: lowercase;
+line-height: 145%;
+font-size: 16pt;
+font-variant: small-caps;
+font-weight:normal;
+padding:0;
+text-decoration: none;
+}
+
+p {
+color:#424242;
+font-family:"Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times,serif;
+font-style:italic;
+font-size:12px;
+margin: 0px auto;
+}
+
+p a {
+font-style: normal;
+font-variant: small-caps;
+text-decoration: none;
+color: #afafaf;
+font-size:14px;
+font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+padding:0 3px;
+}
+
+h1 a:hover, a:hover {
+color:#000;
+text-decoration: underline;
+}
+
+
+*/
