@@ -4,7 +4,7 @@ title: HouseTrip Developers Blog
 ---
 {% for post in site.posts %}
   <div class="post">
-    <h1><a href="{{ BASE_PATH }}{{ post.url }}">Morbi id urna in diam dignissim feugiat. Proin molestie tortor eu velit. ...  ♬ ♫</a></h1>
+    <h1><a href="{{ BASE_PATH }}{{ post.url }}">Morbi id urna in diam dignissim feugiat. Proin molestie tortor eu velit</a></h1>
     <ul class="meta">
       <li>posted on</li>
       <li class="date">{{ post.date | date_to_string }}</li>
@@ -29,7 +29,8 @@ title: HouseTrip Developers Blog
       </ol>
       <h3>Smaller title</h3>
       <p>Nulla facilisi. In vel sem in hendrerit sodales, lectus ipsum pellentesque ligula, sit amet scelerisque urna nibh ut arcu. Aliquam in lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla placerat aliquam wisi. Mauris viverra odio. Quisque fermentum pulvinar odio. Proin posuere est vitae ligula. Etiam euismod.  Nulla facilisi. In vel sem in hendrerit sodales, lectus ipsum pellentesque ligula, sit amet scelerisque urna nibh ut arcu. Aliquam in lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla placerat aliquam wisi. Mauris viverra odio. Quisque fermentum pulvinar odio. Proin posuere est vitae ligula. Etiam euismod. Cras a eros. Nulla facilisi. In vel sem in hendrerit sodales, lectus ipsum pellentesque ligula, sit amet scelerisque urna nibh ut arcu. Aliquam in lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla placerat aliquam wisi. Mauris viverra odio. Quisque fermentum pulvinar odio. Proin posuere est vitae ligula. Etiam euismod.</p>
-      {% highlight %}
+
+      {% highlight ruby %}
       require 'rubygems'
       require 'ruby-prof'
 
@@ -43,14 +44,15 @@ title: HouseTrip Developers Blog
         end
       end
 
-      def property_search_images_json_for_slideview(properties)                                                                
-        properties.collect_hash do |property|                                                                                  
+      def property_search_images_json_for_slideview(properties)
+        properties.collect_hash do |property|
           photos     = property.photos.sort! { |a,b| (a.default_photo ==  b.default_photo) ? 1 : -1 }
           image_urls = photos.collect {|photo| slideview_image_url(photo) }
           [property.id, image_urls]
-        end.to_json                                                                                                            
+        end.to_json
       end
       {% endhighlight %}
+
       <ul>
         <li>Posuere cubilia Curae; Nulla placerat aliquam wisi. Mauris viverra odio. Quisque fermentum pulvinar odio. Proin posuere est vitae ligula. Etiam euismod.  Nulla facilisi.</li>
         <li>In vel sem in hendrerit sodales, lectus ipsum pellentesque ligula, sit amet scelerisque urna nibh ut arcu. Aliquam in lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultric</li>
