@@ -1,0 +1,24 @@
+---
+layout: default
+---
+<div class="post">
+  <h1><a href="{{ BASE_PATH }}{{ page.url }}">{{ page.title }}</a></h1>
+  <ul class="meta">
+    <li class="date">{{ page.date | date_to_string }}</li>
+    {% if page.author %}
+    <li>by</li>
+    <li class="author">
+      {% if page.author_url %}
+      <a href="{{ page.author_url }}">
+        {% if page.author_avatar %}<img src="{{ page.author_avatar }}" width="24" height="24" alt="photo of {{ page.author }}"/>{% endif %}<span>{{ page.author }}</span>
+      </a>
+      {% else %}
+        {{ page.author }}
+      {% endif %}
+    </li>
+    {% endif %}
+  </ul>
+  <div class="content">
+    {{ page.content }}
+  </div>
+</div>
