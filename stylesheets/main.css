@@ -34,12 +34,16 @@ body {
   margin: 299px auto 0px auto;
 }
 
+.post {
+  position:relative;
+}
+
 #main .post {
   padding:0 0.666667em;
 }
 
 .post + .post {
-  margin-top:100px;  
+  margin-top:48px;  
 }
 
 #main .content p {
@@ -56,27 +60,92 @@ body {
 
 /* post meta */
 
-.meta {
-  font-style: italic;
-  font-size: 0.75em;
-  padding:0;
-  margin:1.33333em auto;
-}
-
-.meta li, .meta .author img {
+.author {
+  width:auto;
   display:inline-block;
-  margin-right:5px;
-  word-spacing: 0px;
+  clear:both;
+  margin:0 0 21px 0;
+  background:#E8E8E8;
+  padding:10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 
-.meta li.date, .meta li.author {
-  font-style: normal;
+.content .author img {
+  float:left;
+  margin-bottom:0;
+}
+.author div {
+  display:inline-block;
+  margin:4px 21px 0 10px;
+  font-size:12px;
+}
+.author div span {
+  color:#767676;
+  font-style:italic;
+  margin-top:2px;
+  display:inline-block;
 }
 
-.meta .date{
+.date {
+  font-weight: normal;
+  font-size: 11px;
   background:#32B7C5;
   color:#FFF;
-  padding:0 5px;
+  padding:0 8px 1px 8px;
+  position:absolute;
+  top:5px;
+  right:9px;
+  -webkit-border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
+}
+
+/* post archive */
+
+#archive {
+  position:absolute;
+  top:0;
+  right:40px;
+  background:#e16369;
+  color:#FFF;
+  width:180px;
+  -webkit-border-radius: 0 0 10px 10px;
+  -moz-border-radius: 0 0 10px 10px;
+  border-radius: 0 0 5px 5px;
+  -webkit-box-shadow: 2px 2px 3px #ddd;
+   -moz-box-shadow: 2px 2px 3px #ddd;
+   box-shadow: 2px 2px 3px #ddd;
+  border:5px solid #9F4448;
+  border-top:none;
+  z-index:10000;
+  text-align:left;
+  padding:18px 18px 0 18px;
+  font-size:12px;
+}
+
+
+#archive h4, #archive h5 {  margin: 0 0 10px 0;}
+#archive h5 { font-size:13px;}
+
+#archive ul {
+ margin:0 0 18px 0;
+ padding:0;
+ list-style:none;
+}
+
+#archive ul li {
+  padding:0 0 10px 0;
+}
+
+#archive ul li span {
+  font-style:italic;
+}
+
+#archive a, #archive a:hover {
+  color:#FFF;
+  font-weight:bold;
 }
 
 /* headings */

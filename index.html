@@ -2,31 +2,20 @@
 layout: default
 title: HouseTrip Developers Blog
 ---
-{% for post in site.posts %}
+{% for page in site.posts %}
   <div class="post">
-    <h1><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></h1>
-    <ul class="meta">
-      <li class="date">{{ post.date | date_to_string }}</li>
-      {% if post.author %}
-      <li>by</li>
-      <li class="author">
-        {% if post.author_url %}
-        <a href="{{ post.author_url }}">
-          {% if post.author_avatar %}<img src="{{ post.author_avatar }}" width="24" height="24" alt="photo of {{ post.author }}"/>{% endif %}<span>{{ post.author }}</span>
-        </a>
-        {% else %}
-          {{ post.author }}
-        {% endif %}
-      </li>
-      {% endif %}
-    </ul>
+    <h1><a href="{{ BASE_PATH }}{{ page.url }}">{{ page.title }}</a></h1>
     <div class="content">
-      {% if post.summary %}
-      <p>{{ post.summary }}</p>
-      <p class="read"><a class="cupid-green" href="{{ BASE_PATH }}{{ post.url }}">Read the full article</a></p>
+      {% if page.summary %}
+      <p>{{ page.summary }}</p>
+      <p class="read"><a class="cupid-green" href="{{ BASE_PATH }}{{ page.url }}">Read the full article</a></p>
       {% else %}
-      {{ post.content }}
+      {{ page.content }}
+      {% include author.html %}
       {% endif %}
     </div>
+    {% if page.date %}
+    <div class="date">{{ page.date | date_to_string }}</div>
+    {% endif %}
   </div>
 {% endfor %}

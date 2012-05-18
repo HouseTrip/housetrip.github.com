@@ -1,0 +1,17 @@
+{% if page.author %}
+<div class="author">
+  {% if page.author_url %}
+    {% if page.author_avatar %}
+    <a href="{{ page.author_url }}">
+      <img src="{{ page.author_avatar }}" width="36" height="36" alt="photo of {{ page.author }}"/>
+    </a>
+    {% endif %}
+    <div>
+      <a href="{{ page.author_url }}">{{ page.author }}</a>
+      {% if page.author_role %}<br/><span>{{ page.author_role }}</span>{% endif %}
+    </div>
+  {% else %}
+    {{ page.author }}<br/>{{ page.author_role }}
+  {% endif %}
+</div>
+{% endif %}

@@ -11,7 +11,7 @@ pygments: true
 #
 title : HouseTrip Dev Blog
 tagline: Developers at HouseTrip
-author :
+author : 
   name : HouseTrip Developers
   email : dev@housetrip.com
   github : HouseTrip
