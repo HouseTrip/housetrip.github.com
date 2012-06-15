@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>HouseTrip Dev Blog</title>
+ <link href="http://housetrip.github.com/atom.xml" rel="self"/>
+ <link href="http://housetrip.github.com"/>
+ <updated>2012-06-15T17:58:53+01:00</updated>
+ <id>http://housetrip.github.com</id>
+ <author>
+   <name>HouseTrip Developers</name>
+   <email>dev@housetrip.com</email>
+ </author>
+
+ 
+ <entry>
+   <title>Good looking shadowy CSS3 tabs</title>
+   <link href="http://housetrip.github.com/2012/06/15/quick-tab-based-ui"/>
+   <updated>2012-06-15T00:00:00+01:00</updated>
+   <id>http://housetrip.github.com/2012/06/15/quick-tab-based-ui</id>
+   <content type="html">&lt;p&gt;I&amp;#8217;m going to show you guys how to create some nice looking tabs using CSS3 (sorry old IE guys!) Basically I didn&amp;#8217;t find a good solution online for good looking tabs that were easy to do and that also looked nice, so I ended up by creating our own Housetrip version.&lt;/p&gt;
+
+&lt;p&gt;This is the result we&amp;#8217;re searching for: &lt;img src='/images/2012-06-15/result.png' alt='basic layout' /&gt;&lt;/p&gt;
+
+&lt;h2 id='the_basic_setup'&gt;The basic set-up&lt;/h2&gt;
+
+&lt;p&gt;We will start by creating the barebones of the &lt;strong&gt;css&lt;/strong&gt; and of the &lt;strong&gt;html&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class='medium_height_highlight'&gt;&lt;pre&gt;&lt;code class='css'&gt;  &lt;span class='nf'&gt;#nav&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;margin&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;padding&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='nf'&gt;#nav&lt;/span&gt; &lt;span class='nt'&gt;li&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;list-style&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;none&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;display&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;inline&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='k'&gt;block&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;padding-right&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;3px&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;border&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;1px&lt;/span&gt; &lt;span class='k'&gt;solid&lt;/span&gt; &lt;span class='m'&gt;#000&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='nf'&gt;#nav&lt;/span&gt; &lt;span class='nt'&gt;li&lt;/span&gt; &lt;span class='nt'&gt;div&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;padding&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;5px&lt;/span&gt; &lt;span class='m'&gt;15px&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;display&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;inline&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='k'&gt;block&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;font-size&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;14px&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='nf'&gt;#tabbed_container&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;padding&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt;&lt;span class='m'&gt;10px&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;width&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt;&lt;span class='m'&gt;400px&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;height&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt;&lt;span class='m'&gt;200px&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;margin-top&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;1px&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;border&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;1px&lt;/span&gt; &lt;span class='k'&gt;solid&lt;/span&gt; &lt;span class='m'&gt;#000&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;&lt;div class='medium_height_highlight'&gt;&lt;pre&gt;&lt;code class='html'&gt;  &lt;span class='nt'&gt;&amp;lt;ul&lt;/span&gt; &lt;span class='na'&gt;id=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;nav&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class='nt'&gt;&amp;lt;li&amp;gt;&amp;lt;div&amp;gt;&lt;/span&gt;Tab1&lt;span class='nt'&gt;&amp;lt;/div&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+    &lt;span class='nt'&gt;&amp;lt;li&amp;gt;&amp;lt;div&amp;gt;&lt;/span&gt;Tab2&lt;span class='nt'&gt;&amp;lt;/div&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+    &lt;span class='nt'&gt;&amp;lt;li&amp;gt;&amp;lt;div&amp;gt;&lt;/span&gt;Tab3&lt;span class='nt'&gt;&amp;lt;/div&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+    &lt;span class='nt'&gt;&amp;lt;li&amp;gt;&amp;lt;div&amp;gt;&lt;/span&gt;Tab4&lt;span class='nt'&gt;&amp;lt;/div&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+  &lt;span class='nt'&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;div&lt;/span&gt; &lt;span class='na'&gt;id=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;tabbed_container&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&lt;/span&gt;
+	m dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+&lt;span class='nt'&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;This will create the following basic layout: &lt;img src='/images/2012-06-15/screenshot1.png' alt='basic layout' /&gt;&lt;/p&gt;
+
+&lt;p&gt;I know it doesn&amp;#8217;t look too impresive, but we&amp;#8217;re getting there! Patience! Let&amp;#8217;s try to add more styles to make it more good looking&amp;#8230;&lt;/p&gt;
+
+&lt;h2 id='going_further'&gt;Going further&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;#8217;s start by adding some color to our tabs! And maybe remove that ugly border. I wish that the color is different for the opened tab or for the one you are hovering over.&lt;/p&gt;
+
+&lt;p&gt;Add the &lt;strong&gt;&lt;em&gt;open&lt;/em&gt;&lt;/strong&gt; &lt;strong&gt;class&lt;/strong&gt; on the tab that you want it to be opened in the beginning:&lt;/p&gt;
+&lt;div class='medium_height_highlight'&gt;&lt;pre&gt;&lt;code class='html'&gt;  &lt;span class='nt'&gt;&amp;lt;li&amp;gt;&amp;lt;div&lt;/span&gt; &lt;span class='na'&gt;class=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;open&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&lt;/span&gt;Tab1&lt;span class='nt'&gt;&amp;lt;/div&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;And now we can add some CSS for the colors:&lt;/p&gt;
+&lt;div class='medium_height_highlight'&gt;&lt;pre&gt;&lt;code class='css'&gt;  &lt;span class='nf'&gt;#nav&lt;/span&gt; &lt;span class='nt'&gt;li&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;list-style&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;none&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;display&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;inline&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='k'&gt;block&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;padding-right&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;3px&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='nf'&gt;#nav&lt;/span&gt; &lt;span class='nt'&gt;li&lt;/span&gt; &lt;span class='nt'&gt;div&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;padding&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;5px&lt;/span&gt; &lt;span class='m'&gt;15px&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;display&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;inline&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='k'&gt;block&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;font-size&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;14px&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;background-color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#32B6C4&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#fff&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='nf'&gt;#nav&lt;/span&gt; &lt;span class='nt'&gt;li&lt;/span&gt; &lt;span class='nt'&gt;div&lt;/span&gt;&lt;span class='nd'&gt;:hover&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='nf'&gt;#nav&lt;/span&gt; &lt;span class='nt'&gt;li&lt;/span&gt; &lt;span class='nt'&gt;div&lt;/span&gt;&lt;span class='nc'&gt;.open&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#000&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;background-color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#FFF&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;And look at that, now we have our little colored tabs that turn white when you hover over them: &lt;img src='/images/2012-06-15/screenshot2.png' alt='basic layout' /&gt;&lt;/p&gt;
+
+&lt;h2 id='adding_shadows'&gt;Adding shadows&lt;/h2&gt;
+
+&lt;p&gt;Now this is the CSS3 part, that will make the tabs really stick out from the rest of the crowd. I&amp;#8217;ll start by adding a shadow to the container.&lt;/p&gt;
+
+&lt;p&gt;This is done by the &lt;strong&gt;box-shadow&lt;/strong&gt; CSS attribute:&lt;/p&gt;
+&lt;div class='medium_height_highlight'&gt;&lt;pre&gt;&lt;code class='css'&gt; &lt;span class='nf'&gt;#tabbed_container&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;padding&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt;&lt;span class='m'&gt;10px&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;width&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt;&lt;span class='m'&gt;400px&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;height&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt;&lt;span class='m'&gt;200px&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;margin-top&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;1px&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='n'&gt;box&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='n'&gt;shadow&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;0&lt;/span&gt; &lt;span class='m'&gt;0&lt;/span&gt; &lt;span class='m'&gt;5px&lt;/span&gt; &lt;span class='m'&gt;#888&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;img src='/images/2012-06-15/screenshot3.png' alt='basic layout' /&gt;&lt;/p&gt;
+
+&lt;p&gt;I&amp;#8217;ll follow this by adding a shadow as well on the tab elements:&lt;/p&gt;
+&lt;div class='medium_height_highlight'&gt;&lt;pre&gt;&lt;code class='css'&gt;  &lt;span class='nf'&gt;#nav&lt;/span&gt; &lt;span class='nt'&gt;li&lt;/span&gt; &lt;span class='nt'&gt;div&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;padding&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;5px&lt;/span&gt; &lt;span class='m'&gt;15px&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;display&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;inline&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='k'&gt;block&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;font-size&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;14px&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;background-color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#32B6C4&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#fff&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='n'&gt;box&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='n'&gt;shadow&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;0&lt;/span&gt; &lt;span class='m'&gt;0&lt;/span&gt; &lt;span class='m'&gt;5px&lt;/span&gt; &lt;span class='m'&gt;#888&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;img src='/images/2012-06-15/screenshot4.png' alt='basic layout' /&gt; It looks much better than the version we started with but not enough.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s proceed further&amp;#8230;&lt;/p&gt;
+
+&lt;h2 id='finishing_touches'&gt;Finishing touches&lt;/h2&gt;
+
+&lt;p&gt;What we want is to &lt;strong&gt;get rid of the ugly shadow&lt;/strong&gt; between the tab and the content somehow. I&amp;#8217;ll do this by doing a CSS &lt;strong&gt;box shadow&lt;/strong&gt; trick.&lt;/p&gt;
+
+&lt;p&gt;Modify the css file for &lt;em&gt;hover&lt;/em&gt; and &lt;em&gt;open&lt;/em&gt; elements to look like this:&lt;/p&gt;
+&lt;div class='medium_height_highlight'&gt;&lt;pre&gt;&lt;code class='css'&gt;  &lt;span class='nf'&gt;#nav&lt;/span&gt; &lt;span class='nt'&gt;li&lt;/span&gt; &lt;span class='nt'&gt;div&lt;/span&gt;&lt;span class='nd'&gt;:hover&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='nf'&gt;#nav&lt;/span&gt; &lt;span class='nt'&gt;li&lt;/span&gt; &lt;span class='nt'&gt;div&lt;/span&gt;&lt;span class='nc'&gt;.open&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#000&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;background-color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#FFF&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='n'&gt;box&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='n'&gt;shadow&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;0&lt;/span&gt; &lt;span class='m'&gt;5px&lt;/span&gt; &lt;span class='m'&gt;0&lt;/span&gt; &lt;span class='m'&gt;#fff&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='m'&gt;0&lt;/span&gt; &lt;span class='m'&gt;0&lt;/span&gt; &lt;span class='m'&gt;5px&lt;/span&gt; &lt;span class='m'&gt;#888&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;So to break it down, what &lt;strong&gt;box-shadow: 0 5px 0 #fff, 0 0 5px #888;&lt;/strong&gt; does is actually adding two shadows. The &lt;strong&gt;second&lt;/strong&gt; one goes around the element, and the &lt;strong&gt;first&lt;/strong&gt; one, which is the &lt;em&gt;important&lt;/em&gt; one, is a white shadow that spreads 5px down, &lt;em&gt;covering the other ugly shadows&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;In addition, I want that the non-opened tabs have a more discrete shadow, and that all the tabs have the top corners rounded, so lets modify the CSS accordingly:&lt;/p&gt;
+&lt;div class='medium_height_highlight'&gt;&lt;pre&gt;&lt;code class='css'&gt;  &lt;span class='nf'&gt;#nav&lt;/span&gt; &lt;span class='nt'&gt;li&lt;/span&gt; &lt;span class='nt'&gt;div&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;padding&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;5px&lt;/span&gt; &lt;span class='m'&gt;15px&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;display&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;inline&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='k'&gt;block&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;font-size&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;14px&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;background-color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#32B6C4&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;color&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;#fff&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='n'&gt;box&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='n'&gt;shadow&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt;&lt;span class='m'&gt;0&lt;/span&gt; &lt;span class='m'&gt;0&lt;/span&gt; &lt;span class='m'&gt;1px&lt;/span&gt; &lt;span class='m'&gt;#333&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;border-top&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='k'&gt;left&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='n'&gt;radius&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;5px&lt;/span&gt; &lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;border-top&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='k'&gt;right&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='n'&gt;radius&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='m'&gt;5px&lt;/span&gt; &lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;For the rounded corners, i used the &lt;strong&gt;border-top-left-radius&lt;/strong&gt; and &lt;strong&gt;border-top-right-radius&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Maybe you&amp;#8217;ll also want to get rid of the &lt;em&gt;height&lt;/em&gt; attribute on the container, if that will suit you better. I will as well add a &lt;strong&gt;pointer:cursor&lt;/strong&gt; to the tabs so that the cursor will change into the pointing hand.&lt;/p&gt;
+
+&lt;p&gt;In addition, here is the Javascript that will shuffle your tabs:&lt;/p&gt;
+&lt;div class='medium_height_highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;  &lt;span class='kd'&gt;function&lt;/span&gt; &lt;span class='nx'&gt;openedTabChanger&lt;/span&gt;&lt;span class='p'&gt;()&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;#nav li div&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;).&lt;/span&gt;&lt;span class='nx'&gt;live&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;click&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt; &lt;span class='p'&gt;()&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+      &lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;#nav li div&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;).&lt;/span&gt;&lt;span class='nx'&gt;removeClass&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;open&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+      &lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='k'&gt;this&lt;/span&gt;&lt;span class='p'&gt;).&lt;/span&gt;&lt;span class='nx'&gt;addClass&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;open&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+    &lt;span class='p'&gt;})&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Load this function when the DOM finishes loading.&lt;/p&gt;
+
+&lt;h2 id='thats_it'&gt;That&amp;#8217;s it!&lt;/h2&gt;
+
+&lt;p&gt;We have finished everything, so let&amp;#8217;s see the result again! &lt;img src='/images/2012-06-15/result.png' alt='basic layout' /&gt;&lt;/p&gt;
+
+&lt;h2 id='sourcecode'&gt;Sourcecode&lt;/h2&gt;
+
+&lt;p&gt;You can find the sourcecode &lt;a href='http://jsfiddle.net/dmiron/JU5fx/1/'&gt;here&lt;/a&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Announcing, the HouseTrip Developers Blog</title>
+   <link href="http://housetrip.github.com/2012/05/18/annoucing-the-new-housetrip-developers-blog"/>
+   <updated>2012-05-18T00:00:00+01:00</updated>
+   <id>http://housetrip.github.com/2012/05/18/annoucing-the-new-housetrip-developers-blog</id>
+   <content type="html">&lt;p&gt;Congratulations! You have found your way to the new &lt;em&gt;HouseTrip Developers Blog!&lt;/em&gt; Through a series of upcoming posts we hope to entertain and delight you with tales of the technical challenges we&amp;#8217;ve overcome and some of our ideas for the future. Stay tuned while we rack our brains for some topics to post!&lt;/p&gt;
+
+&lt;h2 id='about_housetrip'&gt;About HouseTrip&lt;/h2&gt;
+
+&lt;p&gt;HouseTrip was founded in 2009 by Arnaud Bertrand and Junjun Chen. Arnaud and Junjun met whilst studying hospitality management at the acclaimed Ecole Hôtelière de Lausanne in Switzerland.&lt;/p&gt;
+
+&lt;p&gt;The HouseTrip concept was born as a result of a mutual love of staying in holiday rentals while travelling. The trigger event occurred whilst trying to book a rental for a weekend in Scotland, with a booking process that was so complicated that they decided to dedicate themselves to making it simpler. Their thinking was; &amp;#8220;since rentals are better value and more &amp;#8216;authentic&amp;#8217; than hotels, if it’s easier and safer to book rentals, more people will choose them over hotels.&amp;#8221; Given HouseTrip&amp;#8217;s early success, this has so far held true!&lt;/p&gt;
+
+&lt;p&gt;Please check out the links below for more information.&lt;/p&gt;</content>
+ </entry>
+ 
+ 
+</feed>

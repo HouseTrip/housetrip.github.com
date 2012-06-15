@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Good looking shadowy CSS3 tabs</title>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" media="all">
+  <script type="text/javascript" src="/javascripts/jquery.js"></script>
+  <script type="text/javascript" src="/javascripts/main.js"></script>
+</head>
+<body>
+  <div id="main">
+  <div class="post">
+  <h1><a href="/2012/06/15/quick-tab-based-ui">Good looking shadowy CSS3 tabs</a></h1>
+  <div class="content">
+    <p>I&#8217;m going to show you guys how to create some nice looking tabs using CSS3 (sorry old IE guys!) Basically I didn&#8217;t find a good solution online for good looking tabs that were easy to do and that also looked nice, so I ended up by creating our own Housetrip version.</p>
+
+<p>This is the result we&#8217;re searching for: <img src='/images/2012-06-15/result.png' alt='basic layout' /></p>
+
+<h2 id='the_basic_setup'>The basic set-up</h2>
+
+<p>We will start by creating the barebones of the <strong>css</strong> and of the <strong>html</strong>: {% highlight css cssclass=medium_height_highlight%} #nav { margin: 0; padding: 0; }</p>
+
+<p>#nav li { list-style: none; display: inline-block; padding-right: 3px; border: 1px solid #000; }</p>
+
+<p>#nav li div { padding: 5px 15px; display: inline-block; font-size: 14px; }</p>
+
+<p>#tabbed_container { padding:10px; width:400px; height:200px; margin-top: 1px; border: 1px solid #000; } {% endhighlight %} {% highlight html cssclass=medium_height_highlight%} <ul id='nav'>
+    <li><div>Tab1</div></li>
+    <li><div>Tab2</div></li>
+    <li><div>Tab3</div></li>
+    <li><div>Tab4</div></li>
+  </ul> <div id='tabbed_container'>
+	m dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+</div> {% endhighlight %} This will create the following basic layout: <img src='/images/2012-06-15/screenshot1.png' alt='basic layout' /></p>
+
+<p>I know it doesn&#8217;t look too impresive, but we&#8217;re getting there! Patience! Let&#8217;s try to add more styles to make it more good looking&#8230;</p>
+
+<h2 id='going_further'>Going further</h2>
+
+<p>Let&#8217;s start by adding some color to our tabs! And maybe remove that ugly border. I wish that the color is different for the opened tab or for the one you are hovering over.</p>
+
+<p>Add the <strong><em>open</em></strong> <strong>class</strong> on the tab that you want it to be opened in the beginning: {% highlight html cssclass=medium_height_highlight%} <li><div class='open'>Tab1</div></li> {% endhighlight %}</p>
+
+<p>And now we can add some CSS for the colors:</p>
+
+<p>{% highlight css cssclass=medium_height_highlight%} #nav li { list-style: none; display: inline-block; padding-right: 3px; }</p>
+
+<p>#nav li div { padding: 5px 15px; display: inline-block; font-size: 14px; background-color: #32B6C4; color: #fff; }</p>
+
+<p>#nav li div:hover, #nav li div.open { color: #000; background-color: #FFF; } {% endhighlight %} And look at that, now we have our little colored tabs that turn white when you hover over them: <img src='/images/2012-06-15/screenshot2.png' alt='basic layout' /></p>
+
+<h2 id='adding_shadows'>Adding shadows</h2>
+
+<p>Now this is the CSS3 part, that will make the tabs really stick out from the rest of the crowd. I&#8217;ll start by adding a shadow to the container.</p>
+
+<p>This is done by the <strong>box-shadow</strong> CSS attribute: {% highlight css cssclass=medium_height_highlight%} #tabbed_container { padding:10px; width:400px; height:200px; margin-top: 1px; box-shadow: 0 0 5px #888; } {% endhighlight %} <img src='/images/2012-06-15/screenshot3.png' alt='basic layout' /></p>
+
+<p>I&#8217;ll follow this by adding a shadow as well on the tab elements: {% highlight css cssclass=medium_height_highlight%} #nav li div { padding: 5px 15px; display: inline-block; font-size: 14px; background-color: #32B6C4; color: #fff; box-shadow: 0 0 5px #888; } {% endhighlight %} <img src='/images/2012-06-15/screenshot4.png' alt='basic layout' /> It looks much better than the version we started with but not enough.</p>
+
+<p>Let&#8217;s proceed further&#8230;</p>
+
+<h2 id='finishing_touches'>Finishing touches</h2>
+
+<p>What we want is to <strong>get rid of the ugly shadow</strong> between the tab and the content somehow. I&#8217;ll do this by doing a CSS <strong>box shadow</strong> trick.</p>
+
+<p>Modify the css file for <em>hover</em> and <em>open</em> elements to look like this: {% highlight css cssclass=medium_height_highlight%} #nav li div:hover, #nav li div.open { color: #000; background-color: #FFF; box-shadow: 0 5px 0 #fff, 0 0 5px #888; } {% endhighlight %} So to break it down, what <strong>box-shadow: 0 5px 0 #fff, 0 0 5px #888;</strong> does is actually adding two shadows. The <strong>second</strong> one goes around the element, and the <strong>first</strong> one, which is the <em>important</em> one, is a white shadow that spreads 5px down, <em>covering the other ugly shadows</em>.</p>
+
+<p>In addition, I want that the non-opened tabs have a more discrete shadow, and that all the tabs have the top corners rounded, so lets modify the CSS accordingly: {% highlight css cssclass=medium_height_highlight%} #nav li div { padding: 5px 15px; display: inline-block; font-size: 14px; background-color: #32B6C4; color: #fff; box-shadow:0 0 1px #333; border-top-left-radius: 5px ; border-top-right-radius: 5px ; } {% endhighlight %} For the rounded corners, i used the <strong>border-top-left-radius</strong> and <strong>border-top-right-radius</strong>.</p>
+
+<p>Maybe you&#8217;ll also want to get rid of the <em>height</em> attribute on the container, if that will suit you better. I will as well add a <strong>pointer:cursor</strong> to the tabs so that the cursor will change into the pointing hand.</p>
+
+<p>In addition, here is the Javascript that will shuffle your tabs: {% highlight javascript cssclass=medium_height_highlight%} function openedTabChanger() { $(&#8220;#nav li div&#8221;).live(&#8220;click&#8221;, function () { $(&#8220;#nav li div&#8221;).removeClass(&#8220;open&#8221;); $(this).addClass(&#8220;open&#8221;); }) } {% endhighlight %} Load this function when the DOM finishes loading.</p>
+
+<h2 id='thats_it'>That&#8217;s it!</h2>
+
+<p>We have finished everything, so let&#8217;s see the result again! <img src='/images/2012-06-15/result.png' alt='basic layout' /></p>
+
+<h2 id='sourcecode'>Sourcecode</h2>
+
+<p>You can find the sourcecode <a href='http://jsfiddle.net/dmiron/JU5fx/1/'>here</a></p>
+    
+<div class="author">
+  
+    
+    <a href="http://www.housetrip.com">
+      <img src="http://www.gravatar.com/avatar/d054979fb9ca8599cfeb84936172dc28?s=36" width="36" height="36" alt="photo of Dragos"/>
+    </a>
+    
+    <div>
+      <a href="http://www.housetrip.com">Dragos</a>
+      
+    </div>
+  
+</div>
+
+  </div>
+  
+  <div class="date">15 Jun 2012</div>
+  
+</div>
+  </div>
+  <div id="footer">
+  <ul>
+    <li><a href="http://housetrip.com/en/about/housetrip">What is HouseTrip?</a></li>
+    <li><a href="http://housetrip.com/en/faq-general">FAQs</a></li>
+    <li><a href="http://blog.housetrip.com/team/housetrip-jobs">Jobs</a></li>
+    <li class="last"><a href="http://twitter.com/housetrip" class="twitter" rel="nofollow" title="Follow HouseTrip on Twitter">@HouseTrip</a></li>
+  </ul>
+  <p class="terms">
+    Use of this web site constitutes acceptance of the <a href="http://housetrip.com/en/about/terms_and_conditions">Terms and Conditions</a> and <a href="http://housetrip.com/en/about/privacy_policy">Privacy Policy</a>.<br/>
+    &copy; HouseTrip SA 2012. All rights reserved.
+  </p>
+</div>
+  <div id="logo"><a href="/">HouseTrip Developer's Blog</a></div>
+</body>
+</html>
