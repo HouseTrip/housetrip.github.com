@@ -3,6 +3,7 @@ layout: post
 title: Good looking shadowy CSS3 tabs
 published: true
 author: Dragos
+author_role: Developer
 author_url: http://www.housetrip.com
 author_avatar: http://www.gravatar.com/avatar/d054979fb9ca8599cfeb84936172dc28?s=36
 summary: 
