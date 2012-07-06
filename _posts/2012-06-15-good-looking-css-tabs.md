@@ -6,7 +6,7 @@ author: Dragos
 author_role: Developer
 author_url: http://www.housetrip.com
 author_avatar: http://www.gravatar.com/avatar/d054979fb9ca8599cfeb84936172dc28?s=36
-summary: 
+summary: I’m going to show you guys how to create some nice looking tabs using CSS3 (sorry old IE guys!) Basically I didn’t find a good solution online for good looking tabs that were easy to do and that also looked nice, so I ended up by creating our own Housetrip version.
 ---
 I'm going to show you guys how to create some nice looking tabs using CSS3 (sorry old IE guys!)
 Basically I didn't find a good solution online for good looking tabs that were easy to do and that also looked nice, so I ended up by creating our own Housetrip version.
@@ -16,7 +16,7 @@ This is the result we're searching for:
 
 ##The basic set-up
 We will start by creating the barebones of the **css** and of the **html**:
-{% highlight css cssclass=medium_height_highlight%}
+{% highlight css cssclass=medium_height_highlight %}
   #nav {
     margin: 0;
     padding: 0;
@@ -43,18 +43,18 @@ We will start by creating the barebones of the **css** and of the **html**:
     border: 1px solid #000;
   }
 {% endhighlight %}
-{% highlight html cssclass=medium_height_highlight%}
+This will create the following basic layout:
+{% highlight html cssclass=medium_height_highlight %}
   <ul id="nav">
     <li><div>Tab1</div></li>
     <li><div>Tab2</div></li>
     <li><div>Tab3</div></li>
     <li><div>Tab4</div></li>
   </ul>
-<div id="tabbed_container">
-	m dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-</div>
+  <div id="tabbed_container">
+    m dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+  </div>
 {% endhighlight %}
-This will create the following basic layout:
 ![basic layout](/images/2012-06-15/screenshot1.png)
 
 I know it doesn't look too impresive, but we're getting there! Patience! Let's try to add more styles to make it more good looking...
@@ -63,13 +63,13 @@ I know it doesn't look too impresive, but we're getting there! Patience! Let's t
 Let's start by adding some color to our tabs! And maybe remove that ugly border. I wish that the color is different for the opened tab or for the one you are hovering over.
 
 Add the ***open*** **class** on the tab that you want it to be opened in the beginning:
-{% highlight html cssclass=medium_height_highlight%}
+{% highlight html cssclass=medium_height_highlight %}
   <li><div class="open">Tab1</div></li>
 {% endhighlight %}
 
 And now we can add some CSS for the colors:
 
-{% highlight css cssclass=medium_height_highlight%}
+{% highlight css cssclass=medium_height_highlight %}
   #nav li {
     list-style: none;
     display: inline-block;

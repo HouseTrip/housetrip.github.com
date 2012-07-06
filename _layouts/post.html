@@ -4,10 +4,10 @@ layout: default
 <div class="post">
   <h1><a href="{{ BASE_PATH }}{{ page.url }}">{{ page.title }}</a></h1>
   <div class="content">
-    {{ page.content | markdownify }}
+    {{ content | markdownify }}
     {% include author.html %}
   </div>
-  {% if page.date %}
+  {% if date %}
   <div class="date">{{ page.date | date_to_string }}</div>
   {% endif %}
 </div>
