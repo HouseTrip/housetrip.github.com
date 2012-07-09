@@ -38,25 +38,21 @@ body {
   position:relative;
 }
 
-#main .post {
+#main .post .content {
   padding:0 0.666667em;
 }
 
 .post + .post {
-  margin-top:48px;  
+  margin-top:72px;  
 }
 
 #main .content p {
   text-align:justify;
 }
 
-.content :first-child {
-  margin-top:0;
-}
-
-.content p:first-child {
-  margin-top:1.25em
-}
+.content > p:first-child {
+   margin-top:1.25em;
+} 
 
 /* post meta */
 
@@ -74,6 +70,7 @@ body {
 
 .content .author img {
   float:left;
+  margin-top:0;
   margin-bottom:0;
 }
 .author div {
@@ -96,7 +93,7 @@ body {
   padding:0 8px 1px 8px;
   position:absolute;
   top:5px;
-  right:9px;
+  right:0px;
   -webkit-border-radius: 0 0 5px 5px;
   -moz-border-radius: 0 0 5px 5px;
   border-radius: 0 0 5px 5px;
@@ -187,8 +184,8 @@ p { text-indent: 1.25em; }
 .content p, .content ul, .content ol {
   margin:0 0 1.51786em 0;
 }
-.content img, .content p img, .content pre, .content iframe {
-  margin:1.25em 0;
+.content img, .content p img, .content div pre, .content iframe {
+  margin:1.4em 0;
 }
 
 img, .content p img, .content pre, .content iframe {
@@ -212,7 +209,7 @@ a:hover { color: #0e95ab; }
 
 pre {
   line-height: 1.2em;
-  font: 12px Monaco,"Courier New","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace;
+  font-family: Monaco,"Courier New","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace;
   padding: 10px;
   overflow:auto;
   -moz-background-clip: padding;

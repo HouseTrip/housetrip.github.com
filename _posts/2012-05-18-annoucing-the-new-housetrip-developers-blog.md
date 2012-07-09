@@ -16,5 +16,3 @@ Congratulations! You have found your way to the new *HouseTrip Developers Blog!*
 HouseTrip was founded in 2009 by Arnaud Bertrand and Junjun Chen. Arnaud and Junjun met whilst studying hospitality management at the acclaimed Ecole Hôtelière de Lausanne in Switzerland.
  
 The HouseTrip concept was born as a result of a mutual love of staying in holiday rentals while travelling. The trigger event occurred whilst trying to book a rental for a weekend in Scotland, with a booking process that was so complicated that they decided to dedicate themselves to making it simpler. Their thinking was; &ldquo;since rentals are better value and more &lsquo;authentic&rsquo; than hotels, if it’s easier and safer to book rentals, more people will choose them over hotels.&rdquo; Given HouseTrip's early success, this has so far held true!
-
-Please check out the links below for more information.

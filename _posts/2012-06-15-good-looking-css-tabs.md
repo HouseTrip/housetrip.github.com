@@ -6,7 +6,7 @@ author: Dragos
 author_role: Developer
 author_url: http://www.housetrip.com
 author_avatar: http://www.gravatar.com/avatar/d054979fb9ca8599cfeb84936172dc28?s=36
-summary: I’m going to show you guys how to create some nice looking tabs using CSS3 (sorry old IE guys!) Basically I didn’t find a good solution online for good looking tabs that were easy to do and that also looked nice, so I ended up by creating our own Housetrip version.
+summary: I'm going to show you guys how to create some nice looking tabs using CSS3 (sorry old IE guys!) Basically I didn't find a good solution online for good looking tabs that were easy to do and that also looked nice, so I ended up by creating our own Housetrip version.
 ---
 I'm going to show you guys how to create some nice looking tabs using CSS3 (sorry old IE guys!)
 Basically I didn't find a good solution online for good looking tabs that were easy to do and that also looked nice, so I ended up by creating our own Housetrip version.
