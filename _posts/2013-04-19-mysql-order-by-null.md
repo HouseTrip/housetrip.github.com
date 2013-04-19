@@ -7,13 +7,13 @@ author_role: Lead Developer
 author_url: http://github.com/marcusleemitchell
 author_avatar: http://www.gravatar.com/avatar/c0afdc1c900a8f7b429f786507e19758?s=36
 ---
-Whe using EXPLAIN to find the finer details of what is going on under the hood, you will surely come across this,
+When using EXPLAIN to find the finer details of what is going on under the hood, you will surely come across this,
 
 {% highlight mysql %}
   Using where; Using temporary; Using filesort
 {% endhighlight %}
 
-or some combination like that. The important one things to notice here are `temporary` and `filesort`.  Fixing `temporary` requires carefully defining indices, more on that suject can be found [in the MySQL docs](http://dev.mysql.com/doc/refman/5.0/en/multiple-column-indexes.html). Fixing the `filesort`, (especially when your SQL is abstracted by something like ActiveRecord) can be a little more tricky.  The here problem comes from using ` ... :group => "[column]" ` in our scope, for example.
+or some combination like that. The important one things to notice here are `temporary` and `filesort`.  Fixing `temporary` requires carefully defining indices, more on that subject can be found [in the MySQL docs](http://dev.mysql.com/doc/refman/5.0/en/multiple-column-indexes.html). Fixing the `filesort`, (especially when your SQL is abstracted by something like ActiveRecord) can be a little more tricky.  The problem comes from using ` ... :group => "[column]" ` in our scope, for example.
 
 {% highlight ruby %}
   Booking.all(
