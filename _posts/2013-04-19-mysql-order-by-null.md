@@ -57,8 +57,6 @@ So let's go back to the code and add that in.
 
 *Note that it isn't `:order => nil`. This results in the order not being included in the result SQL at all.*
 
-The EXPLAIN now gives us `Using where; Using temporary`. Chances are, the order implied by the `:group` is what you want anyway. You may be manipulating the data in script in which case the order is irrelevant.
-
-Of course, if you were sorting by a column explicitly you **would** care about the order, in which case you would be stating this in the query.  It's almost as if ActiveRecord should know to add this if there is no other `:order` specified (a future feature request maybe).
+The EXPLAIN now gives us `Using where; Using temporary`. Chances are, the order implied by the `:group` is what you want anyway.  Of course, if you were sorting by a column explicitly you **would** care about the order, in which case you would be stating this in the query.  It's almost as if ActiveRecord should know to add this if there is no other `:order` specified (a future feature request maybe).
 
 For more detail on exactly what MySQL is doing when filesorting, take a look at this detailed article, [How MySQL executes ORDER BY](http://s.petrunia.net/blog/?p=24)
