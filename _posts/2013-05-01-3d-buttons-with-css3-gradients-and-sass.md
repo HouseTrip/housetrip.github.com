@@ -174,6 +174,6 @@ Unfortunately CSS3 gradients are available only for FireFox, Chrome, Safari. How
 
 Below is a real example of CSS3 3D button, so you can see how it looks in your browser:
 
-&nbsp; <a class="css-3d-button" href="http://www.google.pl">Button</a>
+&nbsp; <a class="css-3d-button" href="http://www.housetrip.com">Button</a>
 
 ----
