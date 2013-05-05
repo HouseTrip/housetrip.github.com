@@ -1,7 +1,7 @@
 ---
 layout: post
 title: fuzzily and blurrily - two fast fuzzy-text search/match gems
-published: false
+published: true
 author: Julien
 author_role: Senior Developer
 author_url: http://github.com/mezis
