@@ -6,27 +6,22 @@ author: Dawid Sklodowski
 author_role: Lead Developer
 author_url: http://github.com/dawid-sklodowski
 author_avatar: http://www.gravatar.com/avatar/073c19a8d1fd30baa6dba34eaa55fe90.png
-summary: Ruby is a dynamic language which supports many ways to organize logic. We can use class inheritance or/and compose our classes by including selected modules (mixins). We can define or undefine methods on the fly. We can even use methods that aren not really defined (using method_missing). Another powerful feature is its ability to extend object with new methods in run-time by including modules to its class or its singleton class (if he/she wants to extend only the one object). To present this design pattern, lets assume that we want to create an application which will entertain our users — an RPG game, where the plot takes place in a fantasy world.
+summary: Ruby is a dynamic language which supports many ways to organise logic. We can use class inheritance or/and compose our classes by including selected modules (mixins). We can define or un-define methods on the fly. We can even use methods that are not really defined (using method_missing).  Using characters in an RPG game as an example, this code walk-through explains a design pattern for extending objects with new methods at run-time.
 ---
-<img src="/images/2013-06-06/ruby.jpg" style="float:left; width: 150px; height: 150px; margin: 3px 20px 10px -9px;"/>
 
-Ruby is a dynamic language which supports many ways to organize logic.
-We can use class inheritance or/and compose our classes by including selected modules (mixins).
-We can define or undefine methods on the fly. We can even use methods that aren't really defined (using method_missing).
-Another powerful feature is its ability to extend object with new methods in run-time by including modules to its class
-or its singleton class (if he/she wants to extend only the one object).
+Ruby is a dynamic language that supports many ways to organise logic. We can use class inheritance or/and compose our classes by including selected modules (mixins).
 
-To present this design pattern, lets assume that we want to create an application which will entertain
-our users — an RPG game, where the plot takes place in a fantasy world.
+<img src="/images/2013-06-06/ruby.jpg" style="float:left; width: 150px; height: 150px; margin: 3px 20px 10px 0px;"/>
 
-For simplicity of this example we will model character class. The player can pick one of the six races:
-dwarf, elf, gnome, hobbit, human or ogre. Then the player must chose their characters occupation including:
-priest, programmer, smith, thief, warrior or wizard.
+We can define or un-define methods on the fly. We can even use methods that aren't really defined (using method_missing). Another powerful feature is the ability to extend an object with new methods at run-time, by including modules in the class or singleton class (if you want to extend only one instance).
 
-Our character class is going to have a public method: greeting, where results will vary depending on character's
-race and occupation. Lets start with rspec test, to illustrate our needs.
+To present this design pattern, lets assume that we want to create an application which will entertain our users — an RPG game, where the plot takes place in a fantasy world.
 
-{% highlight ruby%}
+For simplicity we will model a character class. The player can pick one of six different races: dwarf, elf, gnome, hobbit, human or ogre. And they must chose their characters occupation from: priest, programmer, smith, thief, warrior or wizard.
+
+Our base character class is going to have a public method: greeting, where the output will depend on a character's race and occupation. To illustrate this, lets start with a test:
+
+{% highlight ruby %}
 #spec/character_spec.rb
 
 require 'spec_helper'
@@ -72,15 +67,15 @@ describe Character do
 end
 {% endhighlight %}
 
-Character#greeting is composed of two parts. The first part depends on how the given race says hello, for example the ogre will say Grumph!. The second part is influenced by character's occupation, for example a programmer will ask about Ruby knowledge. By summing up the above examples the ogre programmer will produce a greeting such as: Grumph! Do you know Ruby?
+`Character#greeting` is composed of two parts. The first depends on how a given race performs a greeting.  For example an ogre will say Grumph!. The second part is influenced by a character's occupation, e.g. a programmer will ask about Ruby. By combining the above an 'ogre programmer' will greet you with: 'Grumph! Do you know Ruby?'
 
-Having our all our tests in red state, lets think about possible implementations.
+With our tests in a failing state, lets think about some possible implementations.
 
-The easiest way to make the tests pass is by the creation of one class – Character – composed of multiple if (or case) statements, modifying the output of greeting method. In case of our tests it could be shortest implementation also. However, it is most likely that other attributes would be introduced in this class in the future, resulting in the modification of various methods. This leads to a complicated logic which would be very difficult to maintain.
+The easiest way to make our tests pass is to create just one class – Character – composed of multiple if (or case) statements, each modifying the output of the greeting.  However, it is likely that other attributes could be introduced in the future, resulting in complicated logic that would be difficult to maintain.
 
-Another possible way to make the tests pass is to separate logic into classes inheriting from the Character class. This solution is nicely supported by Rails framework with its Single Table Inheritance (STI). Going with this approach is good when there is one layer of logic separation. Fer instance, when we separate logic based on the character's race, we can create classes corresponding to races such as: Dwarf, Elf, Gnome, Hobbit, Human, Ogre, but this is not our case. We want to separate logic by race and occupation. This would lead to two layers of logic separation and results in 36 clases like following: OgreProgrammer, OgrePriest, GnomeThief, HobbitWizard, and so on. It is easy to imagine growth of this number when adding new layers of logic separation. We could end with thousands of classes like FemaleYoungWoodenElfArcher.
+Another approach might separate the logic into classes, each inheriting from the Character class. This solution is nicely supported by Rails through Single Table Inheritance (STI). Going with this approach is good for one layer of separation. For instance, when we separate logic based on the character's race, we can create classes corresponding to races such as: Dwarf, Elf, Gnome, Hobbit, Human, Ogre, but this is not our case. We want to separate logic by both race _and_ occupation. This would lead to two layers and 36 classes like following: OgreProgrammer, OgrePriest, GnomeThief, HobbitWizard etc. And this number will grow when even more layers are added. We could end with thousands of classes like FemaleYoungWoodenElfArcher!
 
-A solution for this problem that I would like to present is using run-time extends with Ruby. With this solution we create a module for each race and occupation. Also we need some logic to glue things together.
+The solution I would like to present uses run-time extends with Ruby. We create a module for each race and occupation and some logic to glue things together.
 
 Lets start with Character class:
 
@@ -105,11 +100,9 @@ class Character
 end
 {% endhighlight %}
 
-Character class implements greeting method, which depends on two other methods: race_greeting and occupation_greeting. Those two methods are expected to be implemented in modules included in lines: 4 and 5. Also those methods are defined in Character class, but they raise an error to indicate that they should be defined elsewhere.
+The Character class implements `greeting`, which depends on two other methods: `race_greeting` and `occupation_greeting`. Those two methods are expected to be implemented in the modules included in lines: 4 and 5. Also those methods are defined in the Character class, but they raise an error to indicate that they should be defined elsewhere.
 
-Lets continue with implementation of modules that were included in Character class.
-
-Race module:
+Lets continue with implementation of modules that were included in Character class, Race and Occupation:
 
 {% highlight ruby %}
 #lib/character/race.rb
@@ -134,11 +127,8 @@ class Character
     end
   end
 end
-{% endhighlight %}
 
-Occupation module:
 
-{% highlight ruby %}
 #lib/character/occupation.rb
 
 class Character
@@ -163,21 +153,14 @@ class Character
 end
 {% endhighlight %}
 
-Those two modules look similar and surely can be refactored, but we will examine that later. For now we will closely examine the Occupation module. First line of initialize method sets instance variable @occupation to hold occupation of character. Second line calls include_occupation method, which includes chosen occupation module to object's singleton class (this means that this module is available only for this particular object, but not for all Character's objects). Described method depends on other method — occupation_module, which returns Module that is going to be included. It uses ActiveSupport's constantize for that (constantize makes constant out of string).
+Those two modules look similar and can be refactored, but we will examine that later. For now take a look at the Occupation module. 
 
-Last line of initialize method:
+The initialize method sets an instance variable @occupation and then calls `include_occupation`, which includes the chosen occupation to the object's singleton class (this means that this module is available only for this object, not for all Character's objects). The `occupation_module` method returns the module to be included (using ActiveSupport's constantize).
 
-{% highlight ruby %}
-super if defined? super
-{% endhighlight %}
+Finally the super call in the `initialize` method calls initialize in any other module/class through inheritance. This is important, because it calls not only the `initialize` method of Character class, but it also `initialize` defined in all modules, which had been included before the described one was included. It assures that both: `initialize` defined in the Race module and in the Occupation module are both called.  The Race module works in the same way.  
 
-calls initialize method that is defined in any other module/class, which is higher in inheritance line. This is important, because it calls not only initialize method of Character‘s class, but it also calls initialize methods defined in all modules, which had been included before the described one was included. It assures that both: initialize defined in Race module and initialize defined in Occupation module would be called.
+The last thing we need to implement are the modules for each race and occupation. Since they are quite similar, I’m only going to list two here:
 
-Race module is analogous to Occupation module, so we can skip its examination.
-
-The last thing we need to implement is modules for particular races and occupations. Since all of the modules are quite similar, I’m only going to list here two of each kind:
-
-Ogre module:
 {% highlight ruby %}
 #lib/character/race/ogre.rb
 
@@ -190,10 +173,8 @@ class Character
     end
   end
 end
-{% endhighlight %}
 
-Human module:
-{% highlight ruby %}
+
 #lib/character/race/human.rb
 
 class Character
@@ -205,10 +186,6 @@ class Character
     end
   end
 end
-{% endhighlight %}
-
-Programmer module:
-{% highlight ruby %}
 
 #lib/character/occupation/programmer.rb
 
@@ -221,10 +198,7 @@ class Character
     end
   end
 end
-{% endhighlight %}
 
-Wizard module:
-{% highlight ruby %}
 
 #lib/character/occupation/wizard.rb
 
@@ -239,10 +213,9 @@ class Character
 end
 {% endhighlight %}
 
-Implementing all required modules makes our tests pass. However we need to require ActiveSupport in Character‘s class by adding those lines at the begging:
+Implementing all required modules and requiring ActiveSupport in the Character class, makes our tests pass.
 
 {% highlight ruby %}
-
 #lib/character.rb
 
 require 'rubygems'
@@ -250,11 +223,11 @@ require 'active_support'
 {% endhighlight %}
 
 
-Changing existing objects in runtime
+Changing existing objects at runtime
 ------------------------------------
 
-So far we’ve implemented a structure that allows us to set character’s race and occupation at the time of the objects creation, using the new method.
-However, this doesn’t fulfil our needs, because we need to be able to change the existing character’s occupation and race (this is some kind of magic) in run-time. This can be easily achieved by improving our modules. However lets write some tests first:
+So far we’ve implemented a structure that allows us to set character’s race and occupation at object creation, using the new method.
+However, this doesn’t fulfil our need, we need to be able to change the existing character’s occupation and race (this is some kind of magic) at run-time. This can be easily achieved by improving our modules. Lets write some tests first:
 
 {% highlight ruby %}
 
@@ -276,6 +249,7 @@ describe Character do
       character.occupation.should == 'smith'
     end
   end
+  
   describe '#greeting' do
     #Some code removed for clarity
     it 'works for hobbit priest who was dwarf thief' do
@@ -288,7 +262,7 @@ describe Character do
 end
 {% endhighlight %}
 
-To make this pass we need to add two methods to Character and Occupation class:
+To make this pass we need to add two methods to the Character and Occupation classes:
 
 {% highlight ruby %}
 
@@ -311,7 +285,9 @@ class Character
 end
 {% endhighlight %}
 
-First method is called upon when the module is included in other module or class (parent class/module is being held by variable base). This is Character class in our case. Only line of this method sets attribute reader for race variable on Character class. Second method is attribute writer, which assigns value to object’s instance variable, and then it includes appropriate race module.
+The first method is called when the module is included in another module or class (parent class/module is being held by variable base) (this is the Character class in our case). This method just sets an attribute reader for the race variable on the Character class. 
+
+The second method is an attribute writer, which assigns the value to an object’s instance variable, and then includes the appropriate race module.
 
 Playing with it even more
 -------------------------
@@ -335,7 +311,7 @@ describe Character do
 end
 {% endhighlight %}
 
-To implement that we need to modify Character class, to let it use race speech modifiers if defined any:
+To implement that we need to modify the Character class again:
 
 {% highlight ruby %}
 
@@ -358,7 +334,7 @@ class Character
   #Rest of code omitted for clarity
 {% endhighlight %}
 
-This listing says that if there is race_modifier implemented in race_module then it should be used, otherwise unmodified clean_greeting should be returned. Last thing we need to do is to implement this race_modifier in Gnome module:
+So now, if `race_modifier` has been implemented in `race_module` then it should be used, otherwise an unmodified `clean_greeting` will be returned. Finally we implement this `race_modifier` in the Gnome module:
 
 {% highlight ruby %}
 
@@ -367,23 +343,26 @@ This listing says that if there is race_modifier implemented in race_module then
 class Character
   module Race
     module Gnome
+    
       def race_greeting
         'Guten Tag.'
       end
+      
       def self.race_modifier(value)
         value.split(' ').map(&:capitalize).join
       end
+      
     end
   end
 end
 {% endhighlight %}
 
-This simple example of speech modification for gnomes illustrates how easily and cleanly logic can be extended when run-time extends design pattern is being used.
+This simple example of speech modification for gnomes illustrates how easily and cleanly logic can be extended using this run-time extends design pattern.
 
 Some refactoring
 ----------------
 
-So far we have a very evident code duplication. Race and Occupation modules looks almost the same. We can address this issue by creation of module named Common which will be included in Race and Occupation class as follows:
+So far we have a lot of code duplication. The Race and Occupation modules look almost identical. We can address by creating a Common module to be included in a Race and Occupation class:
 
 {% highlight ruby %}
 #lib/character/race.rb
@@ -394,8 +373,6 @@ class Character
   end
 end
 
-
-
 #lib/character/occupation.rb
 
 class Character
@@ -403,8 +380,6 @@ class Character
     include Common
   end
 end
-
-
 
 #lib/character/common.rb
 
@@ -438,7 +413,7 @@ module Common
 end
 {% endhighlight %}
 
-This code uses included hook to read name of including module and then, having that name (race or occupation), set reader for attribute named with that name and define methods (using class_eval), which definitions needs this name upfront.
+This code uses the `included` hook to read the name of the including module and then, set a reader for the attribute (with that name) and define its methods (using class_eval).
 
 Wrapping up
 -----------
