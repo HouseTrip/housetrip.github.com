@@ -4,7 +4,7 @@ title: HT - one command to rule them all
 published: true
 author: Matt
 author_role: Senior Developer
-author_url: http://github.com/matthutchinson
+author_url: https://plus.google.com/107981766773306423214?rel=author
 author_avatar: http://www.gravatar.com/avatar/9e0e76de0fe26c1326da1a232d4dd2f2?s=36
 ---
 [DRY](http://en.wikipedia.org/wiki/Don't_repeat_yourself) doesn't just apply as a best practice for software development.  At HouseTrip, we're always looking for better ways to automate things.  Everything we do repeatedly, should be a candidate for optimisation.  From simply connecting to servers, to pulling down stats on our production job queues.
