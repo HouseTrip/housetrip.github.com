@@ -84,9 +84,9 @@ You might have noticed that the config file you just edited referenced an SSL ce
 In a tmp directory, let's use [this handy gist](https://gist.github.com/matthutchinson/5815498) to generate it and move the cert files into place;
 
 {% highlight bash %}
-  cd /tmp
-  curl https://gist.github.com/matthutchinson/5815498/raw/9da28acd6bf0ce1666f39cc0351dd5eee764be8b/nginx_gen_cert.rb
-  ruby nginx_gen_cert.rb your-app.dev
+  curl https://gist.github.com/matthutchinson/5815498/raw/9da28acd6bf0ce1666f39cc0351dd5eee764be8b/nginx_gen_cert.rb > /tmp/nginx_gen_cert.rb
+  ruby /tmp/nginx_gen_cert.rb your-app.dev
+  rm /tmp/nginx_gen_cert.rb
 {% endhighlight %}
 
 You should now have SSL cert files for your app properly configured and contained in `/usr/local/etc/nginx/ssl`.
