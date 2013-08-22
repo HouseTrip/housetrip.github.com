@@ -91,7 +91,7 @@ describe User, '.all' do
 end
 {% endhighlight %}
 
-If you want to test your architecture a bit more thoroughly, the `vcr` gem is a
+If you want to test your architecture a bit more thoroughly, the [vcr](https://github.com/vcr/vcr) gem is a
 great way to record responses from your service for reuse when running tests.
 
 ## Using a test store
