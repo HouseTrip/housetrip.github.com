@@ -43,6 +43,13 @@ Next create a symlink in ~/.pow to your app's base directory like so;
   ln -s /full/path/to/your-app ~/.pow/your-app
 {% endhighlight %}
 
+**Note**: If you are running zsh with rbenv you may need to follow [these instructions](http://wellbredgrapefruit.com/blog/2012/09/25/zsh/) and add a PATH export to your ~/.powconfig file like so;
+
+{% highlight bash %}
+  export PATH=`brew --prefix rbenv`/shims:`brew --prefix rbenv`/bin:$PATH
+  # then restart pow again with touch ~/.pow/restart.txt
+{% endhighlight %}
+
 This should be enough for you to see your app working at http://your-app.dev. The next steps assume you have this working.
 
 ### Installing and configuring NGINX
