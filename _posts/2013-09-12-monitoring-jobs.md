@@ -123,28 +123,28 @@ adventurous amongst us started suggesting solutions.
 Unfortunately, I believe those are all coping mechanisms.
 
 The first piggie is confusing _importance_ and _urgency_ of a job.
-Importance is almost impossible to define, even relatively between;
+Importance is almost impossible to define because it's relative;
 different stakeholders will have different views, and importance may well
 vary over time as well, making it a maintenance nightmare. As I pointed out
 earlier, this was our original mistake—creating different queues
 (priorities) by importance.
 
 The second piggie thinks there's a silver bullet. In computing, there rarely
-is—and we we suggested this we were just being the victims of hearsay and
-non-comparable experiences. Sidekiq, for instance, has a few extra features
-(notification of [batch
+is; and when we suggested this, we were just being the victims of hearsay
+and non-comparable experiences. Sidekiq, for instance, has a few extra
+features (notification of [batch
 completion](https://github.com/mperham/sidekiq/wiki/Batches), for instance);
 but in our scenario it'd be a 1:1 replacement for DelayedJobs. So Sidekiq
 won't solve our issue—it'll just give us lower job latency, and possibly
 better job throughput, mainly because it's Redis-backed.
 
 The third piggie is less wrong than the other first two. Having a dedicated
-queues and workers for one of more job types (dedicated processing
-resources) can, indeed, increase reliability. What he might be missing is
-that he's trading that for increased cost of maintenance on one hand
-(another part of the stack needs scaling), and that the rationale can be
-repeated _ad nauseam_: everything's important, so everything should get
-dedicated resources.
+queue and workers for one or more job types (i.e. dedicated infrastructure)
+can, indeed, increase reliability. What he might be missing is that he's
+trading that for increased cost of maintenance (another part of the stack
+now needs management and scaling), and that this rationale can be repeated
+_ad nauseam_: everything's important, so everything should get dedicated
+resources.
 
 By that last logic, we'd have dedicated web stacks (dynos if you're running
 on Heroku) for every page, so we can micromanage latency on a page-by-page
@@ -157,12 +157,12 @@ Taking a step back, the root of the problem is really what we've stated
 concerning the first piggie: we tend to confuse _importance_ and _urgency_
 of asynchronous tasks.
 
-So we've decided to turn around, and instead of dealing with the impossible
-task of pitting each type of job against every other one, we ask ourselves
-(and our product people): how urgent is this job? In the sense, **by when
-should it complete?**.
+So we've decided to turn around. Instead of dealing with the impossible task
+of pitting each type of job against every other one, we ask ourselves (and
+our product people): how urgent is this job? In the sense, **by when should
+it complete?**.
 
-Implementing this turns out to be simple. We've adding some naming sugar:
+Implementing this turns out to be simple. We've added some naming sugar:
 
     module Delayed::Priority
       REALTIME = 0
@@ -172,15 +172,15 @@ Implementing this turns out to be simple. We've adding some naming sugar:
       WEEK     = 100
     end
 
-and schedule jobs using names urgency bands:
+and schedule jobs using named urgency bands:
 
-    RememberTheMilkService.new.delay(Delayed::Priority::DAY).run
+    RememberTheMilkService.new.delay(priority: Delayed::Priority::DAY).run
 
 Our DelayedJob-based queue/dispatch subsystem now makes a simple promise: if
-you give be a job with `HOUR` priority, I'll start running it within the
+you give me a job with `HOUR` priority, I'll start running it within the
 next 60 minutes. It's a **promise of timely execution**.
 
-Switching to this takes a bit of discipline but works—we solely have to
+Switching to this takes a bit of discipline but works. We just have to
 fight the occasional urge to confuse `REALTIME` with "it's really that
 important". We reserve `REALTIME` job jobs that should be completed by the
 time a user of the web frontend issues their next request.
@@ -193,7 +193,7 @@ The lesson we learned is failry simple:
 
 ## Last steps to Oz
 
-Urency bands helped us manage a growing number of jobs and job types and
+Urgency bands helped us manage a growing number of jobs and job types and
 still have jobs (mostly) delivered in a timely fashion... until it didn't.
 Again, some jobs ran late, and confusion and despair ensued!
 
@@ -231,14 +231,14 @@ Implementing this turned out to be quite easy:
           .fields(:created_at)
           .sort(:created_at)
           .limit(1).first
-        staleness = earliest_job ? earliest_job[:created_at].getutc.to_id : 0
+        staleness = earliest_job ? earliest_job[:created_at].getutc.to_i : 0
 
         STATSD.gauge 'dj.staleness', staleness, tags: ["queue:#{priority_name}"]
       end
     end
 
-`STATSD being a Statsd client, in our case courtesy of the datadog gem (code
-`simplified for the sake of the discussion).
+`STATSD` being a Statsd client, in our case courtesy of the datadog gem
+(code simplified for the sake of the discussion).
 
 The last bit being cute graphs and setting up alerts, which probably took 15
 minutes overall. Here's a few of the staleness graphs:
@@ -249,7 +249,7 @@ All of us get an email alert if any of these go over 1.
 
 This kind of monitoring is obviously an ops's wet dream: volume of jobs per
 queue, throughput of jobs, failure rates... all become easy to monitor, and
-help answer other questions. The most important remains the **staleness**
+help answer other questions. The most useful graphs are the **staleness**
 graphs as they allow for capacity planning, which is crucial for a fast
 growing app.
 
@@ -260,17 +260,17 @@ Our current setup lets us run quite a few jobs (1M/day). They're run mostly
 timely, we do have a few staleness spikes around nightly events (which will
 eventually need to be refactored).
 
-Importantly, we know when we're not, and we get alerts when we need more
-DelayedJob worker capacity.
+Importantly, we now know when we're underperforming, as we get alerts when
+we need more DelayedJob worker capacity.
 
 
 ## Further work
 
 Working on our queue/run backend has given the team a taste of monitoring
-beyond the usual Nagios-stylle server monitoring and the NewRelic-style
+beyond the usual [Nagios](http://www.nagios.org)-style server monitoring and the NewRelic-style
 frontend application monitoring.
 
-We're thinking to start reporting on a an "job
+We're thinking to start reporting on a "job
 [Apdex](https://newrelic.com/docs/site/apdex-measuring-user-satisfaction)"
 metric for jobs to reflect how timely jobs are typicaly run (we'll find
 another name if Apdex is a trademark).
