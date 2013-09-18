@@ -28,9 +28,8 @@ summary:  |
 
 ## Preface
 
-Many tasks a web application has to perform should usually be sent
-_asynchronously_ with respect to user input, that is, outside of the request
-cycle.
+A web application often has to perform tasks _asynchronously_ with respect
+to user input, that is, outside of the request cycle.
 
 Typically this includes sending emails, but can also be updating various
 kinds of counters, tracking, priming cache, scaling uploaded images, and so
@@ -76,11 +75,12 @@ of job would be assigned an integer _priority_ from 0 to 999, and classified
 jobs by their relative importance as we went.
 So whenever a new job was introduced, "job X is more important than Y"
 became "job X should have a lower _priority_ than Y" (yes, it's backwards,
-but that's how UNIX decided it would be a long while back).
+but that's how [UNIX decided it would be](https://en.wikipedia.org/wiki/Nice_(Unix))
+a long while back).
 
 What priorities really define is multiple, independent queues. The workers
-will always pick up work form a lower-priority queue before other work.
-Other than this ordering, the workers are agnostic in that they accept work
+will always pick up work from a lower-priority queue before other work.
+Other than this ordering, the workers are agnostic: they accept work
 from all queues.
 
 It quickly becomes natural to do this:
@@ -99,8 +99,8 @@ jobs/second average, peaks at 20 jobs/second).
 
 We had lots of different types of jobs (dozens).
 
-And what was bound to happen, happened: stuff that was supposed to run
-didn't, when stuff did run and when it didn't was a bit of a mystery,
+And what was bound to happen, happened: jobs that was supposed to run
+didn't, when jobs did run and when they didn't was a bit of a mystery,
 computers burst into flames, and product manager heads started spinning.
 
 
@@ -179,6 +179,10 @@ and schedule jobs using named urgency bands:
 Our DelayedJob-based queue/dispatch subsystem now makes a simple promise: if
 you give me a job with `HOUR` priority, I'll start running it within the
 next 60 minutes. It's a **promise of timely execution**.
+
+At this point it's just a promise; something extra will be needed to enforce
+it, as if someone shoves thousands of jobs in the `REALTIME` queue and you
+have only one measly worker, they're not going to run magically.
 
 Switching to this takes a bit of discipline but works. We just have to
 fight the occasional urge to confuse `REALTIME` with "it's really that
