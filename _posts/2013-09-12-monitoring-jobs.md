@@ -110,12 +110,12 @@ Lack of trust in our good old friend DelayedJobs developed, and the more
 adventurous amongst us started suggesting solutions.
 
 — *Let's put my stuff at a high priority*, the first one said. *I was told
-  *it should always be done as soon as possible.*.
+  it should always be done as soon as possible.*.
 
 — *Let's use Sidekiq*, the second one said. *All the cool cats are using it.*
   
 — *I know,* said the third one. *Let's have a dedicated queue and set of
-  *workers just for my job, since it's, like, so very important!*
+  workers just for my job, since it's, like, so very important!*
 
 
 ## Huffin' and puffin'
