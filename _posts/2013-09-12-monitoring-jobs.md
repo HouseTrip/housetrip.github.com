@@ -189,7 +189,7 @@ fight the occasional urge to confuse `REALTIME` with "it's really that
 important". We reserve `REALTIME` job jobs that should be completed by the
 time a user of the web frontend issues their next request.
 
-The lesson we learned is failry simple:
+The lesson we learned is fairly simple:
 
 > Urgency-based scheduling works because there is a rational answer to the
 > urgency question, but only emotive answers to importance.
