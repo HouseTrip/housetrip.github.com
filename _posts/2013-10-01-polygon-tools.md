@@ -3,12 +3,12 @@ layout: post
 title: "Interview on Geo Polygon Tools"
 published: true
 author: Dawid Sklodowski
-author_role: Lead Developer
+author_role: Developer
 author_url: https://github.com/dawid-sklodowski
 author_avatar: http://www.gravatar.com/avatar/073c19a8d1fd30baa6dba34eaa55fe90.png
 summary:  |
 
-  Short interview with Lead Developer and Online Performance
+  Short interview with Developer and Online Performance
   Marketing Specialist about cool feature that our team recently has delivered.
 
   Interviewer: Salim Halid
@@ -21,7 +21,7 @@ summary:  |
 
 ___Hi Dawid, introduce yourself to our readers.___
 
-Hey, I'm Dawid Sklodowski. I work at HouseTrip as Lead Developer.
+Hey, I'm Dawid Sklodowski. I work at HouseTrip as Developer.
 
 ___Recently your team developed a tool that allows us at HouseTrip to enhance our
 geographical database with new areas. It’s a very interesting concept, so what made
