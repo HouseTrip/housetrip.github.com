@@ -52,7 +52,7 @@ allowed us to draw an area on the map and then save it as a new destination.
 
 ___And what tool did you use to implement drawing areas on the map?___
 
-We used the [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/)
+We used the [Google Maps JavaScript API](http://developers.google.com/maps/documentation/javascript/)
 which allowed us to draw and edit polygons on the map. When the polygon is saved,
 our backend asynchronous processes examine the polygons and generate a list of every
 HouseTrip properties contained within that area. The algorithm first looks for all of
@@ -60,7 +60,7 @@ the properties within the smallest rectangle which can contain drawn polygons an
 for each of these, it is checking whether they are outside or inside the polygon.
 
 <img src="/images/2013-10-01/lake-como.jpg" class="center-image" title="Staleness over time" alt="Staleness over time"/>
-_An example of the polygon boundaries for Lake Como, Italy_
+_An example of the polygon boundaries for [Lake Como](http://www.housetrip.com/en/lake-como), Italy_
 
 After all of the properties are assigned to a new area, a landing page for that
 destination is automatically generated. This allows our marketing team to drive
