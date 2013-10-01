@@ -6,7 +6,10 @@ author: Jesper Kjeldgaard
 author_role: Developer
 author_url: http://github.com/thejspr
 author_avatar: http://www.gravatar.com/avatar/e96273c9bd8ea77a17ae87dca4c0de4c
-summary: This post covers ways to test Active Resource models
+summary: |
+  Active Resource can be a great way to move models from an application into
+  separate services. This post covers some strategies for testing active
+  resource services.
 ---
 
 We are currently in the process of moving towards a more service oriented
