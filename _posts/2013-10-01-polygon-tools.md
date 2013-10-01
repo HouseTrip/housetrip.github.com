@@ -11,10 +11,6 @@ summary:  |
   Short interview with Developer and Online Performance
   Marketing Specialist about cool feature that our team recently has delivered.
 
-  Interviewer: Salim Halid
-
-  Interviewees: Dawid Sklodowski, Carl Hallard
-
 ---
 
   Interviewer: **Salim Halid**, interviewees: **Dawid Sklodowski**, **Carl Hallard**
