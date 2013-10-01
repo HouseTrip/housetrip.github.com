@@ -59,7 +59,7 @@ HouseTrip properties contained within that area. The algorithm first looks for a
 the properties within the smallest rectangle which can contain drawn polygons and then,
 for each of these, it is checking whether they are outside or inside the polygon.
 
-<img src="/images/2013-10-01/lake-como.jpg" class="center-image" title="Staleness over time" alt="Staleness over time"/>
+<img src="/images/2013-10-01/lake-como.jpg" class="center-image" title="Lake Como" alt="Lake Como"/>
 _An example of the polygon boundaries for [Lake Como](http://www.housetrip.com/en/lake-como), Italy_
 
 After all of the properties are assigned to a new area, a landing page for that
