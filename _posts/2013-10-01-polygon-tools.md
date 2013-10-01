@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Interview on Geo Polygon Tools"
+title: "Interview: Geo Polygon Tools"
 published: true
 author: Dawid Sklodowski
 author_role: Developer
