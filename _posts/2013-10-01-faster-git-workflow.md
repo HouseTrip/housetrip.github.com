@@ -7,8 +7,8 @@ author_role: Developer
 author_url: http://github.com/thejspr
 author_avatar: http://www.gravatar.com/avatar/e96273c9bd8ea77a17ae87dca4c0de4c
 summary: |
-  This post covers how environment variables and aliases can increase the speed
-  of your Git workflows.
+  Yes, you can Git faster. This post covers how a mixture of environment
+  variables and aliases can increase the speed of your daily Git workflows.
 ---
 
 Over the last decade, Git has fast become an integral part of most developers
