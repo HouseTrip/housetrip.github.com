@@ -48,7 +48,7 @@ This is the most contentious stage in the life of a PR. If you are not careful y
 
 Even after all this care, there may still be occasions when disagreements arise.  As developers we love to debate every piece of work that has some business value attached to it, so it is good know when to continue or stop the debate and accept one point of view. If required take the discussion offline and make a decision quickly. If you can't decide among yourselves easily then bring in some mediation and go with the majority opinion. You might have a solid reason to believe your opinion is correct, but if it's not shared by a majority then there are usually two possibilities; either you are wrong and won't admit it or you need to convince the others better.
 
-We noticed developers often get bogged down in small things like indentation, chars per line, when to split hashes, hash key/value indentation and a whole bunch of small things. To counter that we have taken another step to reduce this back and forth, **style guides**. 
+We noticed developers often get bogged down in small things like indentation, chars per line, when to split hashes, hash key/value indentation and a whole bunch of small things. To counter that we have taken another step to reduce this back and forth, **style guides**.
 
 Our style guides are not fixed and can be changed if a consensus is made (via PRs). These guides are forked from other repositories on GitHub (that were aligned with our opinions).
 
@@ -60,4 +60,4 @@ The guides are public and you are welcome to issue PRs against them yourself ;)
 
 We are fully aware that this process may not give optimal results in every team, but it has been working quite well at Housetrip with a team of over 20 developers and a good mix of skills (most located here in London and a few remote developers in Germany). Combined with other practices these help us learn, grow professionally and encourage open communication within our teams, while keeping our code base sane and bug free.
 
-PS. We are growing fast and if you are looking to work on some challenging ideas then [apply here](http://hire.jobvite.com/Jobvite/Job.aspx?keywords=Ruby&o=34&j=oqRWWfwT&c=qqb9Vfwp) today!
+PS. We are growing fast and if you are looking to work on some challenging ideas then [apply here](http://blog.housetrip.com/team/housetrip-jobs) today!
