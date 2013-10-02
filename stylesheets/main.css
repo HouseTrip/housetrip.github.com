@@ -209,6 +209,10 @@ img, .content p img, .content pre, .content iframe {
   border-radius: 5px;
 }
 
+img.centered {
+  margin: 1.4em auto;
+}
+
 /* links */
 
 a, a:visited, a:active { color: #32B7C5; }
