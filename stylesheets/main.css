@@ -213,6 +213,13 @@ img.centered {
   margin: 1.4em auto;
 }
 
+.center-image {
+  display:    block;
+  margin:     1.4em auto !important;
+  width:      670px;
+  height:     auto;
+}
+
 /* links */
 
 a, a:visited, a:active { color: #32B7C5; }
