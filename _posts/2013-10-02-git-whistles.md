@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Interview: git-whistles gem"
+title: The git-whistles gem
 published: true
 author: David Silva
 author_role: Developer
@@ -8,7 +8,8 @@ author_url: https://github.com/davidslv
 author_avatar: http://www.gravatar.com/avatar/6aec36daee2fcb518971daa7f2e0f544.png
 summary:  |
 
-  Short interview with Developer about one of the tools we use at HouseTrip.
+  A short interview featuring (Developer) David Silva. The topic of discussion is git-whistles, 
+  one gem that every developer uses extensively in our HouseTrip workflow.
 
 ---
 
@@ -39,8 +40,8 @@ git pivotal-branch creates the name of the branch for us according to HouseTrip 
 It also creates a comment on pivotal tracker which starts a story for the developers to continue with.
 This was really helpful when we were performing tasks that other developers carried on with.
 
-[screen1]()
-[screen2]()
+<img src="/images/2013-10-02/pivotal-command.png" class="center-image" title="pivotal-branch command" alt="pivotal-branch command"/>
+<img src="/images/2013-10-02/pivotal-tracker-story.png" class="center-image" title="pivotal tracker story" alt="pivotal tracker story"/>
 
 __SH: And how did HouseTrip as a whole contribute towards the development of git-whistles?__
 
