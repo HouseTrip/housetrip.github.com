@@ -287,13 +287,3 @@ queue/run platform like Resque. But for know, we've gotten rid of the main
 pain points.
 
 Have fun with jobs!
-
-
-<style type="text/css">
-  .center-image {
-    display:    block;
-    margin:     1.4em auto !important;
-    width:      66%;
-    height:     auto;
-  }
-</style>
