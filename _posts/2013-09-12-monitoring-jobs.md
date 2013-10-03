@@ -247,7 +247,7 @@ Implementing this turned out to be quite easy:
 The last bit being cute graphs and setting up alerts, which probably took 15
 minutes overall. Here's a few of the staleness graphs:
 
-<img src="/images/2013-09-12/staleness.png" class="center-image" title="Staleness over time" alt="Staleness over time"/>
+<img src="/images/2013-09-12/staleness.png" class="center-graph" title="Staleness over time" alt="Staleness over time"/>
 
 All of us get an email alert if any of these go over 1.
 
