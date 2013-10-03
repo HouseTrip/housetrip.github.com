@@ -213,11 +213,15 @@ img.centered {
   margin: 1.4em auto;
 }
 
-.center-image {
+.center-image, .center-graph {
   display:    block;
   margin:     1.4em auto !important;
   width:      670px;
   height:     auto;
+}
+
+.center-graph {
+  width: 66%;
 }
 
 /* links */
