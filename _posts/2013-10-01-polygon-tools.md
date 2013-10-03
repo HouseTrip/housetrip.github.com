@@ -1,7 +1,7 @@
 ---
 layout: post
 title: New Geo Polygon Tools
-published: true
+published: false
 author: Dawid Sklodowski
 author_role: Developer
 author_url: https://github.com/dawid-sklodowski
