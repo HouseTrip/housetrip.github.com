@@ -18,7 +18,7 @@ summary:  |
   Marketing Specialist) Carl.  The topic of discussion is recently launched tool that
   helps us easily manage new destinations for properties on HouseTrip.
 
-  Interviewer: **Salim Halid**, interviewees: **Dawid Sklodowski**, **Carl Hallard**
+  Interviewer: **Salim Hamid**, interviewees: **Dawid Sklodowski**, **Carl Hallard**
 
 ___SH: Hi Dawid, introduce yourself to our readers.___
 
