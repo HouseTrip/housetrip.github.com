@@ -3,7 +3,7 @@ layout: post
 title: Configuring Pow with NGINX and SSL on OSX
 published: true
 author: Matt
-author_role: Senior Developer
+author_role: Developer
 author_url: https://plus.google.com/107981766773306423214?rel=author
 author_avatar: http://www.gravatar.com/avatar/9e0e76de0fe26c1326da1a232d4dd2f2?s=36
 summary: This is a step by step guide on how to setup your local development environment to serve a Rails (or any Rack) app with [Pow](http://pow.cx/) and [NGINX](http://nginx.org) over HTTPS.  To begin I'm going to assume you're using OSX (probably Mountain Lion), [HomeBrew](http://mxcl.github.io/homebrew/) and [rbenv](https://github.com/sstephenson/rbenv).  For other setups ymmv.

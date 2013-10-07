@@ -3,7 +3,7 @@ layout: post
 title: Maintaining Session Data from Ruby 1.8.x in 1.9.x
 published: true
 author: Marcus
-author_role: Lead Developer
+author_role: Developer
 author_url: http://github.com/marcusleemitchell
 author_avatar: http://www.gravatar.com/avatar/c0afdc1c900a8f7b429f786507e19758?s=36
 summary: tl;dr - You cannot just update to Ruby 1.9.x without losing your session data. Unless you serialize in a portable format (e.g. JSON) and rebuild any complex objects being stored.

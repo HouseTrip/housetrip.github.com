@@ -3,7 +3,7 @@ layout: post
 title: Maintaining Code Quality at Housetrip
 published: true
 author: Nasir
-author_role: Senior Developer
+author_role: Developer
 author_url: http://github.com/nas
 author_avatar: http://www.gravatar.com/avatar/24880024456ba440c55abbd0dce2c2ed.png
 summary: I joined HouseTrip in August, 2012 and since then I have not seen any code deployed to production without a peer review (barring a few exceptional hot-fixes). I found out that this was not always the case, in fact, (like many early stage startups) code used to go live without any reviews and we sometimes ended up with careless design and accrued technical debt.

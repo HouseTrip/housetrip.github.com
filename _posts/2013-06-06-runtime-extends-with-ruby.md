@@ -3,7 +3,7 @@ layout: post
 title: Runtime extends with Ruby
 published: true
 author: Dawid Sklodowski
-author_role: Lead Developer
+author_role: Developer
 author_url: http://github.com/dawid-sklodowski
 author_avatar: http://www.gravatar.com/avatar/073c19a8d1fd30baa6dba34eaa55fe90.png
 summary: Ruby is a dynamic language which supports many ways to organise logic. We can use class inheritance or/and compose our classes by including selected modules (mixins). We can define or un-define methods on the fly. We can even use methods that are not really defined (using method_missing).  Using characters in an RPG game as an example, this code walk-through explains a design pattern for extending objects with new methods at run-time.
