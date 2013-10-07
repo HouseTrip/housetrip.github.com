@@ -3,7 +3,7 @@ layout: post
 title: DCI with Ruby & Rails -- HouseTrip at LRUG
 published: true
 author: Dawid Sklodowski
-author_role: Lead Developer
+author_role: Developer
 author_url: http://github.com/dawid-sklodowski
 author_avatar: http://www.gravatar.com/avatar/073c19a8d1fd30baa6dba34eaa55fe90.png
 ---

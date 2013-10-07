@@ -3,7 +3,7 @@ layout: post
 title: fuzzily and blurrily - two fast fuzzy-text search/match gems
 published: true
 author: Julien
-author_role: Senior Developer
+author_role: Developer
 author_url: http://github.com/mezis
 author_avatar: http://www.gravatar.com/avatar/88683f31bdf05a8071fb08327b3919cb.png
 ---

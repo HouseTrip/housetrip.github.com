@@ -3,7 +3,7 @@ layout: post
 title: Rspec 1.3.x cookie issue with Ruby 1.9.3 & Rails 2.3.x
 published: true
 author: Nasir
-author_role: Senior Developer
+author_role: Developer
 author_url: http://github.com/nas
 author_avatar: http://www.gravatar.com/avatar/24880024456ba440c55abbd0dce2c2ed.png
 summary: At HouseTrip we use RSpec and cucumber for all our tests. While upgrading our app to Ruby 1.9.3 we hit a strange issue testing cookies in our controller specs.<br/><br/>In RSpec, you can fetch cookie values by using the cookies hash as `cookies[:cookie_name]` just like in the Rails controller, views and helpers. However, all our cookie related tests failed because the value of `cookie_name` was never being set. We found that we could still access the cookies using `response.template.cookies` meaning the cookies were being set correctly, but there was something not right with the tests.
