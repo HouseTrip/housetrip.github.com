@@ -61,7 +61,7 @@ the properties within the smallest rectangle which can contain drawn polygons an
 for each of these points, it is checking whether they are outside or inside the polygon.
 
 <img src="/images/2013-10-01/lake-como.jpg" class="center-image" title="Lake Como" alt="Lake Como"/>
-_An example of the polygon boundaries for [Lake Como](http://www.housetrip.com/en/lake-como), Italy_
+_An example of the polygon boundaries for [Lake Como](http://www.housetrip.com/en/lake-como-italy), Italy_
 
 After all of the properties are assigned to a new area, a landing page for that
 destination is automatically generated. This allows our marketing team to drive
