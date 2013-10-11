@@ -3,6 +3,7 @@ layout: post
 title: Example Post Template (do not publish me)
 published: false
 author: Matt
+author_role: Developer
 author_url: https://plus.google.com/107981766773306423214?rel=author
 author_avatar: http://www.gravatar.com/avatar/9e0e76de0fe26c1326da1a232d4dd2f2?s=36
 summary:
