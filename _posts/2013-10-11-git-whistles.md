@@ -1,14 +1,14 @@
 ---
 layout: post
 title: Introducing git-whistles
-published: false
+published: true
 author: David Silva
 author_role: Developer
 author_url: https://github.com/davidslv
 author_avatar: http://www.gravatar.com/avatar/6aec36daee2fcb518971daa7f2e0f544.png
 summary:  |
 
-  A short interview with (Developer) David Silva. The topic of discussion is git-whistles, 
+  A short interview with (Developer) David Silva. The topic of discussion is git-whistles,
   a gem we use extensively here at HouseTrip that helps with our git based workflow.
 
 ---
@@ -19,7 +19,7 @@ ___SH: Hi David, introduce yourself to our readers.___
 
 **DS**: Hey, I'm David Silva, and I work as a developer at HouseTrip.
 
-___SH: The git-whistles gem allows developers at HouseTrip to enhance their workflow, 
+___SH: The git-whistles gem allows developers at HouseTrip to enhance their workflow,
 what was life like before [git-whistles](https://rubygems.org/gems/git-whistles)?___
 
 **DS**: The gem provides us with additional git commands. Without them, work was a little slower.  For example; creating a git feature branch associated with a story in Pivotal Tracker was a more tedious process.  We needed to first input our team name, then decide on an abbreviated story label and finally copy and paste the story ID, all before we could get started with development in the branch.
@@ -37,7 +37,7 @@ __SH: How did git-whistles solve the problem?__
 
 __SH: And how did HouseTrip as a whole contribute towards the development of git-whistles?__
 
-**DS**: Julien, our VP of Engineering, actually created the tool initially. 
+**DS**: Julien, our VP of Engineering, actually created the tool initially.
 
 Daniel (developer) created the `git pivotal-branch` command. It creates a new feature branch based on the title of a Pivotal Tracker story and its id.  Pedro (lead developer), added his own tweaks and implemented a couple of new features such as `git select`, `git latest-pushes` and `git outstanding-features`, all commands that make working with git faster and help us practice agile story development more effectively!
 
@@ -52,7 +52,7 @@ __SH: Who are users of the tool you've built? Did you take into account their op
 
 __SH:How did you measure success? And on that note how successful was the product?__
 
-**DS**: Measuring the success of this project was for us, judged by how much faster we got things done. 
+**DS**: Measuring the success of this project was for us, judged by how much faster we got things done.
 But we encountered huge immediate success on a larger scale, and to date [git-whistles](https://rubygems.org/gems/git-whistles) has been downloaded more than 7000 times.
 That’s a success where we’re concerned.
 
