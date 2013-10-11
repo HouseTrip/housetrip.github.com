@@ -13,7 +13,7 @@ summary:  |
 
 ---
 
-  Interviewer: **Salim Hamid**, Interviewee: **David Silva**
+Interviewer: **Salim Hamid**, Interviewee: **David Silva**
 
 ___SH: Hi David, introduce yourself to our readers.___
 
@@ -32,8 +32,8 @@ __SH: How did git-whistles solve the problem?__
 
 **DS**: [git-whistles](https://rubygems.org/gems/git-whistles) uses additional tools such as `git-select`, we can ask for a story ID and it returns the corresponding story branch name. And `git pivotal-branch` creates the name of the branch for us according to HouseTrip conventions (such as team-name/name-of-feature-story-id). It also creates a comment on pivotal tracker changing the story status to "started". This is really helpful when we perform tasks that other developers must carry on with in the same story.
 
-<img src="/images/2013-10-02/pivotal-command.png" title="pivotal-branch command" alt="pivotal-branch command"/>
-<img src="/images/2013-10-02/pivotal-tracker-story.png" title="pivotal tracker story" alt="pivotal tracker story"/>
+![Pivotal Tracker Command](/images/2013-10-02/pivotal-command.png)
+![Pivotal Tracker Story](/images/2013-10-02/pivotal-tracker-story.png)
 
 __SH: And how did HouseTrip as a whole contribute towards the development of git-whistles?__
 
