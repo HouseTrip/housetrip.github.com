@@ -283,6 +283,14 @@ pre code {
   font-size:0.75em;
 }
 
+#footer-rss-image {
+  border:0px;
+  padding:0px;
+  width:14px;
+  height:14px;
+  display: inline;
+}
+
 /* buttons */
 
 /* cupid green (inspired by okcupid.com)
