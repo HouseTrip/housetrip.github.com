@@ -24,7 +24,7 @@ I found a useful script in
 [git-contrib](https://github.com/git/git/tree/master/contrib) called
 `git-workdir` which enables having the same repository in multiple states. Since
 it's just a bash script, there are many ways to install it, I've done it like
-this;
+this:
 
 {% highlight bash %}
 cd ~/Code/libs/
@@ -35,7 +35,7 @@ alias git-new-workdir='~/Code/libs/git/contrib/workdir/git-new-workdir'
 {% endhighlight %}
 
 With the script installed, you can now create a 'clone' of your checkout like
-this;
+this:
 
 {% highlight bash %}
 # usage: git-new-workdir <checkout-folder> <clone-folder>
@@ -45,8 +45,8 @@ git-new-workdir my-app my-app-CLONE
 
 The script achieves having multiple states on the same checkout by using some
 arcane symlinking which I will not go into detail with here. For more
-information about the script, have a look at [the
-source](https://github.com/git/git/blob/master/contrib/workdir/git-new-workdir).
+information about the script, have a look at
+[the source](https://github.com/git/git/blob/master/contrib/workdir/git-new-workdir).
 
 ## Caveats
 
