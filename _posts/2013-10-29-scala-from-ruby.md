@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Scala - first impressions of a Ruby developer
-published: false
+published: true
 author: Karlo
 author_role: Developer
 author_url: https://github.com/Karlotcha
