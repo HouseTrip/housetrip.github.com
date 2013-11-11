@@ -154,4 +154,9 @@ scrape more performance out of our mostly-relational storage instead of
 going through the massive investment of a foray into SOA and/or NoSQL lands.
 
 
+#### Credits
+
+Parts of this article are directly taken from the internal documentation
+@kratob has written for us.
+
 
