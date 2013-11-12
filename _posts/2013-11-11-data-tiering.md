@@ -18,7 +18,7 @@ As traffic grows, some of the data structures our application has to
 manipulate gets contended. Ours is an unusual, but effective solution: segregate data into read-mostly and write-mostly.
 
 I'll use HouseTrip as an example. We're a holiday rental marketplace, and
-information about wether the properties we list are available or not for
+information about whether the properties we list are available or not for
 given dates is backed by a table that looks like this:
 
     ┌────────────────┐
@@ -44,7 +44,7 @@ also take a lot of *writes*.
 >  People searching for properties end up booking them, thus changing their
 >  availability.
 >
->  *Corrolary*:
+>  *Corollary*:
 >  For the core tables (`properties`, `availabilities`, `rates`), our peak
 >  traffic is both a read and a write peak.
 
@@ -88,7 +88,7 @@ and the *back* table.
 - Any read-intensive part of the application (e.g. searching) will use the
   *front* table.
 - No part of the application will ever use the *back* table.
-- Every few minutes, an task (*errand* in our jargon) will sync all recent
+- Every few minutes, a task (*errand* in our jargon) will sync all recent
   changes from the regular to the inactive table. Then the *front* and the
   *back* table will be swapped.
 
