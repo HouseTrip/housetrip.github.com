@@ -30,16 +30,17 @@ given dates is backed by a table that looks like this:
     │ end_date       │
     └────────────────┘
 
-At time of writing, this table has shy of 1M rows.
+<br/>
+
+At the time of writing, this table has shy of 1M rows.
 
 Searching for available properties takes the form of a faily elaborate
 query, with multiple joins, on various tables including `availabilities`.
 This is plenty fast and scales well horizontally: so far our searches, and
-most other ready queries, are almost all handled by a handful of MySQL read
+most other read-y queries, are almost always handled by one of our MySQL read
 replicas.
 
-The problem we recently bumped into is that it scales poorly when the tables
-also take a lot of *writes*.
+The problem is this scales poorly when the tables also take a lot of *writes*.
 
 >  People searching for properties end up booking them, thus changing their
 >  availability.
@@ -71,15 +72,15 @@ This can be resolved in a number of ways:
 
 ## Data tiering
 
-"Data tiering is the mechanism we currently use to reduce database
-"contention for our search. It's inspired by the
+"Data tiering" is the mechanism we currently use to reduce database contention
+for our search. It's inspired by the
 [double buffering](http://en.wikipedia.org/wiki/Multiple_buffering) used
-"in video cards.
+in video cards.
 
 The idea is to have search queries not hit the main database tables and
 compete with updates and other queries, but instead have copies of relevant
 tables. Those tables will be refreshed every few minutes.
-We use it for all tables that get heave writes and reads.
+We use it for all tables that get heavy writes and reads.
 Every one of these regular tables now also has two clones: The *front* table
 and the *back* table.
 
@@ -94,26 +95,28 @@ and the *back* table.
 
 Conceptually:
 
-            ┌──────────────────────┐
-    read <- │ availabilities_front │
-            └──────────────────────┘
-            ┌──────────────────────┐            ┌────────────────┐
-            │ availabilities_back  │ <- update  │ availabilities │ <-> read/︎write
-            └──────────────────────┘            └────────────────┘
+               ┌──────────────────────┐
+       read <- │ availabilities_front │
+               └──────────────────────┘
+               ┌──────────────────────┐            ┌────────────────┐
+               │ availabilities_back  │ <- update  │ availabilities │ <-> read/︎write
+               └──────────────────────┘            └────────────────┘
 
 
 ### Syncing data
 
 To detect changes we use MySQL timestamps (`row_touched_at`) that get
-updated automatically by the database, regardless whether you do a normal
-save, or some mass update. We don't use them for anything else in our code
-as Rail's timezone handling does not work properly.
+updated automatically by the database, regardless of whether you've done a
+normal save, or some mass update. We don't use them for anything else in
+our code as Rail's timezone handling does not work properly.
 
 The column spec looks like:
 
     `row_touched_at` timestamp NOT NULL
         DEFAULT CURRENT_TIMESTAMP
         ON UPDATE CURRENT_TIMESTAMP
+
+<br/>
 
 This allows us to easily do partial updates of the back table instead of
 copying all the data in bulk from the original table.
@@ -133,7 +136,7 @@ named `availabilities_secondary_[01]`.
 ### Dealing with migrations
 
 Our sync engine detects schema changes, by comparing the output of `SHOW
-CREATE TABLE` (minus the `AUTOINCREMENT` part, if any).
+CREATE TABLE` (minus the `AUTO_INCREMENT` part, if any).
 
 If you migrate one of the involved tables, the next sync will migrate those
 as well, automatically.
