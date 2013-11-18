@@ -20,18 +20,21 @@ summary: |
 
 
 Whether you're building a Ruby Gem, Javascript library, new application, or
-service, the most important category of users you should think of is
-**fellow developers** who will add features, integrate your software, deploy
+service, your
+**fellow developers** will hopefully add features, integrate your software, deploy
 it, or otherwise use it.
 
-Good design starts from the users' needs, not from data modeling, code
+We're all aware that good design starts from the users' needs, not from data modeling, code
 design, or architecture.
 
 The very first piece of information those users will be exposed to is not
-your database schema, a running app, and it's certainly not your test suite.
-*Developers will start with your README*.
+your database schema, a running app, and it's certainly not your test suite:
 
-If it's bad, depending on the situation they'll just move on and find
+> Developers will start with your README
+
+if only because it's your project's "landing page" on Github.
+
+If your README is bad, depending on the situation they'll just move on and find
 another tool, have trouble understanding what's going on, or misuse your
 code. In a company setting, this is even more important as there might not
 be another initialsource of knowledge about the software (Stack Overflow,
