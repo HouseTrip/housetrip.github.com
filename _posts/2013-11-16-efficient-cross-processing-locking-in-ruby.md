@@ -13,10 +13,13 @@ summary: |
 
 Baking in thread-safety, and concurrency support in software is both interesting
 and a challenge. The problem you want to avoid most of time is shared state.
-The truth is: if you ever have to live with it, it will be your bottleneck.
+The truth is: if you ever have to live with it, it will be your bottleneck. Also
+another nasty issue you want to avoid are race conditions - different
+threads or processes changing shared data and having other handful issues 
+like dirty reads.
 
-However sometimes that's inevitable, and in the post we will cover one of the
-problems we had at HouseTrip and how we solved it.
+However sometimes it's inevitable handling shared state, and in the post 
+we will cover one of the problems we had at HouseTrip and how we solved it.
 
 ## The problem
 
@@ -112,14 +115,14 @@ end
 ## Conclusions
 
 Thread-safe and concurrency are complex subjects and you should avoid as much as
-can dependencies and shared state. However whenever that's not possible there is
-a few solutions that can be applied to minimize race conditions. In this post
-we presented a way how can achieve a mutex that can shared across processes and
-guarantee running mutually exclusive code. 
+can dependencies and shared state. However, sometimes that's not possible but 
+there is a few solutions that can be applied to prevent race conditions. In this 
+post we presented a way to achieve a mutex that can shared across processes and
+guarantee that a certain block of code can run exclusively.
 
-Also another of the side effect of staying away from DB locks is you can
-considerably minimize contention on a database being hammered by writes and
-reads every single second. 
+Also another of the side effect of staying away from database locks is you can
+considerably minimize database contention especially if its being hammered 
+by writes and reads every single second. 
 
 You can get our gem through [rubygems](https://rubygems.org/gems/remote_lock)
 by putting the following on your Gemfile:
