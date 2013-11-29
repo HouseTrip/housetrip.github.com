@@ -8,6 +8,9 @@ author_url: http://github.com/mezis
 author_avatar: http://www.gravatar.com/avatar/88683f31bdf05a8071fb08327b3919cb
 summary: |
   Having a good README is crucial to see a software project get adopted and well used.
+
+  Starting with a good README also helps you focus on your API or UI first.
+  
   The TL,DR:
 
   - be consise and a bit salesy
@@ -37,7 +40,7 @@ if only because it's your project's "landing page" on Github.
 If your README is bad, depending on the situation they'll just move on and find
 another tool, have trouble understanding what's going on, or misuse your
 code. In a company setting, this is even more important as there might not
-be another initialsource of knowledge about the software (Stack Overflow,
+be another initial source of knowledge about the software (Stack Overflow,
 blogs, etc).
 
 Here's a few toughts on how to write a great README.
@@ -50,8 +53,8 @@ pitches the project, it tells the user what the intent is, and in the case
 of open-source software, why it may be more relevant to them than the
 competition.
 
-The first 40 characters should be crystal clear about the *what*, and the
-whole thing should fit in a tweet.
+The first 40 characters should be crystal clear about the *what*, the next 100
+about the *why*, which means the whole thing should fit in a tweet.
 
 The next paragraph should elaborate and mention key features, and possibly
 non-functional properties like performance (and in that case, point to
@@ -78,8 +81,8 @@ For a Rails app, it might be something like
 > - run `rails server`, and head to `http://localhost:3000`
 
 Any required configuration should be mentioned (ideally, if you have sane
-default, this will be minimal). HAve in mind that your users' environment
-might be different—expect them tu use a fairly vanilla setup, but you might
+default, this will be minimal). Have in mind that your users' environment
+might be different—expect them to use a fairly vanilla setup, but you might
 want to mention known incompatibilities/quirks, e.g. "if you're running RVM
 instead of RBenv", etc.
 
