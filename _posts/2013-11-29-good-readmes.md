@@ -10,10 +10,10 @@ summary: |
   Having a good README is crucial to see a software project get adopted and well used.
 
   Starting with a good README also helps you focus on your API or UI first.
-  
+
   The TL,DR:
 
-  - be consise and a bit salesy
+  - be concise and a bit sales-y
   - hand-hold your users into installation and initial usage, and around traps
   - make it a portal for further information
 
@@ -22,7 +22,7 @@ summary: |
 ---
 
 
-Whether you're building a Ruby Gem, Javascript library, new application, or
+Whether you're building a Ruby Gem, JavaScript library, new application, or
 service, your
 **fellow developers** will hopefully add features, integrate your software, deploy
 it, or otherwise use it.
@@ -35,15 +35,15 @@ your database schema, a running app, and it's certainly not your test suite:
 
 > Developers will start with your README
 
-if only because it's your project's "landing page" on Github.
+if only because it's your project's "landing page" on GitHub.
 
 If your README is bad, depending on the situation they'll just move on and find
 another tool, have trouble understanding what's going on, or misuse your
 code. In a company setting, this is even more important as there might not
-be another initial source of knowledge about the software (Stack Overflow,
-blogs, etc).
+be another source of knowledge about the software (Stack Overflow,
+blogs, etc.)
 
-Here's a few toughts on how to write a great README.
+Here's a few thoughts on how to write a great README.
 
 
 ### Wear your salesman hat.
@@ -60,19 +60,18 @@ The next paragraph should elaborate and mention key features, and possibly
 non-functional properties like performance (and in that case, point to
 benchmarks).
 
-Adding badges that show your code is tested and covered (etc) helps your
+Adding badges that show your code is tested and up to date, helps your
 sales pitch.
 
 
 ### Where do I start?
 
 Your pitch won't be enough, and users need to poke your software with a
-stick. 
+stick.
 
 Resist the narcissistic urge to rant about the merits of your code, and
-make your first section about how to get the thing running.
-
-For a Rails app, it might be something like
+make your first section about how to get the thing running. For a Rails
+app, this might be something like:
 
 > - make sure you have Ruby 2.0 and Bundler installed
 > - copy .env.example to .env
@@ -89,9 +88,8 @@ instead of RBenv", etc.
 
 #### Tests!
 
-Letting users run tests when they start with your code builds trust.
-
-For an app, provide an example to manually "acceptance test" it, e.g. 
+Letting users run tests when they start with your code builds trust.  For
+an app, provide an example to manually "acceptance test" it, e.g.
 
 > From `http://localhost:3000`, click on "sign in" and use "test/test" (works only locally).
 > You should be greeted with a dummy catalogue of FizzBuzzs.
@@ -102,7 +100,8 @@ For an app, provide an example to manually "acceptance test" it, e.g.
 While a README should generally not be a full-fledged documentation, getting
 users to start tinkering with your library helps.
 
-Provide a few code snippets for typical use cases. Here's a trivial example taken from [will_paginate](https://github.com/mislav/will_paginate):
+Provide a few code snippets for typical use cases. Here's a trivial example
+taken from [will_paginate](https://github.com/mislav/will_paginate):
 
     ## perform a paginated query:
     @posts = Post.paginate(:page => params[:page])
@@ -121,7 +120,7 @@ they just don't cut it. Perhaps it doesn't work on large amounts of data, or
 is too heavy to make sense on small amounts of data, or a known
 incompatibility.
 
-Don't let your users in the dark... this is the place to share it with them
+Don't leave users in the dark... this is the place to share it with them
 or they'll find out they've wasted their time. They'll actually be grateful
 if you mention that your shiny gem doesn't work with JRuby because it isn't
 thread-safe!
@@ -133,10 +132,10 @@ Have more documentation? A wiki or a blog? Style guidelines? A process to
 welcome contributions? This is where you put it.
 
 Finally, if your code is open source, mentioning its licence in the README
-will help its adoption in entreprise settings.
+will help its adoption in enterprise settings.
 
 If you want inspiration on a good README,
 [Sidekiq](https://github.com/mperham/sidekiq),
 [Dragonfly](https://github.com/markevans/dragonfly), or
-[Discourse](https://github.com/discourse/discourse) give adecent stab at a
+[Discourse](https://github.com/discourse/discourse) give a decent stab at a
 clear README!
