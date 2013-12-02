@@ -31,13 +31,13 @@ But because we are engineers and not frustrated Ruby Devs, we have faced this pr
 
 We are a very resourceful, multicultural team, and we always hire the right people.
 This makes us drive the product in the direction we want (from an engineering perspective).
-We’ve also taken the right decisions on how to overcome legacy code in our app.
+We’ve also taken very good decisions on how to overcome legacy code in our app.
 
 ###Again with the *better engineers* stuff...
 
 If you are put in front of a challenge, you have the power to overcome it, and to better yourself.
 Our challenges are plentiful, and we tackle every single one. Even if at times we work on legacy
-code and we might think it's not good for us, it’s not the syntax or the design pattern that makes
+code and we might think it's not good for us, it’s not the syntax or the design pattern that make
 us better, but the very fact that we are collaboratively exploring how to tackle a certain domain.
 
 This has taken us somewhat far out of the scope of Ruby+Rails.
@@ -46,7 +46,7 @@ Some of the examples I could put on the plate are:
 
 * Ripping the app into SOA
 * Data Tiering
-* A CI cluster build from scratch with machines that sleep and wake up to pick up tests
+* A CI cluster built from scratch with machines that sleep and wake up to pick up tests
 * SQL inspection (to make sure our queries perform)
 
 ###Learn by overcoming challenges
