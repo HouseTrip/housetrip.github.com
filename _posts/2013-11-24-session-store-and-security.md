@@ -32,7 +32,7 @@ Sessions is a way to store information about the current user, his context and h
 browsing session, but keep it hidden to him. Another way to store information relevant
 to the browsing session is using cookies. Obviously, nobody uses cookies to store
 any important information, because cookies are clear text, public and easy to tamper
-strings. If the user logs in your app, and you store his user_id in a cookie,
+strings. If the user logs in to your app, and you store his user_id in a cookie,
 you're asking for trouble. Hence, cookies are unsafe, and you must use sessions.
 
 One of the things that came for free on `rails new`, is a default session store,
@@ -141,7 +141,8 @@ The second one writes to the session each time.
 <img src="/images/2013-11-24/charts.png" class="center-image" alt="charts"/>
 &#x20;<p class="caption">Benchmarks results.</p>
 
-Cookie-based is the fastest one. SQL-based storages are the slowest, being MySQL 1% slower than SQLite.
+Cookie-based is the fastest one. SQL-based storages are the slowest, MySQL being 1% slower
+than SQLite (considering that here we only have have one user).
 It is highly recommended to run these benchmarks in several environments, as it may render
 different results depending on hard disk type (SSD or not), memory size and speed,
 processor, configuration of the backend, load of the backend and even session size and
