@@ -56,7 +56,7 @@ functionality, controllers and routes. Uncompress the [file](/images/2013-11-24/
 and checkout branch `rails-2`, `rails-3` or `rails-4` to use one of the projects.
 
 They have a `/users` resource done with a basic Rails scaffolding. It has been modified
-to allow sending an special parameter to set a session value.
+to allow sending a special parameter to set a session value.
 
 Let's start the dev server on the _rails-2_ branch and follow these steps in your browser:
 
