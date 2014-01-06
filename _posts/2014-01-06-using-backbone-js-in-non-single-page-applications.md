@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Using Backbone in non-single-page applications
+title: Using BackboneJS in non-single-page applications
 published: true
 author: Jesper Kjeldgaard
 author_role: Developer
@@ -71,10 +71,10 @@ HouseTrip.Models.Property = Backbone.Model.extend({})
 
 This allows us to gather all relevant code in their own namespace, and having
 access to any resource anywhere we might need it. We decided to document
-these decisions in a style guide which you can take a peek at
-[here](https://github.com/HouseTrip/backbone-style-guide).
+these decisions in a [BackboneJS style guide](https://github.com/HouseTrip/backbone-style-guide).
 
 ## Final thoughts
+
 I think the decision to go with BackboneJS and do the most of the rendering in
 Rails is a great way to transition a large application towards a more modern
 and performant front-end. Whether it will still be maintainable 2 years down
