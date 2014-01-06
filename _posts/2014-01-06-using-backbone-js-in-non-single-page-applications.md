@@ -12,7 +12,7 @@ summary: |
   our approach to introducing a JavaScript framework into a large Rails application.
 ---
 
-When recently tasked with implementing a redesign several of our essential
+When recently tasked with implementing a redesign of several of our essential
 pages, we decided to start with a new application layout. This allowed us to
 rethink the technologies we use in our front-end stack, which is awesome, but
 also carries a great responsibility in making maintainable decisions.
@@ -20,14 +20,15 @@ also carries a great responsibility in making maintainable decisions.
 As one of the requirements of the project was to cater to mobile devices, we
 decided to use [Twitter Bootstrap](http://getbootstrap.com) as the foundation
 for our styles and layout. This gave the teams involved a structure to follow
-and many components to extend from.
+and many components to extend from, besides this we documented some guide lines
+in a [Sass style guide](https://github.com/HouseTrip/sass-style-guide).
 
 During the early stages of the project it also became clear that we needed to
 have a solid structure and set of conventions in place for our JavaScript. After
 considering the many JS frameworks available we decided to go with
 [BackboneJS](http://backbonejs.org).
 We chose this technology because it gave us the structure and building blocks
-needed to get the job done, with out getting in the way too much. We also
+needed to get the job done, without getting in the way too much. We also
 considered [AngularJS](http://angularjs.org) and [EmberJS](http://emberjs.com),
 but decided against these two as they cater more to a fully JavaScript driven
 front-end. By this meaning that we still wanted to do most of the page rendering
@@ -45,7 +46,7 @@ Introducing BackboneJS into the application created a new set of decisions to
 make in terms of file organization and object naming. We decided to do the
 simplest thing that could work, which is bundling all JavaScript files together
 into one file and including it on all pages. This increases the load time
-for when the user first enters the site, but subsequent requests benefit from having the
+when the user first enters the site, but subsequent requests benefit from having the
 JavaScript cached. As this file grows in size we might consider using a module
 loader like [RequireJS](http://requirejs.org) or
 [Browserify](http://browserify.org), but for now we stick to the
