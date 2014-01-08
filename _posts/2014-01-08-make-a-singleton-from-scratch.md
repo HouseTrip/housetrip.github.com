@@ -58,8 +58,11 @@ end
 We can demonstrate this by running both implementation through the same test suite
 
 {% highlight ruby %}
-describe MySingleton do
+require 'spec_helper'
+require 'singleton/my_singleton'
+require 'singleton/ruby_singleton'
 
+shared_examples "a singleton" do
   it 'should not be a eager class' do
     # will return 1 if is a eager class and 0 if not
     ObjectSpace.each_object(described_class){}.should == 0
@@ -77,6 +80,14 @@ describe MySingleton do
     described_class.instance.should eql(singleton_instance)
     described_class.instance.class.should eql(singleton_instance.class)
   end
+end
+
+describe MySingleton do
+  it_behaves_like "a singleton"
+end
+
+describe RubySingleton do
+  it_behaves_like "a singleton"
 end
 {% endhighlight %}
 
