@@ -14,11 +14,11 @@ summary: |
 
 One of the 23 described patterns by the [Gang of Four](http://en.wikipedia.org/wiki/Design_Patterns) is the [Singleton Pattern](http://en.wikipedia.org/wiki/Singleton_pattern), which says only one object of a particular class is ever created and all further references to objects of the singleton class refer to the same underlying instance.
 
-As you may know, ruby provides you a [singleton module](http://ruby-doc.org/stdlib-2.1.0/libdoc/singleton/rdoc/Singleton.html) that you can include in your class, and magically your class is a singleton out of the box.
+As you may know, Ruby provides you a [singleton module](http://ruby-doc.org/stdlib-2.1.0/libdoc/singleton/rdoc/Singleton.html) that you can include in your class, and magically your class is a singleton out of the box.
 
 But let's say for the sake of learning you want create your own Singleton from scratch.
 
-All the work done by the ruby Single module is:
+All the work done by the Ruby Singleton module is:
 
 - creates the class variable
 - initializes it with the singleton instance
@@ -45,7 +45,7 @@ end
 {% endhighlight %}
 
 
-`MySingleton` is the same as having the following:
+An equivalent implementation of `MySingleton` would be, using the Ruby library:
 
 {% highlight ruby %}
 require 'singleton'
@@ -55,7 +55,7 @@ class RubySingleton
 end
 {% endhighlight %}
 
-And I can prove it to you by having the same spec for each class, the following example covers `MySingleton` class, but the code is just the same for `RubySingleton`.
+We can demonstrate this by running both implementation through the same test suite
 
 {% highlight ruby %}
 describe MySingleton do
