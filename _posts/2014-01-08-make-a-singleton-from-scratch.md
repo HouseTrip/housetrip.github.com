@@ -27,8 +27,7 @@ All the work done by the ruby Single module is:
 - prevents your class to be a Eager class
 
 
-```ruby
-
+{% highlight ruby %}
 class MySingleton
 
   # This would cause a eager instantiation, 
@@ -43,25 +42,22 @@ class MySingleton
   # and finally the `new` method becomes private
   private_class_method :new
 end
-
-```
+{% endhighlight %}
 
 
 `MySingleton` is the same as having the following:
 
-```ruby
-
+{% highlight ruby %}
 require 'singleton'
 
 class RubySingleton
   include Singleton
 end
-
-```
+{% endhighlight %}
 
 And I can prove it to you by having the same spec for each class, the following example covers `MySingleton` class, but the code is just the same for `RubySingleton`.
 
-```ruby
+{% highlight ruby %}
 describe MySingleton do
 
   it 'should not be a eager class' do
@@ -82,7 +78,7 @@ describe MySingleton do
     described_class.instance.class.should eql(singleton_instance.class)
   end
 end
-```
+{% endhighlight %}
 
 You can learn more about [ObjectSpace](http://www.ruby-doc.org/core-2.1.0/ObjectSpace.html).
 
