@@ -16,7 +16,7 @@ One of the 23 described patterns by the [Gang of Four](http://en.wikipedia.org/w
 
 As you may know, Ruby provides you a [singleton module](http://ruby-doc.org/stdlib-2.1.0/libdoc/singleton/rdoc/Singleton.html) that you can include in your class, and magically your class is a singleton out of the box.
 
-But let's say for the sake of learning you want create your own Singleton from scratch.
+But let's say for the sake of learning you want to create your own Singleton from scratch.
 
 All the work done by the Ruby Singleton module is:
 
