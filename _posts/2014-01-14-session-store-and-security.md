@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Session storage and security in Rails
-published: true
+published: false
 author: Daniel Cruz
 author_role: Developer
 author_url: http://dncrht.github.io
@@ -163,7 +163,7 @@ Other problems with cookies are:
  This means that a session cookie will always be cosidered valid for the server, posing a
  security problem if a cookie falls on undesired hands. Alternative session stores are
  invalidated both server side and client side.
- 
+
 Session cookies are good enough for a quick project start, or a personal project.
 But as your project starts to grow you should evaluate and choose an alternative according to your requirements.
 
