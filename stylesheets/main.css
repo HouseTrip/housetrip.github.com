@@ -224,6 +224,14 @@ img.centered {
   width: 66%;
 }
 
+#main .content .caption {
+  text-align: center;
+  color: #ccc;
+  font-style: italic;
+  font-size: 11px;
+  padding-bottom: 20px;
+}
+
 /* links */
 
 a, a:visited, a:active { color: #32B7C5; }
