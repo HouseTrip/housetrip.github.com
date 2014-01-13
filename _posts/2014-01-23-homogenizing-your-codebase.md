@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Homogenizing your codebase
-published: true
+published: false
 author: Pedro Cunha
 author_role: Developer
 author_url: http://github.com/pedrocunha
@@ -18,21 +18,21 @@ moving forward:
 - They allow new developers to catch up with existing code
 - They can teach a trick or too
 
-In the beginning it feels like you are following a tight process but 
+In the beginning it feels like you are following a tight process but
 as soon as you comprehend the rules, you end up being very productive and coding
 flows naturally.
 
-The main point here for us is that only with these guides we 
-make sure the thousands of lines of code produced every week are homogenous 
-through all our components - main web app, services, devops, frontend & backend 
-code etc.. 
+The main point here for us is that only with these guides we
+make sure the thousands of lines of code produced every week are homogenous
+through all our components - main web app, services, devops, frontend & backend
+code etc..
 
 Today we would like to share with you, all our code style guides:
 
 - [ruby](https://github.com/HouseTrip/ruby-style-guide) - forked from [bbatsov](https://github.com/HouseTrip/ruby-style-guide)
 - [rails](https://github.com/HouseTrip/rails-style-guide) - homemade
 - [sass](https://github.com/HouseTrip/css-style-guide) - homemade
-- [javascript](https://github.com/HouseTrip/javascript) - forked from 
+- [javascript](https://github.com/HouseTrip/javascript) - forked from
 [airbnb](https://github.com/airbnb/javascript)
 - [backbone](https://github.com/HouseTrip/backbone-style-guide) - homemade
 
