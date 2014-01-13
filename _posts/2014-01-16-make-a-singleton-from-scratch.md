@@ -1,15 +1,13 @@
 ---
 layout: post
 title: How to create your own Singleton from Scratch
-published: true
+published: false
 author: David Silva
 author_role: Developer
 author_url: https://github.com/davidslv
 author_avatar: http://www.gravatar.com/avatar/6aec36daee2fcb518971daa7f2e0f544.png
 summary: |
-  Ruby provides you with lots of modules ready to use, one of them is the Singleton Module.
-
-  Although it's a good thing to know what's under the hood and create your own from scratch.
+  Ruby provides you with lots of modules ready to use, one of them is the Singleton Module. Although it's a good thing to know what's under the hood and create your own from scratch.
 ---
 
 One of the 23 described patterns by the [Gang of Four](http://en.wikipedia.org/wiki/Design_Patterns) is the [Singleton Pattern](http://en.wikipedia.org/wiki/Singleton_pattern), which says only one object of a particular class is ever created and all further references to objects of the singleton class refer to the same underlying instance.
@@ -30,7 +28,7 @@ All the work done by the Ruby Singleton module is:
 {% highlight ruby %}
 class MySingleton
 
-  # This would cause a eager instantiation, 
+  # This would cause a eager instantiation,
   # something that we want to avoid
   # @@instance = MySingleton.new
 
