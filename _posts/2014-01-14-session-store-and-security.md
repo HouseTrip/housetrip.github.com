@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Session storage and security in Rails
-published: false
+published: true
 author: Daniel Cruz
 author_role: Developer
 author_url: http://dncrht.github.io
