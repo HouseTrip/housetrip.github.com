@@ -1,7 +1,7 @@
 ---
 layout: post
 title: How to create your own Singleton from Scratch
-published: false
+published: true
 author: David Silva
 author_role: Developer
 author_url: https://github.com/davidslv
