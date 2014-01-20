@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Using BackboneJS in non-single-page applications
-published: false
+published: true
 author: Jesper Kjeldgaard
 author_role: Developer
 author_url: http://github.com/thejspr
