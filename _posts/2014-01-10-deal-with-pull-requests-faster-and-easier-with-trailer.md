@@ -5,8 +5,10 @@ published: true
 author: Paul Tsochantaris
 author_role: Developer
 author_url: http://github.com/ptsochantaris
-summary: At HouseTrip we have an extensive code review process; nothing reaches production without having been eyeballed and discussed previously.  Each feature or change has its own branch and merged when ready for deployment.  We decided to make Trailer, a simple menu bar app that provides the one feature we felt was lacking from this workflow.
+summary: Introducing <a href="http://dev.housetrip.com/trailer/" target="_blank">Trailer</a> from HouseTrip, a simple menu bar app that helps you manage your GitHub pull requests. It's one feature we felt was lacking from our workflow!
 ---
+
+Introducing <a href="http://dev.housetrip.com/trailer/" target="_blank">Trailer</a> from HouseTrip, a simple menu bar app that helps you manage your GitHub pull requests. It's one feature we felt was lacking from our workflow!
 
 ### 1cm of menubar is a lot to ask
 
