@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Trailer, a faster and easier way to deal with pull requests
-published: true
+published: false
 author: Paul Tsochantaris
 author_role: Developer
 author_url: http://github.com/ptsochantaris
@@ -51,7 +51,7 @@ Obviously, the faster PRs can be reviewed and commented on, the better.  For a f
 
 ### What's next
 
-We're thrilled to open source Trailer under the MIT license, and are looking forward to the community's involvement!  
+We're thrilled to open source Trailer under the MIT license, and are looking forward to the community's involvement!
 
 Things that we are already working on are iOS support in the 1.0.2 branch, plus improved stability and performance.
 
