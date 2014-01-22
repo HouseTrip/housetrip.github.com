@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Trailer, a faster and easier way to deal with pull requests
-published: false
+published: true
 author: Paul Tsochantaris
 author_role: Developer
 author_url: http://github.com/ptsochantaris
