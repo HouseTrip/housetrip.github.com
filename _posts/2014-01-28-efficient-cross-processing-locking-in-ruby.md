@@ -122,9 +122,9 @@ there are a few solutions that can be applied to prevent race conditions. In thi
 post we presented a way to achieve a mutex that can be shared across processes and
 can guarantee that a certain block of code can run exclusively.
 
-Also another of the side effect of staying away from database locks is you can
+Also another side effect of staying away from database locks is you can
 considerably minimize database contention especially if it's being hammered
-by writes and reads every single second.
+by writes and reads every second.
 
 You can get our gem through [rubygems](https://rubygems.org/gems/remote_lock)
 by putting the following on your Gemfile:
