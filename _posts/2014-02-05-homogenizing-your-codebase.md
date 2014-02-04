@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Homogenizing your codebase
-published: false
+published: true
 author: Pedro Cunha
 author_role: Developer
 author_url: http://github.com/pedrocunha
