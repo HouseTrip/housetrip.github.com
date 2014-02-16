@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Ruby installations on steroids
-published: true
+published: false
 author: Jesper Kjeldgaard
-author_role: Developer
+author_role: Software Engineer
 author_url: http://github.com/thejspr
 author_avatar: http://www.gravatar.com/avatar/e96273c9bd8ea77a17ae87dca4c0de4c
 summary: |
@@ -77,5 +77,5 @@ when Ruby is run from this folder.
 ## Conclusion
 
 Rbenv is a great customizable way of managing multiple ruby installations.  In
-closing, I'd like to thank [Sam Stephenson](http://sstephenson.us) for this and
+closing, I'd like to thank [Sam Stephenson](http://sstephenson.us) for it and
 it's associated plug-ins.
