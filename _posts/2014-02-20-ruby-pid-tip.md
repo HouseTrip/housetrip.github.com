@@ -1,11 +1,13 @@
 ---
 layout: post
-title: Quick tip: is my process alive? (in Ruby)
 published: false
+title: Quick tip. Is my process alive? (in Ruby)
 author: Julien Letessier
 author_role: Developer
 author_url: http://github.com/mezis
 author_avatar: http://www.gravatar.com/avatar/88683f31bdf05a8071fb08327b3919cb
+summary: |
+  How do you figure wether a process is currently running, in a reasonably portable manner? I keep forgetting how to do this for some reason, and needed it for [my tinkering with Babushka](https://github.com/HouseTrip/babushka-deps/blob/master/erb/kalinka.erb) so might as well write it down.
 ---
 
 How do you figure wether a process is currently running, in a reasonably
