@@ -7,10 +7,10 @@ author_role: Developer
 author_url: http://github.com/mezis
 author_avatar: http://www.gravatar.com/avatar/88683f31bdf05a8071fb08327b3919cb
 summary: |
-  How do you figure wether a process is currently running, in a reasonably portable manner? I keep forgetting how to do this for some reason, and needed it for [my tinkering with Babushka](https://github.com/HouseTrip/babushka-deps/blob/master/erb/kalinka.erb) so might as well write it down.
+  How do you figure whether a process is currently running, in a reasonably portable manner? I keep forgetting how to do this for some reason, and needed it for [my tinkering with Babushka](https://github.com/HouseTrip/babushka-deps/blob/master/erb/kalinka.erb) so might as well write it down.
 ---
 
-How do you figure wether a process is currently running, in a reasonably
+How do you figure whether a process is currently running, in a reasonably
 portable manner?
 I keep forgetting how to do this for some reason, and needed it for [my
 tinkering with
@@ -18,7 +18,7 @@ Babushka](https://github.com/HouseTrip/babushka-deps/blob/master/erb/kalinka.erb
 so might as well write it down.
 
 Let's assume you're writing a script that needs to run regularly, but may take a
-variable amount of time to run, and you abolutely do not want to run in
+variable amount of time to run, and you absolutely do not want to run in
 parallel.
 
 A typical pattern is to make sure your script writes a "pidfile" containing your
