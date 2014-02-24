@@ -12,8 +12,8 @@ summary: |
 ---
 
 Firstly, I highly recommend using [Rbenv](https://github.com/sstephenson/rbenv)
-for managing your ruby installations. It's less intrusive than other
-alternatives, and is highly customizable. To get started, install it via Homebrew
+for managing your ruby installations. It's very custimizable and less intrusive than [RVM](http://rvm.io/).
+To get started, install it via Homebrew
 
     brew install rbenv ruby-build
 
@@ -29,7 +29,7 @@ delegated to [ruby-build](https://github.com/sstephenson/ruby-build).
 
 When installing gems with binaries you need to run `rbend rehash` for your
 shell to know about them. The
-[rbenv-gem-rehash](https://github.com/sstephenson/rbenv-gem-rehash) Rbenv
+[rbenv-gem-rehash](https://github.com/sstephenson/rbenv-gem-rehash)
 plug-in alleviates this by automatically rehashing newly installed binaries.
 
 Install the plug-in and you're all set:
@@ -78,4 +78,4 @@ when Ruby is run from this folder.
 
 Rbenv is a great customizable way of managing multiple ruby installations.  In
 closing, I'd like to thank [Sam Stephenson](http://sstephenson.us) for it and
-it's associated plug-ins.
+its associated plug-ins.
