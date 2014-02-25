@@ -80,5 +80,5 @@ outside of the CD process.
 
 Overall, this system provides for a lot more discipline as you are actually 
 guaranteed that once your work's been merged it will instantly get deployed. That
-makes you think twice about wether you are actually done and ready to issue that
+makes you think twice about whether you are actually done and ready to issue that
 pull-request.
