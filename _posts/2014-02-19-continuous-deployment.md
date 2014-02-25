@@ -17,7 +17,7 @@ practices.
 
 Before diving deeper into the topic and considering that there are so many 
 "continuouses" in this article, I'd like to give a brief overview of what Continuous
-Deployment is. The simplest way to explain it is, funily enough, in relation to
+Deployment is. The simplest way to explain it is, funnily enough, in relation to
 Continuous Delivery.
 
 According to Martin Fowler, you're properly doing Continuous Delivery if:
@@ -26,7 +26,7 @@ According to Martin Fowler, you're properly doing Continuous Delivery if:
 > - Anybody can get fast, automated feedback on the production readiness of their systems any time somebody makes a change to them
 > - You can perform push-button deployments of any version of the software to any environment on demand
  
-The key distinction comes from that last step in the list and is essentialy just
+The key distinction comes from that last step in the list and is essentially just
 a 1UPed version of it. In Continuous Deployment the final step is done automatically
 each and every time a change is merged to your production branch and the Continuous
 Integration process gives the green signal.
@@ -63,7 +63,7 @@ Who is deploying? Who is announcing the deploy? Answer to all of these questions
 
 It is quite a weird feeling allowing 'the machines' to take over the deployment
 process but you do eventually get used to it quite quickly and it becomes quite
-freeing to know that, once you've done your job addresing comments on your PRs,
+freeing to know that, once you've done your job addressing comments on your PRs,
 everything will be taken care of for you and your shiny new feature will be pushed
 to production.
 
@@ -80,5 +80,5 @@ outside of the CD process.
 
 Overall, this system provides for a lot more discipline as you are actually 
 guaranteed that once your work's been merged it will instantly get deployed. That
-makes you think twice about wether you are actually done and ready to issue that
+makes you think twice about whether you are actually done and ready to issue that
 pull-request.
