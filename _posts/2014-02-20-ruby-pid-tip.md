@@ -3,7 +3,7 @@ layout: post
 published: false
 title: Quick tip. Is my process alive? (in Ruby)
 author: Julien Letessier
-author_role: Developer
+author_role: Software Engineer
 author_url: http://github.com/mezis
 author_avatar: http://www.gravatar.com/avatar/88683f31bdf05a8071fb08327b3919cb
 summary: |
@@ -18,8 +18,12 @@ Babushka](https://github.com/HouseTrip/babushka-deps/blob/master/erb/kalinka.erb
 so might as well write it down.
 
 Let's assume you're writing a script that needs to run regularly, but may take a
-variable amount of time to run, and you absolutely do not want to run in
-parallel.
+variable amount of time to run, and you really do not want it to run multiple
+times in parallel—for instance because that would exhaust your system's
+resources.
+
+This is a classic use case when using Cron, if the interval at which you run the
+script can be lower than the script duration.
 
 A typical pattern is to make sure your script writes a "pidfile" containing your
 process identifier in a well-known location when starting:
@@ -57,4 +61,6 @@ A method being worth a thousand words:
 A bit of wrapping and you're good to go.
 Here's a [working
 example](https://github.com/HouseTrip/babushka-deps/blob/f6c016eff2cd9ec7dae846c8eabf4de45f10ae17/lib/single_run_protector.rb).
-Still has a race condition, but it's now a pretty small window.
+Still has a window of opportunity  (between checking checkign for the process
+and writing the PID file), but it's now a pretty small one, and one that's
+fixable using atomic file locking for instance.
