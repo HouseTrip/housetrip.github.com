@@ -61,6 +61,6 @@ A method being worth a thousand words:
 A bit of wrapping and you're good to go.
 Here's a [working
 example](https://github.com/HouseTrip/babushka-deps/blob/f6c016eff2cd9ec7dae846c8eabf4de45f10ae17/lib/single_run_protector.rb).
-Still has a window of opportunity  (between checking checkign for the process
+Still has a window of opportunity  (between checking checking for the process
 and writing the PID file), but it's now a pretty small one, and one that's
 fixable using atomic file locking for instance.
