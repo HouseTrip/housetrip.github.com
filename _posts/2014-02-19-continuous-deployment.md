@@ -81,7 +81,7 @@ One exception to this rule is, typically, the large database
 migration. This is where you have to be a little bit more clever about your solution.
 Normally you would manually handle this process, probably deploying at night (or
 whatever your low traffic period is) and take the site off for an arbitrary length
-of time. One good way to do it is to take a more incremental approach: write your
+of time. A good way to do it is to take a more incremental approach: write your
 code changes in a way that they support both database schemas, deploy(i.e. merge
 your code), run migration live, issue a PR to remove the fallback code. This
 migration may still lock your tables for longer than you can afford, in which case
