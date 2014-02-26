@@ -3,7 +3,7 @@ layout: post
 title: Continuous Deployment
 published: true
 author: Stefan Dorunga
-author_role: Developer
+author_role: Software Engineer
 author_url: http://github.com/sdorunga1
 author_avatar: http://www.gravatar.com/avatar/3368bed08c1a9a93bb9612a374e7714c.png
 summary: |
@@ -77,8 +77,8 @@ the loop, and find being notified as a useful feature. To address
 that we have just used one of the many integrations available with Travis to 
 notify us on a new deploy. 
 
-One exception to this rule are, typically, large database
-migrations. This is where you have to be a little bit more clever about your solution.
+One exception to this rule is, typically, the large database
+migration. This is where you have to be a little bit more clever about your solution.
 Normally you would manually handle this process, probably deploying at night (or
 whatever your low traffic period is) and take the site off for an arbitrary length
 of time. One good way to do it is to take a more incremental approach: write your
