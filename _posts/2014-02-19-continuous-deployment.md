@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Continuous Deployment
-published: false
+published: true
 author: Stefan Dorunga
 author_role: Developer
 author_url: http://github.com/sdorunga1
@@ -71,12 +71,28 @@ The two main concerns that arose from this system were that it hides deploy even
 and limits you in your ability to decide when to issue a deploy.
 
 In all truth, and at the very least for services, deployments should not be a 'big
-bang' event as much as a regular and transparent part of your process. To address
+bang' event as much as a regular and transparent part of your process and should 
+therefore not even require notification. Obviously people do like to be kept in
+the loop, and find being notified as a useful feature. To address
 that we have just used one of the many integrations available with Travis to 
-notify us on a new deploy.
+notify us on a new deploy. 
+
+One exception to this rule are, typically, large database
+migrations. This is where you have to be a little bit more clever about your solution.
+Normally you would manually handle this process, probably deploying at night (or
+whatever your low traffic period is) and take the site off for an arbitrary length
+of time. One good way to do it is to take a more incremental approach: write your
+code changes in a way that they support both database schemas, deploy(i.e. merge
+your code), run migration live, issue a PR to remove the fallback code. This
+migration may still lock your tables for longer than you can afford, in which case
+you could try dumping all your data into a different table, migrating that and 
+switching between the two at the end. Obviously this does have its challenges 
+but we have successfully done it in the past.
+
 
 As for the manual deployments, they are always still an option, and they can happen
-outside of the CD process.
+outside of the CD process, but they should be minimized with the ultimate goal of
+complete automation depending on how well you manage to automate your infrastructure.
 
 Overall, this system provides for a lot more discipline as you are actually 
 guaranteed that once your work's been merged it will instantly get deployed. That
