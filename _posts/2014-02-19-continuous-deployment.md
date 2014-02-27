@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Continuous Deployment
-published: true
+published: false
 author: Stefan Dorunga
 author_role: Software Engineer
 author_url: http://github.com/sdorunga1
