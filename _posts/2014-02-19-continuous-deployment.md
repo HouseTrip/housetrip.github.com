@@ -74,14 +74,27 @@ In all truth, and at the very least for services, deployments should not be a 'b
 bang' event as much as a regular and transparent part of your process and should 
 therefore not even require notification. Obviously people do like to be kept in
 the loop, and find being notified as a useful feature. To address
-that we have just used one of the many integrations available with Travis to 
-notify us on a new deploy. 
+that we just used one of the [many integrations](http://docs.travis-ci.com/user/notifications)
+available with Travis to notify us on a new deploy. We chose the webhook
+notifications since Slack, the chat app we're using, doesn't have direct support
+from Travis but integrates from Slack's side. The change, again, was very simple:
 
-One exception to this rule is, typically, the large database
+```
+notifications:
+  webhooks:
+    - https://housetrip.slack.com/services/hooks/travis?token=TOKEN_FROM_SLACK_INTEGRATION
+```
+
+Due to the way we have set up our travis.yml this notifies the chat rom of our choosing
+whenever a PR is issued against master or a PR gets merged (basically deploying the app)
+
+One exception to the no 'big bang' rule is, typically, the large database
 migration. This is where you have to be a little bit more clever about your solution.
 Normally you would manually handle this process, probably deploying at night (or
 whatever your low traffic period is) and take the site off for an arbitrary length
-of time. A good way to do it is to take a more incremental approach: write your
+of time. 
+
+A good way to do it is to take a more incremental approach: write your
 code changes in a way that they support both database schemas, deploy(i.e. merge
 your code), run migration live, issue a PR to remove the fallback code. This
 migration may still lock your tables for longer than you can afford, in which case
