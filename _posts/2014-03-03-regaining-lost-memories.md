@@ -8,7 +8,7 @@ author_avatar: http://www.gravatar.com/avatar/26563a0d8435bd966527978473d9b85b
 summary: A few things you can try to keep your Rails app's memory usage in check.
 ---
 
-here at HouseTrip we have a couple of apps running on Heroku.  We often have memory issues with one of them so I took some time experimenting a bit with different combinations of the stack and various small tweaks here and there to see if I can pull memory usage down a bit.
+Here at HouseTrip we have a couple of apps running on Heroku.  We often have memory issues with one of them so I took some time experimenting a bit with different combinations of the stack and various small tweaks here and there to see if I can pull memory usage down a bit.
 
 A 1X dyno (a worker on Heroku) comes with 512MB memory which is not a whole lot but generally it should be enough. The app also picks up lots of memory usage over time.
 
