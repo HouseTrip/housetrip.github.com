@@ -46,7 +46,7 @@ It was a semi-serious idea, JRuby is not famous for operating with a small memor
 
 Switching to JRuby was not without problems (as expected). I had to disable a few gems that come with native extensions, change **mysql2** to **jdbc-mysql**, etc. After a bit of disabling features and quick-fixing a few broken things I managed to get the app up and running for some load testing.
 
-The app booted up with a whopping 250+ MB memory usage. It is a lot. Under laod it went up to 450MB. After the load stopped it was around 250MB again, which is nice, at least the GC in JVM is doing something. But all in all the result wasn't very convincing. The response time was also significantly slower, although it was slowly gaining speed as the load testing was going on.
+The app booted up with a whopping 250+ MB memory usage. It is a lot. Under load it went up to 450MB. After the load stopped it was around 250MB again, which is nice, at least the GC in JVM is doing something. But all in all the result wasn't very convincing. The response time was also significantly slower, although it was slowly gaining speed as the testing was going on.
 
 ## The second experiment: Puma
 
