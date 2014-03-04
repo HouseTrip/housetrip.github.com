@@ -21,7 +21,7 @@ The stack:
 ## Preparation
 
 ### Enabling resource monitoring on Heroku
-Heroku comes with resource monitoring which can be anebled using the control app.
+Heroku comes with resource monitoring which can be enabled using the control app.
 
 `
 $ heroku labs:enable log-runtime-metrics
