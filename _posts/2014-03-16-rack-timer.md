@@ -38,7 +38,7 @@ We had a hunch that something awry was going on in the outer layers of our
 stack, and neither New Relic nor any beutiful gem gave us any intel.
 
 <figure>
-  <img src="http://cl.ly/image/2A2y120D460U/capture%202014-03-14%20at%2016.21.26.png"/>
+  <img width="550" src="http://cl.ly/image/2A2y120D460U/capture%202014-03-14%20at%2016.21.26.png"/>
   <caption>The infamous green "queue time"</caption>
 </figure>
 
@@ -106,7 +106,10 @@ With `rack-timer` defaults, logs go to standard error, i.e. Apache's
 and voila, raw data ready to be digested. Good all Excel then graphed the
 middleware timings for us:
 
-![](http://cl.ly/image/460a3z060F3B/capture%202014-03-12%20at%2016.51.53.png)
+<figure>
+  <img width="550" src="http://cl.ly/image/460a3z060F3B/capture%202014-03-12%20at%2016.51.53.png"/>
+  <caption>Middleware timings</caption>
+</figure>
 
 The reason we graph both median and mean is that the latter is sensitive to
 outliers, wheras the median is a "robust metric". A significant discrepancy
@@ -126,7 +129,9 @@ friend to anyone srious with performance analysis, and stats in general.
 
 Distribution of the queueing timings used to look like this:
 
-![](http://cl.ly/image/2D2336390628/capture%202014-03-12%20at%2013.25.43.png)
+<figure>
+  <img width="550" src="http://cl.ly/image/2D2336390628/capture%202014-03-12%20at%2013.25.43.png"/>
+</figure>
 
 (horizontally: log10 of the queuing time in microseconds, ie. 3 is 1ms and 6 is
 1 second)
@@ -154,7 +159,9 @@ with th _next_ request on a particular worker.
 
 Removing the out-of-band GC solved the issue:
 
-![](http://cl.ly/image/3z0V40291P46/capture%202014-03-12%20at%2014.18.55.png)
+<figure>
+  <img width="550" src="http://cl.ly/image/3z0V40291P46/capture%202014-03-12%20at%2014.18.55.png"/>
+</figure>
 
 On top of that we've cut our average response time by a further 15 to 20%, and
 obvisouly suffer less from the spikiness in response time due to random GC hits.
