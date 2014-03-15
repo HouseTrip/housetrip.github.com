@@ -8,19 +8,19 @@ author_url: http://github.com/mezis
 author_avatar: http://www.gravatar.com/avatar/88683f31bdf05a8071fb08327b3919cb
 summary: |
   Analysing performance of your Rails or Sinatra is easy enough with New Relic,
-  but figuring out whether the soft outer shell of your stack is underperofrming 
+  but figuring out whether the soft outer shell of your stack is under-performing 
   is more of a challenge. We've written
   [rack-timer](https://github.com/mezis/rack-timer#rack-timer) to figure things
   out.
 ---
 
 Analysing performance of your Rails or Sinatra is easy enough with New Relic,
-but figuring out whether the soft outer shell of your stack is underperofrming 
+but figuring out whether the soft outer shell of your stack is under-performing 
 is more of a challenge. We've written
 [rack-timer](https://github.com/mezis/rack-timer#rack-timer) to figure things
 out.
 
-The most typical tool Ruby web stacks use to monitor urntime performance is New
+The most typical tool Ruby web stacks use to monitor runtime performance is New
 Relic. It does a great job at spotting what happens inside transaction, which
 database queries are slow, etc. It also reports on something called _queue
 time_, as the infamous green slab at the bottom of its graphs.
@@ -35,7 +35,7 @@ includes three things:
 - time spent in `before/after_filters` (if using Rails).
 
 We had a hunch that something awry was going on in the outer layers of our
-stack, and neither New Relic nor any beutiful gem gave us any intel.
+stack, and neither New Relic nor any beautiful gem gave us any intel.
 
 <figure>
   <img width="550" src="http://cl.ly/image/2A2y120D460U/capture%202014-03-14%20at%2016.21.26.png"/>
@@ -85,17 +85,17 @@ The `Borg` wraps the `call` method of each middleware it's injected into with
 time logging, the injects itself in the next middleware down the stack
 (conventionally, `@app`).
 
-At runtime, the `call` wrappers will transparently call the orignally `call`
+At runtime, the `call` wrappers will transparently call the originally `call`
 then output timing information.
 
 ## Outcomes
 
-Within our biggest app, we let 40 out of 520 workers work with the `Borg` in
+Within our biggest application, we let 40 out of 520 workers work with the `Borg` in
 place until they'd collected information about 10,000 requests—enough to provide
 us with statistically significant data.
 
 With `rack-timer` defaults, logs go to standard error, i.e. Apache's
-`error.log`. We grabbed those, grepped for the timer's output, whipped some
+`error.log`. We grabbed those, grep'd for the timer's output, whipped some
 `sed(1)` magic along the lines of
 
     $ bzcat error.web[1-4].bz2 | \
@@ -103,7 +103,7 @@ With `rack-timer` defaults, logs go to standard error, i.e. Apache's
       sed -e 's/^.rack-timer. //; s/ took /,/; s/ us$//' \
       > middlewares.csv
 
-and voila, raw data ready to be digested. Good all Excel then graphed the
+and voilà, raw data ready to be digested. Good all Excel then graphed the
 middleware timings for us:
 
 <figure>
@@ -112,7 +112,7 @@ middleware timings for us:
 </figure>
 
 The reason we graph both median and mean is that the latter is sensitive to
-outliers, wheras the median is a "robust metric". A significant discrepancy
+outliers, whereas the median is a "robust metric". A significant discrepancy
 between the two usually hints either at a skewed, non-normal distribution, or
 more typically presence of extreme outlier.
 
@@ -125,7 +125,7 @@ chain, i.e. the application itself (including filters).
 
 Moving one to the queue timings with another handful of `sed` magic. This time
 Excel doesn't cut it, but [R](http://www.r-project.org/) is probably an old
-friend to anyone srious with performance analysis, and stats in general.
+friend to anyone serious with performance analysis, and stats in general.
 
 Distribution of the queueing timings used to look like this:
 
@@ -139,16 +139,16 @@ Distribution of the queueing timings used to look like this:
 This is clearly bimodal: the left mode (clustered around 1ms) is expected.
 Passenger does need to do _some_ work do move requests around, and 1ms is fine.
 
-The second mode is much more worrisome: its overall area (ie. the overall number
+The second mode is much more worrisome: its overall area (i.e. the overall number
 of requests spent in that failure mode) is about half of the total, and it's
 fairly progressive (not a nice bell curve at all), hinting at some kind of
 step/non-linear phenomenon.
 
-The conlusion was that something what causing progressively more queuing in some cases.
+The conclusion was that something what causing progressively more queuing in some cases.
 
 That's when we remembered that
 
-1. We'd added out-of-band garbage collection to relieve the MRI VM back in the
+1. We'd added out-of-band garbage collection to relieve the Ruby VM back in the
    1.8 days
 2. We'd recently upgraded Passenger to 3.0+
 
@@ -157,14 +157,14 @@ It turned out our out-of-band garbage collection hack (based on
 compatible with Passenger: what used to be run out-of-band was now run _in-band_
 with th _next_ request on a particular worker.
 
-Removing the out-of-band GC solved the issue:
+Removing the out-of-band garbage collection solved the issue:
 
 <figure>
   <img width="550" src="http://cl.ly/image/3z0V40291P46/capture%202014-03-12%20at%2014.18.55.png"/>
 </figure>
 
 On top of that we've cut our average response time by a further 15 to 20%, and
-obvisouly suffer less from the spikiness in response time due to random GC hits.
+obviously suffer less from the spikiness in response time due to random GC hits.
 
 And finally, having a proper excuse to write an arguably dangerous
 metaprogramming / recursive monkey-patching combo was fun!
