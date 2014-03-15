@@ -250,6 +250,7 @@ pre {
   background-color: #FAFAFB;
   color: #393939;
   margin: 0px;
+  margin-bottom: 1.51786em; /* like <p> */
 }
 
 pre code {
