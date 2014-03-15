@@ -103,7 +103,7 @@ With `rack-timer` defaults, logs go to standard error, i.e. Apache's
       sed -e 's/^.rack-timer. //; s/ took /,/; s/ us$//' \
       > middlewares.csv
 
-and voilà, raw data ready to be digested. Good all Excel then graphed the
+and voilà, raw data ready to be digested. Good old Excel then graphed the
 middleware timings for us:
 
 <figure>
