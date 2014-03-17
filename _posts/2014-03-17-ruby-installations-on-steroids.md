@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ruby installations on steroids
-published: false
+published: true
 author: Jesper Kjeldgaard
 author_role: Software Engineer
 author_url: http://github.com/thejspr
