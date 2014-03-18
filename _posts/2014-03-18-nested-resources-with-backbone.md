@@ -31,7 +31,7 @@ Consider the following json structure for a `comment`:
 }
 {% endhighlight %}
 
-The `url_root` attribute is very important, since it's the attribute that will make our life's easier in the moment we need to reach the `comment_replies` url.
+The `url_root` attribute is very important, since it's the attribute that will make our lives easier in the moment we need to reach the `comment_replies` url.
 
 After you prepare your `json` response and assuming you have a collection, it all starts with setting a url in the collection, like the following:
 
