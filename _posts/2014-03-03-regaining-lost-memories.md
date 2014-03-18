@@ -91,7 +91,6 @@ config.middleware.delete(Rack::ConditionalGet)
 config.middleware.delete(ActionDispatch::RequestId)
 config.middleware.delete(ActionDispatch::RemoteIp)
 config.middleware.delete(Rack::MethodOverride)
-config.middleware.delete(ActionDispatch::Callbacks)
 unless Rails.env.development?
   config.middleware.delete(ActionDispatch::Reloader)
 end
@@ -108,3 +107,7 @@ Puma seems to have a significantly smaller memory footprint. I can't really add 
 Micro-managing dependencies is not really worth the trouble. Although I feel better knowing that some unneeded libraries are not loaded, so there's that.
 
 Pruning middleware can speed up the time it takes for Rack to process each request. Of course it is not going to make your database queries run faster but for short requests it might give you a measurable improvement. 
+
+## Update
+
+* Removing `ActionDispatch::Callbacks` seems to have some weird side-effects, experiment with it at your own risk. Related snippet updated.
