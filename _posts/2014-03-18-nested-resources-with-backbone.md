@@ -11,15 +11,15 @@ summary: |
 ---
 
 
-The topics I wisht to discuss are [Backbone and Rails Nested Routes](http://stackoverflow.com/questions/8332249/backbone-and-rails-nested-routes) and [How do I define nested resources for backbone.js?](http://stackoverflow.com/questions/6838241/how-do-i-define-nested-resources-for-backbone-js).
+The topics I wish to discuss are [Backbone and Rails Nested Routes](http://stackoverflow.com/questions/8332249/backbone-and-rails-nested-routes) and [How do I define nested resources for backbone.js?](http://stackoverflow.com/questions/6838241/how-do-i-define-nested-resources-for-backbone-js).
 
 One other thing I wanted to avoid was introducing another plugin in our codebase such as [Backbone Relational](http://backbonerelational.org/).
 
-#### For the sake of this article I will use `Articles`, `Comments` and `Comment Replies` to serve as example.
+#### For the sake of this article I will use `Articles`, `Comments` and `Comment Replies` as examples.
 
 Consider the following url structure: `/articles/:article_id/comments/:comment_id/comment_replies`
 
-This means 1 article can have several comments, and an article comment can have a several replies.
+This means one article can have several comments, and one article comment can have a several replies.
 
 Consider the following json structure for a `comment`:
 
@@ -57,18 +57,17 @@ App.Collections.Comments = Backbone.Collection.extend({
 
   url: function() {
     // /articles/:article_id/comments
-    return this.baseUrl
+    return this.baseUrl;
   },
 
   initialize: function(models, options) {
     this.baseUrl = options.url;
-  },
+  }
 });
 {% endhighlight %}
 
 
-The `Comment Model` is the middle resource between the `Article` and a `Comment Reply`, it's then important that
-one of the attributes is the url with the `article_id` and the comment `id`.
+The `Comment Model` is the middle resource between the `Article` and the `Comment Reply`, **it's important** that one of the attributes is the url with the `article_id` and the comment `id`.
 
 
 {% highlight javascript %}
@@ -95,7 +94,7 @@ Finally the `CommentReply Model` receives the url with the necessary attributes 
 App.Models.CommentReply = Backbone.Model.extend({
   url: function() {
     // /articles/:article_id/comments/:id/comment_replies
-    return this.urlRoot
+    return this.urlRoot;
   },
 
   initialize: function(options) {
