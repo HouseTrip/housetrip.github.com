@@ -1,21 +1,21 @@
 ---
 layout: post
 title: Nested Resources with Backbone
-published: true
+published: false
 author: David Silva
 author_role: Associate Software Engineer
 author_url: https://github.com/davidslv
 author_avatar: http://www.gravatar.com/avatar/6aec36daee2fcb518971daa7f2e0f544.png
 summary: |
-  I want to share my solution to a topic that seems wide spread throughout the Internet, without using any third party plugin to achieve it on Backbone, and for that I will use a 3 level nested resource as an example, giving you the necessary insight to make you fearless in this subject.
+  I want to share my solution to a topic that seems wide spread throughout the Internet without using any third party plugin to achieve it on Backbone, and for that I will use a 3 level nested resource as an example, giving you the necessary insight to make you fearless in this subject.
 ---
 
 
-I want to share my solution to a topic that seems wide spread throughout the Internet such as [Backbone and Rails Nested Routes](http://stackoverflow.com/questions/8332249/backbone-and-rails-nested-routes) or [How do I define nested resources for backbone.js?](http://stackoverflow.com/questions/6838241/how-do-i-define-nested-resources-for-backbone-js).
+The topics I wisht to discuss are [Backbone and Rails Nested Routes](http://stackoverflow.com/questions/8332249/backbone-and-rails-nested-routes) and [How do I define nested resources for backbone.js?](http://stackoverflow.com/questions/6838241/how-do-i-define-nested-resources-for-backbone-js).
 
 One other thing I wanted to avoid was introducing another plugin in our codebase such as [Backbone Relational](http://backbonerelational.org/).
 
-#### For the sake of this article I will use `Articles`, `Comments`, `Comment Replies` to serve as example.
+#### For the sake of this article I will use `Articles`, `Comments` and `Comment Replies` to serve as example.
 
 Consider the following url structure: `/articles/:article_id/comments/:comment_id/comment_replies`
 
@@ -33,7 +33,7 @@ Consider the following json structure for a `comment`:
 
 The `url_root` attribute is very important, since it's the attribute that will make our life's easier in the moment we need to reach the `comment_replies` url.
 
-After you prepare your `json` response, and assuming you have a collection, it all starts with setting an url in the collection, like the following:
+After you prepare your `json` response and assuming you have a collection, it all starts with setting a url in the collection, like the following:
 
 {% highlight html %}
 <h1>Article Page</h1>
@@ -48,7 +48,7 @@ After you prepare your `json` response, and assuming you have a collection, it a
 In your `Comments Collection` make sure you set the `url` you passed to the collection,
 this is accomplished in the `initialize` of the collection, by passing the url as an option.
 
-You will need to have that endpoint if you thinking about [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) since Backbone uses that path to make a `POST` for example.
+You will need to have that endpoint if you are thinking about [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) since Backbone uses that path to make a `POST` for example.
 
 
 {% highlight javascript %}
@@ -67,7 +67,7 @@ App.Collections.Comments = Backbone.Collection.extend({
 {% endhighlight %}
 
 
-The `Comment Model` is the middle resource between the article and a `Comment Reply`, it's then important that
+The `Comment Model` is the middle resource between the `Article` and a `Comment Reply`, it's then important that
 one of the attributes is the url with the `article_id` and the comment `id`.
 
 
@@ -88,7 +88,7 @@ App.Models.Comment = Backbone.Model.extend({
 {% endhighlight %}
 
 
-Finally the `CommentReply Model` receives the url with the necessary attributes in the `initialize` and sets it the url function, allowing to interact with the server.
+Finally the `CommentReply Model` receives the url with the necessary attributes in the `initialize` and sets it in the url function, allowing it to interact with the server.
 
 
 {% highlight javascript %}
@@ -110,4 +110,4 @@ App.Models.CommentReply = Backbone.Model.extend({
 {% endhighlight %}
 
 
-I hope this gives you the answer you are looking for and I wish you a happy coding.
+I hope this gives you the answer you are looking for and I wish you happy coding.
