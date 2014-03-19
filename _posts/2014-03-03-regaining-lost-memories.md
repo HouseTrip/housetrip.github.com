@@ -90,7 +90,6 @@ config.middleware.delete(Rack::ETag)
 config.middleware.delete(Rack::ConditionalGet)
 config.middleware.delete(ActionDispatch::RequestId)
 config.middleware.delete(ActionDispatch::RemoteIp)
-config.middleware.delete(Rack::MethodOverride)
 unless Rails.env.development?
   config.middleware.delete(ActionDispatch::Reloader)
 end
