@@ -7,21 +7,21 @@ author_role: Software Engineer
 author_url: http://github.com/mezis
 author_avatar: http://www.gravatar.com/avatar/88683f31bdf05a8071fb08327b3919cb
 summary: |
-  Analysing performance of your Rails or Sinatra is easy enough with New Relic,
+  Analysing performance of your Rails or Sinatra app is easy enough with New Relic,
   but figuring out whether the soft outer shell of your stack is under-performing 
   is more of a challenge. We've written
   [rack-timer](https://github.com/mezis/rack-timer#rack-timer) to figure things
   out.
 ---
 
-Analysing performance of your Rails or Sinatra is easy enough with New Relic,
+Analysing performance of your Rails or Sinatra app is easy enough with New Relic,
 but figuring out whether the soft outer shell of your stack is under-performing 
 is more of a challenge. We've written
 [rack-timer](https://github.com/mezis/rack-timer#rack-timer) to figure things
 out.
 
 The most typical tool Ruby web stacks use to monitor runtime performance is New
-Relic. It does a great job at spotting what happens inside transaction, which
+Relic. It does a great job at spotting what happens inside transactions, which
 database queries are slow, etc. It also reports on something called _queue
 time_, as the infamous green slab at the bottom of its graphs.
 
