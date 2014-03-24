@@ -34,7 +34,7 @@ includes three things:
 - time spent in your Rack middlewares
 - time spent in `before/after_filters` (if using Rails).
 
-We had a hunch that something awry was going on in the outer layers of our
+We had a hunch that something was awry in the outer layers of our
 stack, and neither New Relic nor any beautiful gem gave us any intel.
 
 <figure>
