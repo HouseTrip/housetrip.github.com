@@ -123,7 +123,7 @@ aggregate median time spent in middlewares is (despite their number) a low
 Note the left-most pair of bars in that graph—that's the tail of the middleware
 chain, i.e. the application itself (including filters).
 
-Moving one to the queue timings with another handful of `sed` magic. This time
+Moving on to the queue timings, we can apply more `sed` magic. This time
 Excel doesn't cut it, but [R](http://www.r-project.org/) is probably an old
 friend to anyone serious with performance analysis, and stats in general.
 
