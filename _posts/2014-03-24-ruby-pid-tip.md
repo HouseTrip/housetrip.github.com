@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title: Quick tip. Is my process alive? (in Ruby)
 author: Julien Letessier
 author_role: Software Engineer
