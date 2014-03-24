@@ -60,8 +60,8 @@ The `RackTimer::Middleware` initializer looks like this:
   end
 {% endhighlight %}
 
-Starting the chain reaction, it injects the `Borg` in itself; then once part of
-the collective (simplified code):
+Starting the chain reaction, it injects the `Borg` in itself. Then, once the
+middleware if part of the "collective" (simplified code):
 
 {% highlight ruby %}
   module Borg
@@ -82,10 +82,10 @@ the collective (simplified code):
 {% endhighlight %}
 
 The `Borg` wraps the `call` method of each middleware it's injected into with
-time logging, the injects itself in the next middleware down the stack
+time logging, then injects itself in the next middleware down the stack
 (conventionally, `@app`).
 
-At runtime, the `call` wrappers will transparently call the originally `call`
+At runtime, the `call` wrappers will transparently call the original `call`
 then output timing information.
 
 ## Outcomes
@@ -116,7 +116,7 @@ outliers, whereas the median is a "robust metric". A significant discrepancy
 between the two usually hints either at a skewed, non-normal distribution, or
 more typically presence of extreme outlier.
 
-None of this here—not only the middleware all respond consistently, but the
+None of this is visible here. Not only the middleware all respond consistently, but the
 aggregate median time spent in middlewares is (despite their number) a low
 7.5ms.
 
