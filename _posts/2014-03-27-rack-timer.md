@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title: Timing Rack Middlewares with metaprogramming, recursive monkey-patching, and a sprinkle of statistics
 author: Julien Letessier
 author_role: Software Engineer
@@ -8,14 +8,14 @@ author_url: http://github.com/mezis
 author_avatar: http://www.gravatar.com/avatar/88683f31bdf05a8071fb08327b3919cb
 summary: |
   Analysing performance of your Rails or Sinatra app is easy enough with New Relic,
-  but figuring out whether the soft outer shell of your stack is under-performing 
+  but figuring out whether the soft outer shell of your stack is under-performing
   is more of a challenge. We've written
   [rack-timer](https://github.com/mezis/rack-timer#rack-timer) to figure things
   out.
 ---
 
 Analysing performance of your Rails or Sinatra app is easy enough with New Relic,
-but figuring out whether the soft outer shell of your stack is under-performing 
+but figuring out whether the soft outer shell of your stack is under-performing
 is more of a challenge. We've written
 [rack-timer](https://github.com/mezis/rack-timer#rack-timer) to figure things
 out.
