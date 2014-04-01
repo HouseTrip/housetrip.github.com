@@ -1,10 +1,11 @@
 ---
 layout: post
-published: false
+published: true
 title: Regaining lost memories
 author: Bence Monus
 author_role: Software Engineer
-author_avatar: http://www.gravatar.com/avatar/26563a0d8435bd966527978473d9b85b
+author_url: https://github.com/cromega
+author_avatar: http://www.gravatar.com/av$atar/26563a0d8435bd966527978473d9b85b.png
 summary: A few things you can try to keep your Rails app's memory usage in check.
 ---
 
