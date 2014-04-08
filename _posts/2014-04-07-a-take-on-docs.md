@@ -11,17 +11,17 @@ summary: |
   "RDoc the hell out of it" or "nah, the code (or the test suite) is the
   documentation".
 
-  We think both our untrue, and have a pragmatic middle ground: "documentation"
-  per se exists mostly under the skullcaps of team members, but some things do
+  We think both are untrue, and have a pragmatic middle ground: "documentation"
+  _per se_ exists mostly under the skullcaps of team members, but some things do
   need minimal documentation. Read on for more.
 ---
 
 The stance on documentation in the Ruby community seems to oscillate between
-"RDoc the hell out of it" or "nah, the code (or the test suite) ie the
-documentation.
+"RDoc the hell out of it" or "nah, the code (or the test suite) is the
+documentation".
 
-We think both our untrue, and have a pragmatic middle ground: "documentation"
-per se exists mostly under the skullcaps of team members, but some things do
+We think both are untrue, and have a pragmatic middle ground: "documentation"
+_per se_ exists mostly under the skullcaps of team members, but some things do
 need minimal documentation. 
 
 I decided to try to write it down properly afte receiving this email from
