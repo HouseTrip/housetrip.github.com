@@ -124,7 +124,7 @@ Yes, documentation is important. But where documentation was simple in the
 waterfall days, the fat stack of paper---or the fat stack of RDoc---doesn't
 quite cut it anymore.
 
-A combination of well-thought, minimal starter docs and trusting in the brains
+A combination of well-thought, minimal starter docs and trusting in the brain
 power of the collective is a means of documenting code that we think maps better
 to an iterative, decentralized practice of software engineering.
 
