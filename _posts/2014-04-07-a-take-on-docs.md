@@ -1,6 +1,6 @@
 ---
 layout: post
-published: true
+published: false
 title: Document and comment code? Or don't?
 author: Julien Letessier
 author_role: Software Engineer
@@ -111,8 +111,8 @@ of the codebase.
 
 This is, incidentally, an argument to actively _limit_ the number of different
 technologies in use in a company, otherwise that goal is much harder to achieve
-(amongst other issues). This also means you can't have less than one person
-working on any project.
+(amongst other issues). This also means you can't have less than two people
+coding on any project.
 
 Pair programming, shuffling teams, and leaning on long-time team members for
 mentoring, and importantly retention are key here.
