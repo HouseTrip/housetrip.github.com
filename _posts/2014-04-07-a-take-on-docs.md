@@ -24,7 +24,7 @@ We think both are untrue, and have a pragmatic middle ground: "documentation"
 _per se_ exists mostly under the skullcaps of team members, but some things do
 need minimal documentation. 
 
-I decided to try to write it down properly afte receiving this email from
+I decided to try to write it down properly after receiving this email from
 [Nilan](https://twitter.com/nilanp):
 
 > Hey Julien - 
