@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title: Document and comment code? Or don't?
 author: Julien Letessier
 author_role: Software Engineer
