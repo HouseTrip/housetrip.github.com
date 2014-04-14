@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Benchmark your gems load times
+title: Benchmark RubyGem load times
 published: false
 author: David Silva
 author_role: Associate Software Engineer
@@ -10,10 +10,15 @@ summary: |
   How can you benchmark the time that your gems take to load?
 ---
 
-Maybe you are curious like me and you would like to check how long your gems take to load, or maybe you have a considerable codebase which uses many gems and you are concerned
+Maybe you are curious like me and you would like to check how long your gems take to load,
+or maybe you have a considerable codebase which uses many gems and you are concerned
 with the time it takes to load all of them.
-This is one approach you can use, in your rails application.
 
+At HouseTrip we have a rake task that allow us to benchmark the loading times of each gem on the web application,
+which I would like to share with you.
+
+The solution is fairly simple and makes use of the ruby builtin [Benchmark module](http://www.ruby-doc.org/stdlib-2.0/libdoc/benchmark/rdoc/Benchmark.html)
+which allow us to see how long does it take to load each individual gem.
 
 {% highlight ruby %}
 # lib/tasks/benchmarks.rake
