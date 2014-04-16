@@ -17,7 +17,7 @@ For demonstration purposes, we'll use a small Ruby project called _F1 race resul
 It presents a page with the results of the current F1 Grand Prix in _real time_. The user clicks
 on a button to refresh the race standings while the page is kept on screen.
 
-Download the [project](/images/2014-04-05/f1-race-results.zip), `bundle install` and launch it
+Download the [project](/blobs/2014-04-05/f1-race-results.zip), `bundle install` and launch it
 with `foreman start`.
 
 _**NOTE:** Please use the Firefox browser to test the exercises._
@@ -29,7 +29,7 @@ been available since day one.
 
 Back in the year 2000, websites that needed to do any kind of background request used alternative
 techniques. One of these primitive techniques involved the use of an iframe.
-Iframes, as JavaScript, were available in major browsers since 1996.
+Iframes, like JavaScript, were available in major browsers since 1996.
 
 If we point our browser to [http://localhost:3000/iframe](http://localhost:3000/iframe) we'll see a
 list of results. As intended, clicking in the button makes the page refresh the list of results but
@@ -43,12 +43,11 @@ a little JS snippet responsible of changing the race results in the main page.
 <img src="/images/2014-04-05/iframe.png" alt="iframe flow" width="339"/>
 &#x20;<p class="caption">Poor man's AJAX.</p>
 
-The drawbacks with this approach is that you can't make POST requests and looks very hacky.
+The drawbacks with this approach is that you can't make POST requests and it is a bit hacky.
 
 ## Asynchronous JavaScript and XML
 
-To avoid this hackyness, in 1999 Microsoft added to Internet Explorer 5 a JavaScript extension,
-XMLHttpRequest, to make programmer's life easier. With XMLHttpRequest there's no need to use an `iframe` to do background requests.
+To avoid this hackyness (back in 1999) Microsoft added XMLHttpRequest as a JavaScipt extension to Internet Explorer 5. With XMLHttpRequest there's no need to use an `iframe` to do background requests.
 
 It remained quite as a privative rarity until the early 2000s, when several webapps started using
 it.
@@ -76,7 +75,7 @@ silently sends your [session cookie](http://dev.housetrip.com/2014/01/14/session
 
 To prevent security risks, the browser enforces a [same origin policy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Same_origin_policy_for_JavaScript).
 
-What is considered as different [origin](https://tools.ietf.org/html/rfc6454)?
+What can be considered a different [origin](https://tools.ietf.org/html/rfc6454)?
 
 - when the domain is different
 - when the protocol is different
@@ -88,13 +87,13 @@ To see this policy in action, let's edit the file `app/views/ajax/index.html.erb
 $('section').load('/cors/results');
 {% endhighlight %}
 
-by
+with
 
 {% highlight javascript %}
 $('section').load('https://localhost:3001/cors/results');
 {% endhighlight %}
 
-and reload the page. Now clicking in the button won't refresh the standings.
+and reload the page. Now clicking the button won't refresh the standings.
 The browser's network/console panes will be showing an error.
 Why? It's preventing the request because the origin is different: although the domain remains unmodified, both protocol and port have changed.
 
@@ -241,14 +240,14 @@ config.middleware.use Rack::Cors do
 end
 {% endhighlight %}
 
-Remove these block, restart the server and try again [http://localhost/cors](http://localhost/cors). It won't work.
+Remove this block, restart the server and try again [http://localhost/cors](http://localhost/cors). It won't work.
 
 #### Caveats
 
 The string `'*'` cannot be used to define origins if we need to support credentials.
 
 It is worth noting that you have to disable `protect_from_forgery` (CSRF protection) when
-doing POST requests because we're dealing with different servers that doesn't share sessions.
+doing POST requests because we're dealing with different servers that don't share sessions.
 
 ### CORS and a cloud storage facility
 
@@ -285,7 +284,7 @@ The support is provided by a new JavaScript object, XDomainRequest, unable to:
 - request nothing but `text/plain`
 - target a different protocol
 
-It's better to stay away of CORS and IE 8/9. In these situations, you may want to implement
+It's better to stay away from CORS and IE 8/9. In these situations, you may want to implement
 any of the techniques previously described, as a fallback.
 
 IE 10 has [full support](http://blogs.msdn.com/b/ie/archive/2012/02/09/cors-for-xhr-in-ie10.aspx)
@@ -295,8 +294,7 @@ though, out of the box, via the standard XMLHttpRequest.
 
 We've depicted how to make background requests in several ways, from the fundamentals to the latest standards.
 
-Here at [HouseTrip](http://www.housetrip.com) we consider the CORS technology is mature enough,
-and we successfully use it for the sign in and sign up forms, which are sent securely to the server.
+Here at [HouseTrip](http://www.housetrip.com) we've decided that the CORS technology is mature enough and we're using it successfully for some of our sign in and sign up forms, securely sending requests to the server.
 
 I really hope this exploration process has helped you to understand how AJAX/CORS work, and
 reduce the trouble you'll probably have setting it up in your next project.
