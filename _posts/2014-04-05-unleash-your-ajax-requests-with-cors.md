@@ -20,7 +20,7 @@ on a button to refresh the race standings while the page is kept on screen.
 Download the [project](/blobs/2014-04-05/f1-race-results.zip), `bundle install` and launch it
 with `foreman start`.
 
-_**NOTE:** Please use the Firefox browser to test the exercises._
+_**NOTE:** Due to Chrome issues, please use the Firefox browser to test the exercises._
 
 ## A bit of history
 
@@ -43,13 +43,13 @@ a little JS snippet responsible of changing the race results in the main page.
 <img src="/images/2014-04-05/iframe.png" alt="iframe flow" width="339"/>
 &#x20;<p class="caption">Poor man's AJAX.</p>
 
-The drawbacks with this approach is that you can't make POST requests and it is a bit hacky.
+The drawback with this approach is that you can't make POST requests and it is a bit hacky.
 
 ## Asynchronous JavaScript and XML
 
 To avoid this hackyness (back in 1999) Microsoft added XMLHttpRequest as a JavaScipt extension to Internet Explorer 5. With XMLHttpRequest there's no need to use an `iframe` to do background requests.
 
-It remained quite as a privative rarity until the early 2000s, when several webapps started using
+It remained quite as a propietary rarity until the early 2000s, when several webapps started using
 it.
 
 Shortly afterwards, somehow the technique was named as AJAX.
@@ -59,7 +59,7 @@ plain HTML can be sent as well. In those cases, the technique is often called
 [AJAJ](https://en.wikipedia.org/wiki/AJAJ) and [AHAH](http://microformats.org/wiki/rest/ahah)
 respectively. However, nobody is so specific, and the name AJAX is widely accepted.
 
-The XMLHttpRequest is conveniently wrapped on jQuery by `.load`, `.get` and `.post` methods.
+The XMLHttpRequest is conveniently wrapped in jQuery by `.ajax`, `.load`, `.get` and `.post` methods.
 
 Back to our example app, in [http://localhost:3000/ajax](http://localhost:3000/ajax) clicking
 the button will reload the results. Exactly like the previous example, just using this _new_
@@ -112,7 +112,7 @@ This code calls a callback function already present in the original page.
 &#x20;<p class="caption">JSONP in action.</p>
 
 For convenience purposes, the script tag creation is abstracted by jQuery's `.ajax` call,
-and we might want to replace our code by:
+and we might want to replace our code with:
 
 {% highlight javascript %}
 $.ajax({
@@ -260,7 +260,7 @@ There's documentation for [Google](https://developers.google.com/storage/docs/cr
 ## CORS current limitations
 
 CORS is available in Chrome, Opera 12, Safari 4, Firefox 3.5 and Internet Explorer 10.
-Support in mobile browsers vary, although works fine in latest iOS and Android.
+Support in mobile browsers varies, although works fine in latest iOS and Android.
 
 ### Chrome
 
@@ -296,5 +296,5 @@ We've depicted how to make background requests in several ways, from the fundame
 
 Here at [HouseTrip](http://www.housetrip.com) we've decided that the CORS technology is mature enough and we're using it successfully for some of our sign in and sign up forms, securely sending requests to the server.
 
-I really hope this exploration process has helped you to understand how AJAX/CORS work, and
-reduce the trouble you'll probably have setting it up in your next project.
+I really hope this exploration process has helped you to understand how AJAX & CORS work, and
+reduces the trouble you'll probably have setting it up in your next project.
