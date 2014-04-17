@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Unleash your AJAX requests with CORS
-published: false
+published: true
 author: Daniel Cruz
 author_role: Software Engineer
 author_url: http://dncrht.github.io
