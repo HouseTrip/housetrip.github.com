@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Benchmark RubyGem load times
-published: false
+published: true
 author: David Silva
 author_role: Associate Software Engineer
 author_url: https://github.com/davidslv
