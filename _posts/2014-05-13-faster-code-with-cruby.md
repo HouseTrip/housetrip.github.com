@@ -12,23 +12,23 @@ summary: |
 
 On the 12th of May I attended the [Scottish Ruby Conference](http://2014.scottishrubyconference.com/), and one of the talks that made me realise how much we can still learn and improve was [Introduction to CRuby source code](http://programme2014.scottishrubyconference.com/schedule#proposal_121) by [Andy Pliszka](https://twitter.com/AntiTyping) where he shared how we can improve the performance of our ruby applications by using C Extensions.
 
-In his presentation he **strongly disapproves** messing with the ruby language source code, which I completely agree with if you are adding a specific functionality for your needs.
+In his presentation he **strongly disapproves** messing with the Ruby language source code, which I completely agree with if you are adding a specific functionality for your needs.
 
-Although this still opens a window to improve the performance of your ruby code by exporting your code to use C extensions, where the perfomance boost can be between ~10x and ~50x times faster then your ruby implementation.
+Although this still opens a window to improve the performance of your ruby code by exporting your code to use C extensions, where the perfomance boost can be between ~10x and ~50x times faster than your ruby implementation.
 
 ## How?
 
-You can achieve this, without touching the source code of the ruby language, by writting a gem which uses C extensions to solve your specific problem. Building a gem is in my opinion the safest way of continuing upgrading your ruby version in production environment and still keep your code, this way you guarantee that your gem does one thing and does it well without compromising the upgrade of your ruby in production environment.
+You can achieve this, without touching the source code of the Ruby language, by writting a gem which uses C extensions to solve your specific problem. Building a gem is in my opinion the safest way of continuing upgrading your ruby version in production environment and still keep your code, this way you guarantee that your gem does one thing and does it well without compromising the upgrade of your ruby in production environment.
 
 ## But at what cost?
 
-I do believe that most of us are probably a bit rusty in what concerns using C, you will probably spend *maybe* 5x more time building your ruby with C extensions, because in the end you will still program in C but once you get *in the zone* you might end up paying off all the time you spent building it. Andy presentation shows that we can have a performance gain of more than 10 times, imagine that it means you can take like 5 servers from production, it means you can save money and still process your data faster.
+I do believe that most of us are probably a bit rusty in what concerns using C, you will probably spend *maybe* 5x more time building your ruby with C extensions, because in the end you will still program in C but once you get *in the zone* you might end up paying off all the time you spent building it. Andy's presentation shows that we can have a performance gain of more than 10 times, imagine that it means you can take like 5 servers from production, it means you can save money and still process your data faster.
 
 ## Where do you start?
 
 I did a quick *Hello World* class just to feel how it works, and honestly it took me around 30 minutes to understand the very basic and make it work in irb. It seems to me that there are lots of tutorials online where they teach you how to start but they don't teach you much, they just give you the feeling of how it works. I personally feel that there is a lack of online documentation as we have with [Ruby-Doc](http://ruby-doc.org/), although I manage to get some references which I wrote at the bottom of this article to help you find the information you need if you ever decide to take this approach.
 
-**My advice is**: try and read as much code as you can from the source of the ruby language, then write your functionality in ruby code and test it, once you are happy with it, start your journey porting your code to use C extensions.
+**My advice is**: try and read as much code as you can from the source of the Ruby language, then write your functionality in ruby code and test it, once you are happy with it, start your journey porting your code to use C extensions.
 
 
 References:
