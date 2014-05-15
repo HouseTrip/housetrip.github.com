@@ -19,7 +19,7 @@ describe "property page" do
 
   it "shows the price per night of the property" do
     visit property_path(property)
-    page.should have_content('From €90 per night')
+    expect(page).to have_content('From €90 per night')
   end
 end
 {% endhighlight %}
@@ -93,7 +93,7 @@ describe "property pages" do
 
   it 'should show the price per night'
     current_page.open(property)
-    current_page.should have_price(price)
+    expect(current_page).to have_price(price)
   end
 end
 {% endhighlight %}
