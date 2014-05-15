@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Page objects
+title: Page objects, or how to better test by wrapping HTML with code
 published: false
 author: Alessandro Mencarini
 author_role: Software Engineer
@@ -39,7 +39,8 @@ Enter [page objects](http://martinfowler.com/bliki/PageObject.html).
 
 {% highlight ruby %}
 module Pages
-  class Property < Page
+  class Property
+    include Capybara::DSL
   end
 end
 {% endhighlight %}
@@ -67,16 +68,16 @@ end
 Just one change. Now, let's refactor the contents check.
 
 {% highlight ruby %}
-def check_price(price)
-  page.should have_content("From #{price} per night")
+def has_price?(price)
+  page.has_content?("From #{price} per night")
 end
 {% endhighlight %}
 
 After an AB test it's shown that a more frisky way to show the price converts better. Let's edit the test to mirror the changes in the page:
 
 {% highlight ruby %}
-def check_price(price)
-  page.should have_content("It's only #{price} for a night, yo!")
+def has_price?(price)
+  page.has_content?("It's only #{price} for a night, yo!")
 end
 {% endhighlight %}
 
@@ -92,7 +93,7 @@ describe "property pages" do
 
   it 'should show the price per night'
     current_page.open(property)
-    current_page.check_price(price)
+    current_page.should have_price(price)
   end
 end
 {% endhighlight %}
