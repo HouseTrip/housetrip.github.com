@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Write faster code with CRuby
+title: Extending Ruby with C for a better perfomance
 published: false
 author: David Silva
 author_role: Associate Software Engineer
