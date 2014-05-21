@@ -1,13 +1,13 @@
 ---
 layout: post
 title: Page objects, or how to better test by wrapping HTML with code
-published: false
+published: true
 author: Alessandro Mencarini
 author_role: Software Engineer
 author_url: https://github.com/amencarini
 author_avatar: http://www.gravatar.com/avatar/d7015e59531008a4e43ff574400d5d87.png
 summary: |
-  Using page object can help greatly with testing DOM or portions of it.
+  Using page objects can help greatly with testing DOM or portions of it.
 ---
 
 A typical RSpec feature (and Cucumber steps won't differ too much) could present this sort of code:
@@ -24,7 +24,7 @@ describe "property page" do
 end
 {% endhighlight %}
 
-If this were the only test around a property, you'd be ok. But you probably want to visit the property page in more than one test.
+If this were the only test visiting the property page, you'd be ok. But you'll probably want to do this in more than one test.
 
 What if you end up changing the route, making all `visit` calls break?
 What if you want to add a query parameter to all calls that go to your property page?
@@ -45,9 +45,7 @@ module Pages
 end
 {% endhighlight %}
 
-Adding a layer that gives you a clean Ruby interface to interacting with the UI will make your life easier.
-
-Let's see how to refactor the tests involving our property page into a page object.
+Adding a layer that gives you a clean Ruby interface to interacting with the UI will make your life easier. Let's see how to refactor the tests involving our property page into a page object.
 
 {% highlight ruby %}
 def open(property)
@@ -81,9 +79,7 @@ def has_price?(price)
 end
 {% endhighlight %}
 
-Remember when you had to change this a hundred times in your test suite? No more.
-
-The RSpec feature would look somewhat like this:
+Remember when you had to change this a hundred times in your test suite? No more. The RSpec feature would look somewhat like this:
 
 {% highlight ruby %}
 describe "property pages" do
