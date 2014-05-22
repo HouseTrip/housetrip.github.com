@@ -4,7 +4,7 @@ title: Page objects, or how to better test by wrapping HTML with code
 published: true
 author: Alessandro Mencarini
 author_role: Software Engineer
-author_url: https://github.com/amencarini
+author_url: https://plus.google.com/u/0/104356313878293638468?rel=author
 author_avatar: http://www.gravatar.com/avatar/d7015e59531008a4e43ff574400d5d87.png
 summary: |
   Using page objects can help greatly with testing DOM or portions of it.
