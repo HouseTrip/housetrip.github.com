@@ -1,26 +1,25 @@
 ---
 layout: post
-title: Breaking down the monolith
+title: Breaking down a Rails 2 monolith using plugins
 published: true
 author: Jesper Kjeldgaard
 author_role: Software Engineer
 author_url: http://github.com/thejspr
 author_avatar: http://www.gravatar.com/avatar/e96273c9bd8ea77a17ae87dca4c0de4c
 summary: |
-  Breaking down a large Rails 2 application can be a daunting task.
-  Rails plugins can be used to take the first step, by gather all business logic
+  Breaking down a large Rails 2 application can be a daunting task.  Rails
+  plugins can be used to take the first step, by gathering all business logic
   and tests in one folder.
 ---
 
-At HouseTrip, like a many other successful startups, we
-have a large monolithic Rails 2 application. This application contains most of
-the core features we have, and although we're moving towards SOA, still covers
-most of the development we do here.
-
 Going SOA is no easy feat, and as usually when something is complex and
 daunting, the best course of action is to break down the problem and take it one
-step at a time. With a big application like this, a good first step would be to
+step at a time. With a big application, a good first step would be to
 separate the application into it's apparent domain concepts.
+
+If you, like many other successful startups, have a large monolithic Rails 2
+application and want to break it down into multiple more manageable parts,
+using plugins might be a way forward.
 
 I will use an admin area to illustrate my point, but this process can be applied
 to any area of an application.
@@ -137,6 +136,16 @@ end
 
 This will allow you to put you mailer views in
 `services/admin/app/views/admin/mailer`.
+
+## Are plugions future proof?
+
+If you're moving towards Rails 3/4, then going with a plugin-based solution
+might seem like going backwards. Plugins can easily be changed to work with both
+Rails 3 and 4. One method of doing that is covered
+[here](http://matt.coneybeare.me/how-to-convert-simple-rails-23-style-plugins/).
+
+Another solution is to reorganse the plugin into a Rails engine structure and
+make it work more like a full-fledged Rails app on it's own.
 
 
 ## Conclusion
