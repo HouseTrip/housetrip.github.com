@@ -12,7 +12,7 @@ summary: |
   and tests in one folder.
 ---
 
-Going SOA is no easy feat, and as usually when something is complex and
+Going SOA is no easy feat, and as usual when something is complex and
 daunting, the best course of action is to break down the problem and take it one
 step at a time. With a big application, a good first step would be to
 separate the application into it's apparent domain concepts.
@@ -35,7 +35,7 @@ By moving the admin area into a plugin, it becomes cleanly separated from the
 rest of the application and it can be worked on and tested in isolation. It
 could even eventually be moved outside the application.
 
-The folllowing describes the various aspects of moving domain logic into a
+The following describes the various aspects of moving domain logic into a
 plugin.
 
 ## Using an alternative plugin folder
@@ -51,14 +51,14 @@ Rails::Initializer.run do |config|
 end
 {% endhighlight %}
 
-## Bootstraping a plugin
+## Bootstrapping a plugin
 
 You can scaffold a new plugin via `script/generate plugin <name>` and move the
 created folder (`vendor/plugins/<name>`) into the `services` folder.
 
-The scaffold creates the appriapriate hook files you need to integrate the
+The scaffold creates the appropriate hook files you need to integrate the
 plugin with the main application. This includes hooks into how the plugin is
-installed and removed, which you prpbably don't need. A file named `init.rb` is
+installed and removed, which you propbably don't need. A file named `init.rb` is
 also created, and this is where you add any initialization the plugin might need
 when the main application is booted.
 
@@ -86,7 +86,7 @@ Rails will automatically add `app/controllers`, `app/models`, `app/views` and
 and `app/helpers`, this can be done by adding the following to `init.rb`:
 
 {% highlight ruby %}
-# add plugin folders to ruby and rails loadpaths
+# add plugin folders to ruby and rails load-paths
 %w{ helpers mailers }.each do |dir|
   path = File.join(File.dirname(__FILE__), 'app', dir)
   $LOAD_PATH << path
@@ -94,7 +94,7 @@ and `app/helpers`, this can be done by adding the following to `init.rb`:
   ActiveSupport::Dependencies.autoload_once_paths.delete(path)
 end
 
-# include helpers so they are accesible in views
+# include helpers so they are accessible in views
 ActionView::Base.class_eval do
   include Admin::Helper
 end
@@ -137,27 +137,26 @@ end
 This will allow you to put you mailer views in
 `services/admin/app/views/admin/mailer`.
 
-## Are plugions future proof?
+## Are plugins future proof?
 
 If you're moving towards Rails 3/4, then going with a plugin-based solution
 might seem like going backwards. Plugins can easily be changed to work with both
 Rails 3 and 4. One method of doing that is covered
 [here](http://matt.coneybeare.me/how-to-convert-simple-rails-23-style-plugins/).
 
-Another solution is to reorganse the plugin into a Rails engine structure and
+Another solution is to reorganise the plugin into a Rails engine structure and
 make it work more like a full-fledged Rails app on it's own.
 
 
 ## Conclusion
 
-Whilst Rails 2 plugins are not as neat and full-featured as Engines in Rails 3,
+While Rails 2 plugins are not as neat and full-featured as Engines in Rails 3,
 they can be used to break down a large application into separate parts. The
 extraction is pretty straightforward and leaves you with a common place for
 domain logic, as opposed to having to search through the `app` folder.
 
-Another neat benefit is you get to split your test suite and can save
-development and testing time by only needing to run the tests relevant for
-your changes.
+Splitting your test suite is another neat benefit and can save development and
+testing time by only needing to run the tests relevant for your changes.
 
 If you hit any issues with this approach, please do get in touch. Go forth and
 refactor!
