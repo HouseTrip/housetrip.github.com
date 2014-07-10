@@ -33,7 +33,7 @@ Alternatively, you can follow the steps on the [Dokku
 wiki](https://github.com/progrium/dokku#installing).
 
 In order to get up and running fast, I recommend using the Dokku image provided
-by DigicalOcean. It's dead easy to get going, and can easily run on a small
+by DigitalOcean. It's dead easy to get going, and can easily run on a small
 droplet for $5 per month.
 
 ## Installing PostgreSQL
