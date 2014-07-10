@@ -28,7 +28,7 @@ application using PostgreSQL to a server running Dokku.
 ## Installing Dokku
 
 You need a server with Dokku installed, I recommend following [this
-guide](https://www.digitalocean.com/community/tutorials/how-to-use-the-dokku-one-click-digitalocean-image-to-run-a-node-js-app).
+guide](https://www.digitalocean.com/community/tutorials/how-to-use-the-dokku-one-click-digitalocean-image-to-run-a-ruby-on-rails-app).
 Alternatively, you can follow the steps on the [Dokku
 wiki](https://github.com/progrium/dokku#installing).
 
