@@ -82,9 +82,9 @@ We implemented the above mentioned improvements and we run it on a development m
 
 In this section we will explain how to run the simple collaborative filtering algorithm described [previously](#sec-computing-recommendations) using the MapReduce paradigm. 
 
-Using the [Hadoop](http://hadoop.apache.org/) framework it is possible to build MapReduce workflows using a variety of different languages. If you your task is specifically to run some well-known data mining algorithm in parallel, then there is a set of pre-build solution made for you and packaged in the [Mahout](https://mahout.apache.org/) library. Mahout also includes some configurable collaborative filtering algorithm, however in order to have the highest degree of flexibility we decided to build our own. 
+Using the Hadoop framework [\[8\]](#ref-8) it is possible to build MapReduce workflows using a variety of different languages. If you your task is specifically to run some well-known data mining algorithm in parallel, then there is a set of pre-build solution made for you and packaged in the Mahout library [\[9\]](#ref-9). Mahout also includes some configurable collaborative filtering algorithm, however in order to have the highest degree of flexibility we decided to build our own. 
 
-Translating an algorithm into a series of MapReduce steps is usually far from trivial. If you want to rely on a higher level of abstraction then the [Pig](http://pig.apache.org/) scripting language is an indispensable tool to master. A script written in Pig can be automatically translated into a series of MapReduce steps terribly simplifying the job of understanding and maintaining your workflow.
+Translating an algorithm into a series of MapReduce steps is usually far from trivial. If you want to rely on a higher level of abstraction then the Pig scripting language [\[10\]](#ref-10) is an indispensable tool to master. A script written in Pig can be automatically translated into a series of MapReduce steps terribly simplifying the job of understanding and maintaining your workflow.
 
 Before jumping into the Pig script let's see conceptually what it is supposed to do. We assume to start with a set of enquiries extracted from the database. That list is simply made of tuples `<user, property>` like the following one:  
 
@@ -123,7 +123,7 @@ where `c_hk` represents how many times you found the tuple `(p_h, p_k)` in the p
 
 where on the left you have a property, and on the right you have the list of recommendations with the associated count. The count represent the similarity weight for the property. Therefore ordering this list gives you the topK properties we were looking for. You can find the detailed Pig script in the [appendix](#sec-appendix) of this blog post. 
 
-In order to run the script  you need an Hadoop deployed infrastucture, or you can use the [Amazon Elastic MapReduce](#http://aws.amazon.com/elasticmapreduce/) cloud service. The workflow of the deployment is the following:  
+In order to run the script  you need an Hadoop deployed infrastucture, or you can use the Amazon Elastic MapReduce cloud service [\[11\]](#ref-11). The workflow of the deployment is the following:  
 
 * Export your input data (for us, property enquiries)
 * Export the UDFs used in the Pig script into a Jar
@@ -132,7 +132,7 @@ In order to run the script  you need an Hadoop deployed infrastucture, or you ca
 * Download the output from S3 and feed them into your recommendations service
 * Start serving requests
 
-With these approach we have been able to compute the recommendations for more than 300.000 properties in 25 minutes using 5 EC2 large instances running on top of Hadoop 2.4.0 ([ami-version 3.1.0](#http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-hadoop-version.html)).
+With these approach we have been able to compute the recommendations for more than 300.000 properties in 25 minutes using 5 EC2 large instances running on top of Hadoop 2.4.0 [\[12\]](#ref-12).
 
 ### Validation
 
@@ -144,7 +144,7 @@ With these approach we have been able to compute the recommendations for more th
 
 ### Appendix<a name="sec-appendix"></a>
 
-This is the Pig script implementing the informal algorithm presented [previously](#sec-exploiting-parallelism). The `ht.udf.Permutations` function is a simple [UDF function](http://wiki.apache.org/pig/UDFManual) to compute all the possible permutations of size 2 of a given set of tuples. If you are interested in examples of UDFs I suggest to look at the [Piggybank](https://cwiki.apache.org/confluence/display/PIG/PiggyBank) library.
+This is the Pig script implementing the informal algorithm presented [previously](#sec-exploiting-parallelism). The `ht.udf.Permutations` function is a simple UDF function [\[13\]](#ref-13) to compute all the possible permutations of size 2 of a given set of tuples. If you are interested in examples of UDFs I suggest to look at the Piggybank library [\[14\]](#ref-14).
 
     REGISTER '$htjar';
     pre1 = load '$input' USING PigStorage(',') AS (user_id: int, property_id: int);
@@ -217,5 +217,11 @@ As you can see this is an integration test where we load some test input and we 
 <a name="ref-4" href="http://recsys.acm.org/">4. ACM Conference on Recommender Systems</a>  
 <a name="ref-5" href="http://www.springer.com/computer/ai/book/978-0-387-85819-7">5. Recommender Systems handbook</a>  
 <a name="ref-6" href="http://en.wikipedia.org/wiki/Music_Genome_Project">6. The Pandora Music Genome Project</a>  
-<a name="ref-7" href="http://www.netflixprize.com/">7. The Netflix prize</a>
-
+<a name="ref-7" href="http://www.netflixprize.com/">7. The Netflix prize</a>  
+<a name="ref-8" href="http://hadoop.apache.org/">8. Apache Hadoop homepage</a>  
+<a name="ref-9" href="https://mahout.apache.org/">9. Apache Mahout homepage</a>  
+<a name="ref-10" href="http://pig.apache.org/">10. Apache Pig homepage</a>  
+<a name="ref-11" href="http://aws.amazon.com/elasticmapreduce/">11. Amazon Elastic MapReduce homepage</a>  
+<a name="ref-12" href="http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-hadoop-version.html">12. Amazon Machine Images for Elastic MapReduce</a>  
+<a name="ref-13" href="http://wiki.apache.org/pig/UDFManual">13. Pig UDF functions Wiki</a>  
+<a name="ref-14" href="https://cwiki.apache.org/confluence/display/PIG/PiggyBank">14. Piggybank UDF collection Wiki</a>
