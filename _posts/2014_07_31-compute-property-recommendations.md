@@ -52,7 +52,7 @@ To conclude this overview, **Hybrid recommender systems** combines both the prev
 In this section we will explain how to compute the property recommendations using a *memory-based collaborative filtering* approach. For HouseTrip the data we have looks as follow:
 
 | 			 |	Property1	|	Property2	|	Property3	|	Property4	|
-| -------- |--------------	---| ------------------|------------------|------------------|
+| --------|-----------------|------------------|------------------|------------------|
 | user1 |  		x				| 		x 				 |						 |						 |
 | user2 |  		x				| 		x 				 |			x			 | 						 |
 | user3 |    					| 						 |						 | 			x			 |
