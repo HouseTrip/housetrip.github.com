@@ -144,7 +144,7 @@ With these approach we have been able to compute the recommendations for more th
 
 ### Appendix<a name="sec-appendix"></a>
 
-This is the Pig script implementing the informal algorithm presented [previously](#sec-exploiting-parallelism). The `ht.udf.Permutations` function is a simple UDF function [\[13\]](#ref-13) to compute all the possible permutations of size 2 of a given set of tuples. If you are interested in examples of UDFs I suggest to look at the Piggybank library [\[14\]](#ref-14).
+This is the Pig script implementing the informal algorithm presented [previously](#sec-exploiting-parallelism). The `ht.udf.Permutations` function is a simple UDF function [\[13\]](#ref-13) to compute all the possible permutations of size 2 of a given set of elements. If you are interested in examples of UDFs I suggest to look at the Piggybank library [\[14\]](#ref-14).
 
     REGISTER '$htjar';
     pre1 = load '$input' USING PigStorage(',') AS (user_id: int, property_id: int);
