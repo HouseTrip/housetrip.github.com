@@ -34,7 +34,7 @@ Let's assume that we have to build a movie recommendation engine. In a **content
 
 Let's now focus on two characteristics of this approach: (i) If your domain model does not include a particular dimension, there is no way your system can output recommendations matching this dimension. In the previous example since we didn't include the list of actors in the movie description the system will not be able to return good recommendations for people interested in a very specific actor; (ii) Recommendations are likely to suffer of _over specialization_ , i.e. the system will never returns unexpected exploratory results since it's only able to match the user profile. 
 
-In a **collaborative filtering** scenario the rules of the algorithm are completely different. You don't formalise the domain dimension of your items but you use the data of your users to compute the similarities. You start with a matrix of data with users and items like the one that follows:
+In a **collaborative filtering** approach the rules of the algorithm are completely different. You don't formalise the domain dimension of your items but you use the data of your users to compute the similarities. You start with a matrix of data with users and items like the one that follows:
 
 | 			 | Matrix		| Star Wars	| Resident Evil   | Runaway bride |
 | -------- |--------------| --------------|---------------------|-----------------------|
@@ -49,7 +49,9 @@ In this example the data represents the fact that a particular user have watched
 To conclude this overview, **Hybrid recommender systems** combines both the previous approaches to overcome their limitations. In 2007 the algorithm winning the Netflix prize for better movie recommendations [\[7\]](#ref-7) combined 107 different algorithmic approaches into one solution. 
 
 ### Computing recommendations <a name="sec-computing-recommendations"></a>
-In this section we will explain how to compute the property recommendations using a *memory-based collaborative filtering* approach. For HouseTrip the data we have looks as follow:
+In this section we will explain how to compute property recommendations using a *memory-based collaborative filtering* approach. We believe this is best solution to experiment with here at HouseTrip because we don't need to build (and maintain) a complex domain model of our items, and we have enough data to rely on a collaborative filtering approach that, despite it's simplicity, is historically considered a simple and effective solution [\[5\]](#ref-5). 
+
+The data we will be working with looks as follow:
 
 | 			 |	Property1	|	Property2	|	Property3	|	Property4	|
 | --------|-----------------|------------------|------------------|------------------|
