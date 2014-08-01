@@ -136,11 +136,14 @@ With this approach we have been able to compute the recommendations for more tha
 
 ### Validation
 
-[To be done](#http://i664.photobucket.com/albums/vv3/peachy-chan-/sadpanda.png)
+To validate a collaborative filtering algorithm we can use the framework introduced by [\[15\]](#ref-15). 
+
+> The analysis should be done on the topK destinations in HouseTrip reporting the variance and the average of the property-variations.
 
 ### Conclusions
 
-[To be done](#http://i664.photobucket.com/albums/vv3/peachy-chan-/sadpanda.png)
+In this blog post we presented how to compute property recommendations using a *memory-based collaborative filtering* approach. We presented how the algorithm is implemented locally and what is needed in order to run it in parallel using a MapReduce cloud infrastructure. Finally we validated the quality of our recommendations in terms of coverage and similarity using a simple heuristic measure. Future works include validating the performance with real user data, and the extension of the algorithm to work in conjunction with a content-based approach. 
+
 
 ### Appendix<a name="sec-appendix"></a>
 
@@ -224,4 +227,5 @@ As you can see this is an integration test where we load some test input and we 
 <a name="ref-11" href="http://aws.amazon.com/elasticmapreduce/">11. Amazon Elastic MapReduce homepage</a>  
 <a name="ref-12" href="http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-hadoop-version.html">12. Amazon Machine Images for Elastic MapReduce</a>  
 <a name="ref-13" href="http://wiki.apache.org/pig/UDFManual">13. Pig UDF functions Wiki</a>  
-<a name="ref-14" href="https://cwiki.apache.org/confluence/display/PIG/PiggyBank">14. Piggybank UDF collection Wiki</a>
+<a name="ref-14" href="https://cwiki.apache.org/confluence/display/PIG/PiggyBank">14. Piggybank UDF collection Wiki</a>  
+<a name="ref-15" href="http://dl.acm.org/citation.cfm?id=312682">An algorithmic framework for performing collaborative filtering<a/>
