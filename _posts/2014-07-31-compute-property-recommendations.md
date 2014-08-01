@@ -138,7 +138,9 @@ With this approach we have been able to compute the recommendations for more tha
 
 To validate a collaborative filtering algorithm we can use the framework introduced by [\[15\]](#ref-15). 
 
-> The analysis should be done on the topK destinations in HouseTrip reporting the variance and the average of the property-variations.
+> The analysis should be done on the topK destinations in HouseTrip reporting the coverage and the similarity heuristic.
+
+To be done.
 
 ### Conclusions
 
