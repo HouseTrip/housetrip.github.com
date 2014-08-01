@@ -230,4 +230,4 @@ As you can see this is an integration test where we load some test input and we 
 <a name="ref-12" href="http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-hadoop-version.html">12. Amazon Machine Images for Elastic MapReduce</a>  
 <a name="ref-13" href="http://wiki.apache.org/pig/UDFManual">13. Pig UDF functions Wiki</a>  
 <a name="ref-14" href="https://cwiki.apache.org/confluence/display/PIG/PiggyBank">14. Piggybank UDF collection Wiki</a>  
-<a name="ref-15" href="http://dl.acm.org/citation.cfm?id=312682">An algorithmic framework for performing collaborative filtering<a/>
+<a name="ref-15" href="http://dl.acm.org/citation.cfm?id=312682">15. An algorithmic framework for performing collaborative filtering<a/>
