@@ -12,7 +12,7 @@ summary: |
 
 ## Compute property recommendations: A collaborative filtering approach
 
-At HouseTrip you can find the perfect place for your next holiday over a set of more than 300.000 properties all over the world.  Searching inside such a large set of properties can be at time overwhelming, doesn't matter how good is the search experience of your system. 
+At HouseTrip you can find the perfect place for your next holiday over a set of more than 300,000 properties all over the world.  Searching inside such a large set of properties can be at time overwhelming, doesn't matter how good the search experience is within your system. 
 
 Recommender Systems are considered a solid and effective solution to this problem. They complement the search experience of the website by suggesting items that are relevant to the user.   
 
@@ -20,7 +20,7 @@ In this blog post we show how to build a simple property recommendation engine. 
 
 ### A bit of history
 
-The Recommender systems field is more than 20 years old. The first system relying on this technology has been built by Xerox in 1992 [\[1\]](#ref-1).  Few years later the GroupLens research team at University of Minnesota built the first article recommendation system [\[2\]](#ref-2) and the first movie recommender system [\[3\]](#ref-3).  But it's starting from the early 2000 that the technology is actively used in several commercial websites, like Amazon and Netflix. Today the ACM conference on Recommender Systems [\[4\]](#ref-4) is held yearly and the interest from the community is constantly increasing.
+The Recommender systems field is more than 20 years old. The first system relying on this technology was built by Xerox in 1992 [\[1\]](#ref-1).  Few years later the GroupLens research team at University of Minnesota built the first article recommendation system [\[2\]](#ref-2) and the first movie recommender system [\[3\]](#ref-3).  But it's starting from the early 2000 that the technology is actively used in several commercial websites, like Amazon and Netflix. Today the ACM conference on Recommender Systems [\[4\]](#ref-4) is held yearly and the interest from the community is constantly increasing.
 
 ### The theory
 
@@ -32,7 +32,7 @@ Recommender Systems can be divided in three categories [\[5\]](#ref-5) depending
 
 Let's assume that we have to build a movie recommendation engine. In a **content-based approach** you first formalise the dimensions of your items. In our example a movie can be represented as a set of genres, e.g. the _Matrix_ movie is equivalent to the vector _[Action, Sci-Fi]_. Once you have this representation in place (and as you can imagine it may be far from trivial [\[6\]](#ref-6)) you can infer the profile of your users by looking at the vectors of the movies they watched. At this point you can search all the movies whose vector is *close* to the one representing the profile of your user and return them.  
 
-Let's now focus on two characteristics of this approach: (i) If your domain model does not include a particular dimension, there is no way your system can output recommendations matching this dimension. In the previous example since we didn't include the list of actors in the movie description the system will not be able to return good recommendations for people interested in a very specific actor; (ii) Recommendations are likely to suffer of _over specialization_ , i.e. the system will never returns unexpected exploratory results since it's only able to match the user profile. 
+Let's now focus on two characteristics of this approach: (i) If your domain model does not include a particular dimension, there is no way your system can output recommendations matching this dimension. In the previous example since we didn't include the list of actors in the movie description the system will not be able to return good recommendations for people interested in a very specific actor; (ii) Recommendations are likely to suffer of _over specialization_ , i.e. the system will never return unexpected exploratory results since it's only able to match the user profile. 
 
 In a **collaborative filtering** approach the rules of the algorithm are completely different. You don't formalise the domain dimension of your items but you use the data of your users to compute the similarities. You start with a matrix of data with users and items like the one that follows:
 
@@ -42,14 +42,14 @@ In a **collaborative filtering** approach the rules of the algorithm are complet
 | user2 |  		x			| 		x 			|			x				| 							  |
 | user3 |    				| 					|							| 			x				  |
 
-In this example the data represents the fact that a particular user have watched a certain item. Of course more complicated scenarios are possible (user providing*ratings* for example) but let's keep it single for the moment. Looking at the matrix it is clear that *user1* and *user2* shares similar tastes, while *user3* belongs to a different category. If you want to provide movie recommendations for *user1* you first retrieve the users that are most similar to him (*user2*) and you use the set of movies they like for your recommendations. In this example a collaborative filtering approach will recommend *Resident Evil* to *user1* because of its similarity to *user2*. Let's now focus on two characteristics of this approach: (i) the system is not able to produce recommendations for users that didn't rated any item. This is also known as the *cold start* problem. (ii) top recommendations will be a function of what the majority of the users thinks, which may be good or bad depending on your specific scenario.
+In this example the data represents the fact that a particular user has watched a certain item. Of course more complicated scenarios are possible (user providing*ratings* for example) but let's keep it simple for the moment. Looking at the matrix it is clear that *user1* and *user2* share similar tastes, while *user3* belongs to a different category. If you want to provide movie recommendations for *user1* you first retrieve the users that are most similar to him (*user2*) and you use the set of movies they like for your recommendations. In this example a collaborative filtering approach will recommend *Resident Evil* to *user1* because of its similarity to *user2*. Let's now focus on two characteristics of this approach: (i) the system is not able to produce recommendations for users who didn't rate any item. This is also known as the *cold start* problem. (ii) top recommendations will be a function of what the majority of the users thinks, which may be good or bad depending on your specific scenario.
 
-**Collaborative filtering** approaches can be further divided in two subsets: *memory based* and *model based*. The first one mostly relies on algebraic rules to compute the distances over the *user/item* matrix. The second one relies on data mining and machine learning approaches to build models of the data that can be exploited to provide the recommendations. Historically *memory based* approaches are considered simple and effective, and this the type we will focus on for the rest of this post. 
+**Collaborative filtering** approaches can be further divided in two subsets: *memory based* and *model based*. The first one mostly relies on algebraic rules to compute the distances over the *user/item* matrix. The second one relies on data mining and machine learning approaches to build models of the data that can be exploited to provide the recommendations. Historically *memory based* approaches are considered simple and effective, and this the type we will focus for the rest of this post. 
 
 To conclude this overview, **Hybrid recommender systems** combines both the previous approaches to overcome their limitations. In 2007 the algorithm winning the Netflix prize for better movie recommendations [\[7\]](#ref-7) combined 107 different algorithmic approaches into one solution. 
 
 ### Computing recommendations <a name="sec-computing-recommendations"></a>
-In this section we will explain how to compute property recommendations using a *memory-based collaborative filtering* approach. We believe this is best solution to experiment with here at HouseTrip because we don't need to build (and maintain) a complex domain model of our items, and we have enough data to rely on a collaborative filtering approach that, despite it's simplicity, is historically considered a simple and effective solution [\[5\]](#ref-5). 
+In this section we will explain how to compute property recommendations using a *memory-based collaborative filtering* approach. We believe this is the best solution to experiment with here at HouseTrip because we don't need to build (and maintain) a complex domain model of our items, and we have enough data to rely on a collaborative filtering approach that, despite its simplicity, is historically considered a simple and effective solution [\[5\]](#ref-5). 
 
 The data we will be working with looks as follow:
 
@@ -75,14 +75,14 @@ The point in the matrix can be a user visiting the page of a [property](http://w
 	end
 
 Unfortunately the algorithm is trivially `O(n^2)`. You can still refine it by caching some information instead of going directly to the database, or by improving the queries to only load the properties belonging to the same region. 
-We implemented the above mentioned improvements and we run it on a development machine running on top of *Ruby2*, *ActiveRecord* and *MySql* database. In this scenario computing the recommendations for a single property takes around 17 seconds. This means that if we need to compute the recommendations for all the properties in London - 6000 properties in my development environment - it would take around 1.2 days.
+We implemented the above mentioned improvements and we ran it on a development machine running on top of *Ruby2*, *ActiveRecord* and *MySql* database. In this scenario computing the recommendations for a single property takes around 17 seconds. This means that if we need to compute the recommendations for all the properties in London - 6000 properties in my development environment - it would take around 1.2 days.
 
 
 ### Exploiting parallelism <a name="sec-exploiting-parallelism"></a>
 
 In this section we will explain how to run the simple collaborative filtering algorithm described [previously](#sec-computing-recommendations) using the MapReduce paradigm. 
 
-Using the Hadoop framework [\[8\]](#ref-8) it is possible to build MapReduce workflows using a variety of different languages. If you your task is specifically to run some well-known data mining algorithm in parallel, then there is a set of pre-build solution made for you and packaged in the Mahout library [\[9\]](#ref-9). Mahout also includes some configurable collaborative filtering algorithm, however in order to have the highest degree of flexibility we decided to build our own. 
+Using the Hadoop framework [\[8\]](#ref-8) it is possible to build MapReduce workflows using a variety of different languages. If your task is specifically to run some well-known data mining algorithm in parallel, then there is a set of pre-built solutions made for you and packaged in the Mahout library [\[9\]](#ref-9). Mahout also includes some configurable collaborative filtering algorithm, however in order to have the highest degree of flexibility we decided to build our own. 
 
 Translating an algorithm into a series of MapReduce steps is usually far from trivial. If you want to rely on a higher level of abstraction then the Pig scripting language [\[10\]](#ref-10) is an indispensable tool to master. A script written in Pig can be automatically translated into a series of MapReduce steps terribly simplifying the job of understanding and maintaining your workflow.
 
@@ -107,7 +107,7 @@ where `[ p_a1, p_a2, .... p_an ]` is the list of properties for which `u_a` have
     (p_b1, p_b2)
     ...
 
-You may have notice already that after you build this list it is very likely that you will find repetitions. Two tuples here are equal if two user have both enquired the same two properties. Therefore we can proceed to the next step which is grouping those tuples and count them, which leads to the following state:
+You may have noticed already that after you build this list it is very likely that you will find repetitions. Two tuples here are equal if two users have both enquired the same two properties. Therefore we can proceed to the next step which is grouping those tuples and count them, which leads to the following state:
 
     (p_h, p_k, c_hk)
     …
@@ -132,7 +132,7 @@ In order to run the script  you need an Hadoop deployed infrastucture, or you ca
 * Download the output from S3 and feed them into your recommendations service
 * Start serving requests
 
-With these approach we have been able to compute the recommendations for more than 300.000 properties in 25 minutes using 5 EC2 large instances running on top of Hadoop 2.4.0 [\[12\]](#ref-12).
+With this approach we have been able to compute the recommendations for more than 300.000 properties in 25 minutes using 5 EC2 large instances running on top of Hadoop 2.4.0 [\[12\]](#ref-12).
 
 ### Validation
 
