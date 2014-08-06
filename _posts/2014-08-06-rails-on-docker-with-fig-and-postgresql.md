@@ -71,7 +71,7 @@ ADD . /app
 
 This file specifies how Docker builds the container. It is based on the latest
 Ubuntu (14.04) and installs everything needed for the application to run,
-including Ruby 2.1.2 and th required RubyGems.
+including Ruby 2.1.2 and the required RubyGems.
 
 
 ## Installing Fig
