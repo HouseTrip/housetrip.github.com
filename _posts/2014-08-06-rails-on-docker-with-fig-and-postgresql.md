@@ -21,7 +21,7 @@ running commands on Docker containers.
 
 ## Installing Docker
 
-There exists many guides on installing Docker. I recommend starting
+There are many guides on installing Docker. I recommend starting
 [here](https://docs.docker.com/installation/#installation), or if you are on
 OSX, start [here](https://github.com/noplay/docker-osx#docker-osx). The rest of
 this guide assumes you have Docker setup and running locally.
