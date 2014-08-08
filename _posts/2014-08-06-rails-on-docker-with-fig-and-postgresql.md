@@ -101,7 +101,7 @@ web:
 With this in place you can now run `fig build` and let it build the containers
 for the application and the database.
 
-## Making you app container friendly
+## Making your app container friendly
 
 Add the following to your `config/database.yml` file. This is needed as the web
 container will need to communicate with the PostgreSQL container.
