@@ -132,15 +132,17 @@ In order to run the script  you need an Hadoop deployed infrastucture, or you ca
 * Download the output from S3 and feed them into your recommendations service
 * Start serving requests
 
-With this approach we have been able to compute the recommendations for more than 300.000 properties in 25 minutes using 5 EC2 large instances running on top of Hadoop 2.4.0 [\[12\]](#ref-12).
+With this approach we have been able to compute the recommendations for more than 300.000 properties in 25 minutes using 5 EC2 large instances running on top of Hadoop 2.4.0 [\[12\]](#ref-12). It is possible to feed the algorithm with _property views_ instead of enquiries (i.e. the user visited the profile page of a property) .  To do that we fed the algorithm with 4GB of apache logs over the last 3 months and we got the results in 78 minutes using the same computing power of the previous experiment. This is due to the overhead of parsing the logs before actually starting computing the recommendations.
 
 ### Validation
 
 To validate a collaborative filtering algorithm we can look at its _coverage_ and at its _accuracy_ as suggested in [\[15\]](#ref-15). 
 
-We found that the _coverage_ varies significantly depending on the dataset we use to feed the algorithm. By using property enquiries we got a coverage of _71%_ over searcheable properties in our top 10 destination in the website. By using property views (i.e. the user visited the profile page of a property) we got a coverage of just _40%_. For properties views we used 4GB of apache logs over the last 3 months. To increase the coverage we can definitely increase the window of the dataset, but this is left to future works. 
+We found that the _coverage_ varies significantly depending on the dataset we use to feed the algorithm. By using _property enquiries_ we got a coverage of _71%_ over searcheable properties in our top 10 destination in the website. By using _property views_ we got a coverage of just _40%_. To increase the coverage in this case we can increase the window of the dataset, but this is left to future works. 
 
-The _accuracy_ can be evaluated at runtime on the system by looking at the CTR of the recommendations, but we did not performed this evaluation yet. At this stage we simply assessed that the properties are actually similar by looking the differences in terms of attributes  between each property and it's recommendaiton set. We looked at the absolute difference of _maximum number of people_, _price_, and _geographical distance_. The results gave use clear evidence that the properties are indeed _similar_. 
+To complete our validation we assessed that the properties are actually similar by measuring the absolute difference in terms of _maximum number of people_, _price_, and _geographical distance_ between each property and its recommendation set. The results gave use clear evidence that the properties are indeed _similar_ and that top recommendations are significantly _closer_ to target property in terms of the above distance measure. 
+
+Finally, the _accuracy_ can be evaluated at runtime on the system by looking at the _click through rate_ of the recommendations. We did not performed this evaluation yet and it is left as a future work. 
 
 ### Conclusions
 
