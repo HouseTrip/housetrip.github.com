@@ -86,7 +86,7 @@ Using the Hadoop framework [\[8\]](#ref-8) it is possible to build MapReduce wor
 
 Translating an algorithm into a series of MapReduce steps is usually far from trivial. If you want to rely on a higher level of abstraction then the Pig scripting language [\[10\]](#ref-10) is an indispensable tool to master. A script written in Pig can be automatically translated into a series of MapReduce steps terribly simplifying the job of understanding and maintaining your workflow.
 
-Before jumping into the Pig script let's see conceptually what it is supposed to do. We assume to start with a set of enquiries extracted from the database. That list is simply made of tuples `<user, property>` like the following one:  
+The Pig script we used is shown in the [appendix](#sec-appendix) of this document. Here we will present what it does conceptually. We assume to start with a set of enquiries extracted from the database. That list is simply made of tuples `<user, property>` like the following one:  
 
     (u_a, p_h), (u_b, p_k), .... 
 
