@@ -136,11 +136,11 @@ With this approach we have been able to compute the recommendations for more tha
 
 ### Validation
 
-To validate a collaborative filtering algorithm we can use the framework introduced by [\[15\]](#ref-15). 
+To validate a collaborative filtering algorithm we can look at its _coverage_ and at its _accuracy_ as suggested in [\[15\]](#ref-15). 
 
-> The analysis should be done on the topK destinations in HouseTrip reporting the coverage and the similarity heuristic.
+We found that the _coverage_ varies significantly depending on the dataset we use to feed the algorithm. By using property enquiries we got a coverage of _71%_ over searcheable properties in our top 10 destination in the website. By using property views (i.e. the user visited the profile page of a property) we got a coverage of just _40%_. For properties views we used 4GB of apache logs over the last 3 months. To increase the coverage we can definitely increase the window of the dataset, but this is left to future works. 
 
-To be done.
+The _accuracy_ can be evaluated at runtime on the system by looking at the CTR of the recommendations, but we did not performed this evaluation yet. At this stage we simply assessed that the properties are actually similar by looking the differences in terms of attributes  between each property and it's recommendaiton set. We looked at the absolute difference of _maximum number of people_, _price_, and _geographical distance_. The results gave use clear evidence that the properties are indeed _similar_. 
 
 ### Conclusions
 
