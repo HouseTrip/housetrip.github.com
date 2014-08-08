@@ -140,7 +140,7 @@ To validate a collaborative filtering algorithm we can look at its _coverage_ an
 
 We found that the _coverage_ varies significantly depending on the dataset we use to feed the algorithm. By using _property enquiries_ we got a coverage of _71%_ over searcheable properties in our top 10 destination in the website. By using _property views_ we got a coverage of just _40%_ with 3 months of data. To increase the coverage in this case we can increase the window of the dataset, but this is left to future works. 
 
-To complete our validation we assessed that the properties are actually similar by measuring the absolute difference in terms of _maximum number of people_, _price_, and _geographical distance_ between each property and its recommendation set. The results gave use clear evidence that the properties are indeed _similar_ and that top recommendations are significantly _closer_ to target property in terms of the above distance measure. 
+To complete our validation we assessed that the properties are actually similar by measuring the absolute difference in terms of _maximum number of people_, _price_, and _geographical distance_ between each property and its recommendation set. The results gave use clear evidence that the properties are indeed _similar_ and that top recommendations are significantly _closer_ to the target property in terms of the previously mentioned distance measure. 
 
 Finally, the _accuracy_ can be evaluated at runtime on the system by looking at the _click through rate_ of the recommendations. We did not performed this evaluation yet and it is left as a future work. 
 
