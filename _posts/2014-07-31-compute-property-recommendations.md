@@ -90,7 +90,7 @@ The Pig script we used is shown in the [appendix](#sec-appendix) of this documen
 
     (u_a, p_h), (u_b, p_k), .... 
 
-Starting from this list the first step that you want to do is to group the list by user, that leads to the following:
+Starting from this list the first step that you want to do is to group the list by user, which leads to the following:
 
     u_a: [ p_a1, p_a2, .... p_an ]
     u_b: [ p_b1, p_b2, .... p_bm ]
@@ -121,9 +121,9 @@ where `c_hk` represents how many times you found the tuple `(p_h, p_k)` in the p
     p_v: (p_z, c_vz), (p_w, c_vw),…
     …
 
-where on the left you have a property, and on the right you have the list of recommendations with the associated count. The count represent the similarity weight for the property. Therefore ordering this list gives you the topK properties we were looking for. You can find the detailed Pig script in the [appendix](#sec-appendix) of this blog post. 
+where on the left you have a property, and on the right you have the list of recommendations with the associated count. The count represent the similarity weight for the property. Therefore ordering this list gives you the topK properties we were looking for. Again, the detailed Pig script can be found in the [appendix](#sec-appendix) of this blog post. 
 
-In order to run the script  you need an Hadoop deployed infrastucture, or you can use the Amazon Elastic MapReduce cloud service [\[11\]](#ref-11). The workflow of the deployment is the following:  
+In order to run the script  you need to deploy an Hadoop infrastucture, or you can use the Amazon Elastic MapReduce cloud service [\[11\]](#ref-11). The workflow of the deployment is the following:  
 
 * Export your input data (for us, property enquiries)
 * Export the UDFs used in the Pig script into a Jar
@@ -151,7 +151,7 @@ In this blog post we presented how to compute property recommendations using a *
 
 ### Appendix<a name="sec-appendix"></a>
 
-This is the Pig script implementing the informal algorithm presented [previously](#sec-exploiting-parallelism). The `ht.udf.Permutations` function is a simple UDF function [\[13\]](#ref-13) to compute all the possible permutations of size 2 of a given set of elements. If you are interested in examples of UDFs I suggest to look at the Piggybank library [\[14\]](#ref-14).
+This is the Pig script implementing the informal algorithm presented [previously](#sec-exploiting-parallelism). The `ht.udf.Permutations` function is a simple UDF function [\[13\]](#ref-13) to compute all the possible permutations of size 2 of a given set of elements. If you are interested in examples of UDFs we suggest to have a look at the Piggybank library [\[14\]](#ref-14).
 
     REGISTER '$htjar';
     pre1 = load '$input' USING PigStorage(',') AS (user_id: int, property_id: int);
@@ -214,7 +214,7 @@ It is possible to test this script using the [PigUnit](#http://pig.apache.org/do
 				"((3301),{((1101),1),((2201),1)})" });		
 	}
 
-As you can see this is an integration test where we load some test input and we assert that our output relation contains the data we expect. This turned out to be very useful during the development to gain confidence that the script was actually working without the need to test it manually on a running local pig console.
+As you can see this is an integration test where we load some test input and we assert that our output relation contains the data we expect. This turned out to be very useful during the development to gain confidence that the script was working without the need to test it manually on a running local pig console.
 
 
 ### References
