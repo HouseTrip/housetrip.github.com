@@ -7,9 +7,9 @@ author_role: Software Engineer
 author_url: http://github.com/thejspr
 author_avatar: http://www.gravatar.com/avatar/e96273c9bd8ea77a17ae87dca4c0de4c
 summary: |
-This post describes the steps to get an existing Rails app running on Docker
-using Fig. The focus is development and test, and getting comfortable using
-Docker.
+  This post describes the steps to get an existing Rails app running on Docker
+  using Fig. The focus is development and test, and getting comfortable using
+  Docker.
 ---
 
 Docker is a platform for building, shipping and running all sorts of
