@@ -124,7 +124,7 @@ In order to run the script  you need to deploy an Hadoop infrastucture, or you c
 * Download the output from S3 and feed them into your recommendations service
 * Start serving requests
 
-With this approach we have been able to compute the recommendations for more than 300.000 properties in 25 minutes using 5 EC2 large instances running on top of Hadoop 2.4.0 [\[12\]](#ref-12). It is possible to feed the algorithm with _property views_ instead of enquiries (i.e. the user visited the profile page of a property) .  To do that we fed the algorithm with 4GB of apache logs over the last 3 months and we got the results in 78 minutes using the same computing power of the previous experiment. This is due to the overhead of parsing the logs before actually starting computing the recommendations.
+With this approach we have been able to process the recommendations for the entire dataset of properties in 25 minutes using 5 EC2 large instances running on top of Hadoop 2.4.0 [\[12\]](#ref-12). It is possible to feed the algorithm with _property views_ instead of enquiries (i.e. the user visited the profile page of a property) .  To do that we fed the algorithm with 4GB of apache logs over the last 3 months and we got the results in 78 minutes using the same computing power of the previous experiment. This is due to the overhead of parsing the logs before actually starting computing the recommendations.
 
 ### Validation
 
