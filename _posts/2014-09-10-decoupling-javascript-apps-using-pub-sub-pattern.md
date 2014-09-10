@@ -10,13 +10,13 @@ summary: |
   Design patterns are a great tool for developers, providing us with generalised
   and reusable solutions to common problems in software development. In this
   post we'll see one of the more valuable patterns for modern applications, the
-  Publish/Subscribe pattern and how to use it in JavasCript applications.
+  Publish/Subscribe pattern and how to use it in JavaScript applications.
 ---
 
 Design patterns are a great tool for developers, providing us with generalised
 and reusable solutions to common problems in software development. In this
 post we'll see one of the more valuable patterns for modern applications, the
-Publish/Subscribe pattern and how to use it in JavasCript applications.
+Publish/Subscribe pattern and how to use it in JavaScript applications.
 
 ## The problem
 Let me use one of the most common features in modern web as to introduce the
