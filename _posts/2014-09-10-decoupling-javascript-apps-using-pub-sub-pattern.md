@@ -22,7 +22,7 @@ Publish/Subscribe pattern and how to use it in JavasCript applications.
 Let me use one of the most common features in modern web as to introduce the
 problem: sending notification emails.
 Let's say we're building an e-commerce site and we'd like to send a
-notification email to the customer when he makes a purchase. A simple
+notification email to the customer when they make a purchase. A simple
 solution, and probably the most common one, could be something like this:
 
 
@@ -59,7 +59,7 @@ Mailer.prototype = {
 {% endhighlight %}
 
 You got the idea, right? This code has a few problems. Probably the most
-important one is that `Order` and `Mailer` are tightly couple. Usually
+important one is that `Order` and `Mailer` are tightly coupled. Usually
 you know two components are coupled when a change to one requires a change in
 the other one, and that's the case. If we want to change the name of the
 `sendPurchaseEmail` method or their params, we'll have to change `Order`
@@ -67,8 +67,8 @@ implementation as well. This change may look something pretty straightforward,
 but in a large alication this bad practice means having a tightly coupled
 alication where a small change can easily end up in a waterfall of changes.
 
-Another problem you'll find using that aroach is that you'll have to mock lot
-of stuff in your tests, becoming a nightmare in large alications.
+Another problem you'll find using that approach is that you'll have to mock lot
+of stuff in your tests, becoming a nightmare in large applications.
 
 So now that we know the problems of this aroach, let's have a look at how we
 can improve this code using the **Publish/Subscribe** pattern.
@@ -90,7 +90,7 @@ publisher). This event system allows code to define alication specific events
 which can pass arguments containing values needed by the subscriber. The goal
 is to avoid dependencies between the subscriber and the publisher.
 
-## Using the pub/sub pattern in plain JavaScript alications
+## Using the pub/sub pattern in plain JavaScript applications
 Now that we know how the pub/sub pattern works, we can use it to improve the
 code shown above. Let's start creating out event system.
 
@@ -167,7 +167,7 @@ impact of the changes, it's just a matter of preserving the events we're firing
 or listening to. Furthermore we can test both functions in isolation without
 the need of mock objects, which is always a great thing.
 
-## Using the pub/sub pattern in Backbone as
+## Using the pub/sub pattern in Backbone applications
 Backbone provides a way to send, and listen to events using the
 `Backbone.Events` module, that makes the pub/sub implementation pretty
 straightforward, we just have to mix `Backbone.Events` into an empty object
@@ -201,7 +201,7 @@ Bar = Backbone.Model.extend({
 });
 {% endhighlight %}
 
-Pretty much the same as the example above for plain JavaScript alications
+Pretty much the same as the example above for plain JavaScript applications
 except here instead of using `publish` and `subscribe`, we are using `trigger`
 and `on`.
 
@@ -212,8 +212,8 @@ generate lots of events, and these events sometimes involve more events. Using
 the pub/sub pattern prevent us ending up with a tightly coupled system which
 will be impossible to maintain and test.
 
-Doesn't matter the language nor the framework, tightly coupled systems is one
-of the most common problems in modern web alications. We, as developers,
+It doesn't matter the language or the framework, tightly coupled systems is one
+of the most common problems in modern web applications. We, as developers,
 should be able to create modular and reusable code and the Publish/Subscribe
-pattern plays an important role in creating better alications, loosely coupled,
+pattern plays an important role in creating better applications, loosely coupled,
 flexible, scalable and easy to test.
