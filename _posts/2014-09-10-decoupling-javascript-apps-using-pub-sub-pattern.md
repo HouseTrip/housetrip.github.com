@@ -19,8 +19,8 @@ post we'll see one of the more valuable patterns for modern applications, the
 Publish/Subscribe pattern and how to use it in JavaScript applications.
 
 ## The problem
-Let me use one of the most common features in modern web as to introduce the
-problem: sending notification emails.
+Let me use one of the most common features in modern web applications to
+introduce the problem: sending notification emails.
 Let's say we're building an e-commerce site and we'd like to send a
 notification email to the customer when they make a purchase. A simple
 solution, and probably the most common one, could be something like this:
@@ -70,7 +70,7 @@ application where a small change can easily end up in a waterfall of changes.
 Another problem you'll find using that approach is that you'll have to mock lot
 of stuff in your tests, becoming a nightmare in large applications.
 
-So now that we know the problems of this aroach, let's have a look at how we
+So now that we know the problems of this approach, let's have a look at how we
 can improve this code using the **Publish/Subscribe** pattern.
 
 ## First things first: what's the Publish/Subscribe pattern?
@@ -84,9 +84,9 @@ there may be. Similarly, subscribers express interest in one or more classes,
 and only receive messages that are of interest, without knowledge of what, if
 any, publishers there are._
 
-This pattern uses an event system which sits between the objects wishing to
-receive notifications (subscribers) and the object firing the event (the
-publisher). This event system allows code to define application specific events
+This pattern uses an event system that sits between the objects wishing to
+receive notifications (subscribers) and the objects firing the events (the
+publishers). This event system allows code to define application specific events
 which can pass arguments containing values needed by the subscriber. The goal
 is to avoid dependencies between the subscriber and the publisher.
 
@@ -162,7 +162,7 @@ Order.prototype = {
 {% endhighlight %}
 
 You can see how `Order` and `Mailer` don't know anything about each other. Now
-we can change the implementation of both functions without care about the
+we can change the implementation of both functions without caring about the
 impact of the changes, it's just a matter of preserving the events we're firing
 or listening to. Furthermore we can test both functions in isolation without
 the need of mock objects, which is always a great thing.
@@ -206,14 +206,14 @@ except here instead of using `publish` and `subscribe`, we are using `trigger`
 and `on`.
 
 ## Conclusion
-At HouseTrip we make an extensive use of this pattern. Our main app is a quite
-big Rails app using Backbone in the front-end. Our Backbone views and models
+At HouseTrip we make extensive use of this pattern. Our main app is a quite
+large Rails app using Backbone throughout the front-end. Our Backbone views and models
 generate lots of events, and these events sometimes involve more events. Using
-the pub/sub pattern prevent us ending up with a tightly coupled system which
-will be impossible to maintain and test.
+the pub/sub pattern prevents us from having a tightly coupled system that
+would be tough to maintain and test.
 
-It doesn't matter the language or the framework, tightly coupled systems is one
-of the most common problems in modern web applications. We, as developers,
+Regarless of the language or framework, tightly coupled systems are a common
+problem in modern web applications. We, as developers,
 should be able to create modular and reusable code and the Publish/Subscribe
 pattern plays an important role in creating better applications, loosely coupled,
 flexible, scalable and easy to test.
