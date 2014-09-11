@@ -64,8 +64,8 @@ you know two components are coupled when a change to one requires a change in
 the other one, and that's the case. If we want to change the name of the
 `sendPurchaseEmail` method or their params, we'll have to change `Order`
 implementation as well. This change may look something pretty straightforward,
-but in a large alication this bad practice means having a tightly coupled
-alication where a small change can easily end up in a waterfall of changes.
+but in a large application this bad practice means having a tightly coupled
+application where a small change can easily end up in a waterfall of changes.
 
 Another problem you'll find using that approach is that you'll have to mock lot
 of stuff in your tests, becoming a nightmare in large applications.
@@ -86,13 +86,13 @@ any, publishers there are._
 
 This pattern uses an event system which sits between the objects wishing to
 receive notifications (subscribers) and the object firing the event (the
-publisher). This event system allows code to define alication specific events
+publisher). This event system allows code to define application specific events
 which can pass arguments containing values needed by the subscriber. The goal
 is to avoid dependencies between the subscriber and the publisher.
 
 ## Using the pub/sub pattern in plain JavaScript applications
 Now that we know how the pub/sub pattern works, we can use it to improve the
-code shown above. Let's start creating out event system.
+code shown above. Let's start creating our event system.
 
 {% highlight js %}
 var EventBus = {
@@ -108,7 +108,7 @@ var EventBus = {
 
   publish: function(topic, data) {
     // return if the topic doesn't exist, or there are no listeners
-    if(!this.topics[topic] || !this.topics[topic].length) return;
+    if(!this.topics[topic] || this.topics[topic].length < 1) return;
 
     // send the event to all listeners
     this.topics[topic].forEach(function(listener) {
