@@ -1,12 +1,15 @@
 # dev.housetrip.com
 
-## Prerequisites
+## Installation
 
-Install Jekyll: `gem install jekyll`
+```
+bundle install
+rbenv rehash
+```
 
 ## Build
 
-To build the site run: `jekyll serve -w`
+`bundle exec jekyll serve -w`
 
 ## After merging
 
