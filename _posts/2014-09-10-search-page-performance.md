@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Web application performance analysis
-published: true
+title: A journey through a Web App optimization session
+published: false
 author: Alfredo Motta
 author_role: Software Engineer
 author_url: http://www.alfredo.motta.name
