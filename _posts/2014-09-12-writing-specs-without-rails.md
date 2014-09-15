@@ -96,10 +96,8 @@ Spec::Runner.configure do
 end
 {% endhighlight %}
 
-## The future
+## Summary
 
-The default `rails_helper` requires everything in `spec/support`. I'd like to investigate removing this and explicitly requiring any support files. Since this might one day happen I'd encourage requiring of files from support in new specs, even though it's not strictly necessary since it will already be loaded.
+We can better decouple our core business logic from our delivery mechanism if we become aware of our dependencies by explicitly requiring them.
 
-{% highlight ruby %}
-require_support 'i18n'
-{% endhighlight %}
+The first step is for `spec_helper` to not boot Rails and its autoloading magic.
