@@ -212,7 +212,7 @@ generate lots of events, and these events sometimes involve more events. Using
 the pub/sub pattern prevents us from having a tightly coupled system that
 would be tough to maintain and test.
 
-Regarless of the language or framework, tightly coupled systems are a common
+Regardless of the language or framework, tightly coupled systems are a common
 problem in modern web applications. We, as developers,
 should be able to create modular and reusable code and the Publish/Subscribe
 pattern plays an important role in creating better applications, loosely coupled,
