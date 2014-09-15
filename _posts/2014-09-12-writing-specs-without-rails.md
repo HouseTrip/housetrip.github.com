@@ -7,7 +7,7 @@ author_role: Software Engineer
 author_url: http://teamcoding.com
 author_avatar: http://www.gravatar.com/avatar/5923e70879e9586f2bf1c301e3f80e22.png
 summary: |
-    The why and how of writing specs without requiring Rails for legacy apps in order to move towards a hexagaonal style architecture.
+    The why and how of writing specs without requiring Rails for legacy apps in order to move towards a hexagonal style architecture.
 ---
 
 In our MonoRail we have a _lot_ of specs, the majority of which `require 'spec_helper'`, which in turn requires Rails. This _is_ necessary for any specs which depend on the Rails framework like controller and acceptance tests.
@@ -18,7 +18,7 @@ Apart from Rails being slow to boot the main advantage of not requiring it is th
 
 This means we have to manually require each dependency of the code we are testing. This in turn makes us more aware of the dependencies and relationships between our units of code.
 
-The idea being that we want to decouple our core business logic, such as models and services, from the delivery mechanism (HTTP/HTML). This is the central idea behind [Hexaganol Rails](http://rubyrogues.com/078-rr-hexagonal-rails-with-matt-wynne-and-kevin-rutherford/) (aka [Port and Adapters](http://alistair.cockburn.us/Hexagonal+architecture)). By having a clear boundary between core business logic and the delivery mechanism(s) the core application can be wrapped in a Web UI, JSON API, native app, Asynchronous process or CLI.
+The idea being that we want to decouple our core business logic, such as models and services, from the delivery mechanism (HTTP/HTML). This is the central idea behind [Hexagonal Rails](http://rubyrogues.com/078-rr-hexagonal-rails-with-matt-wynne-and-kevin-rutherford/) (aka [Port and Adapters](http://alistair.cockburn.us/Hexagonal+architecture)). By having a clear boundary between core business logic and the delivery mechanism(s) the core application can be wrapped in a Web UI, JSON API, native app, Asynchronous process or CLI.
 
 A good first step and the new default for the [rspec-rails](https://github.com/rspec/rspec-rails) gem is to have a separate `spec_helper` and `rails_helper`. The `spec_helper` file will _not_ require Rails, the `rails_helper` will require Rails. This makes requiring of Rails and its auto loading magic opt-in.
 
