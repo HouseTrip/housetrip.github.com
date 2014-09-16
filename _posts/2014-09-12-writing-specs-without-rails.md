@@ -58,6 +58,19 @@ If you touch a spec that requires `rails_helper` see if you can remove it and ju
 
 By not booting Rails it means any references to the `Rails` constant such as `Rails.env` will break. Instead you can pass the environment in to the object from the outside.
 
+{% highlight ruby %}
+def my_method(env = Rails.env)
+  send_emails if env.production?
+end
+
+# in your spec
+let(:env) { ActiveSupport::StringInquirer.new('production') }
+
+it 'sends emails' do
+  my_method(env)
+end
+{% endhighlight %} }
+
 ### require and LOAD_PATH
 
 In specs without Rails none of the app directories are added to your `LOAD_PATH` which means a simple `require 'user'` will not work. Instead you can use `require_relative`, but this tends to ends up being ugly `require_relative ../../../app/models/user`.
