@@ -9,7 +9,7 @@ author_avatar: http://www.gravatar.com/avatar/88683f31bdf05a8071fb08327b3919cb
 summary: |
   Adding lightweight state change notifications to the REST architecture style
   can alleviate some of its performance limitations, without violating its
-  principles. It also obviates the tempation to revert from a RESTful, domain-
+  principles. It also obviates the temptation to revert from a RESTful, domain-
   centric resource oriented architecture to an RPC-style, function-centric
   microservice architecture.
 
@@ -33,12 +33,12 @@ presents the concepts and rationale.
 ## The many-requests problem
 
 Let's take a classical performance problem in a resource-oriented
-achitecture.
+architecture.
 
 We're building a façade application that serves mobile apps, transforming
 aggregate calls (as a mobile app must limit the number of HTTP requests it
 makes) into an number of RESTful calls. It's backed by 3 RESTful
-applications: a serch engine, an photo repository, and a products
+applications: a search engine, an photo repository, and a products
 repository.
 
                                        ┌────────────┐
@@ -61,7 +61,7 @@ serve a simple user query; the use case is simplified, so the real situation
 is actually worse.
 
 Without parallelism, the best case scenario is a **2s latency** for users
-(assuming 50ms repsonse time for each application), which is unacceptable.
+(assuming 50ms response time for each application), which is unacceptable.
 
 Even when introducing 10x request concurrency and server-side caching on
 each application, this theoretical problem would yield a minimum 250ms
@@ -104,7 +104,7 @@ sunk systems (backends), and while their external (consumer-facing) interface
 may be RESTful, services communicate using RPC-style semantics (possibly over
 HTTP, e.g. using JSON-RPC, which adds to the confusion).
 
-Martin Fowler's [reference article][fowler-micros] on Microserevices seems
+Martin Fowler's [reference article][fowler-micros] on Microservices seems
 to suggest to express, and split the domain in terms of functions, not concepts.
 Each service is responsible for a "data transformation" (he mentions ["dumb"
 pipes][dumb-pipes]) and "decentralizing decisions about conceptual models". He
@@ -118,8 +118,8 @@ architecture style, and therefore ROA.
 This is not to say that SOA is "bad" — [others][hailo] have followed a
 "microservices" SOA approach and implemented very successful and impressive
 Rammitmq-based, function-centric approaches to distributed Web systems.  (albeit
-at the cost of introducting of an extra interoperation protocol). One of the
-tenents of REST is that HTTP is "enough"
+at the cost of introducing of an extra interoperation protocol). One of the
+tenets of REST is that HTTP is "enough"
 
 In our opinion, any domains can be expressed in terms of CRUD operations on
 resources — although that does require surfacing some actions ("services") as
@@ -140,7 +140,7 @@ particular, the implicit assumption that:
 - Latency is zero
 - Bandwidth is infinite
 
-While we don't offer to tackle the design dificulties of [eventual
+While we don't offer to tackle the design difficulties of [eventual
 consistency][eventual-con] in typical distributed systems, we believe the
 latency issue (which has a user experience cost) can be mitigated at the expense
 of bandwidth (which "only" costs money).
@@ -229,9 +229,9 @@ events and automate caching and cache invalidation.
 The bandwidth efficiency of this approach can be tuned — from purely on-demand
 caching to full preemptive caching on state change notifications. On the far end
 of the scale, it entirely solves the latency issue, bringing us back to a
-perforance comparable to monolithic approaches, without the drawbacks.
+performance comparable to monolithic approaches, without the drawbacks.
 
-In other words (and probably being dangerously pretencious about it):
+In other words (and probably being dangerously pretentious about it):
 
 > There are two hard things in computer science: cache invalidation, naming
 > things, and off-by-one errors.
