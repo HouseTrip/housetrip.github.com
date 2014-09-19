@@ -67,13 +67,13 @@ Even when introducing 10x request concurrency and server-side caching on
 each application, this theoretical problem would yield a minimum 250ms
 latency, which isn't fantastic (and has a high processing cost).
 
-In more complex scenarii, with tens of applications and several layers, this
+In more complex scenarios, with tens of applications and several layers, this
 problem can explode.
 
 
 ## REST promises and shortcomings
 
-[RESTful][restful] distributed architectures, espcially when combined with
+[RESTful][restful] distributed architectures, especially when combined with
 [Domain-driven][ddd] design and patterns like [CQRS][cqrs], can help a
 software system to reach for holy grails of web engineering:
 
@@ -85,11 +85,11 @@ software system to reach for holy grails of web engineering:
   locally, without the need for release engineering bottlenecks.
 
 This type of approach is in its infancy, underlined by typical organisational
-failures (see for instance _[Failng microservices][failing-microservices]_) and
+failures (see for instance _[Failing microservices][failing-microservices]_) and
 a higher requirement for strong guidelines.
 
 It's also made difficult by the lack of mature tools a libraries, unlike the
-strong support for SOA architectures that exists since the mid-90s; and the
+strong support for SOA architectures that has existed since the mid-90s; and the
 confusion between the two approaches.
 
 ### REST/ROA versus RPC/SOA
@@ -117,7 +117,7 @@ architecture style, and therefore ROA.
 
 This is not to say that SOA is "bad" — [others][hailo] have followed a
 "microservices" SOA approach and implemented very successful and impressive
-Rammitmq-based, function-centric approaches to distributed Web systems.  (albeit
+RabbitMQ-based, function-centric approaches to distributed Web systems.  (albeit
 at the cost of introducing of an extra interoperation protocol). One of the
 tenets of REST is that HTTP is "enough"
 
@@ -164,10 +164,10 @@ It's basically a game of: high consistency, low latency, pick one.
 Event busses are a common tool to implement the [reactor
 pattern](http://en.wikipedia.org/wiki/Reactor_pattern) or the [pub-sub
 pattern](http://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern).  For
-instance, Ruby engineers will be familiar with asynchronous busses like the
-defunct [EventMachine](https://github.com/eventmachine/eventmachine) or
-[Celluloid](http://celluloid.io/), or synchronous busses like
-[wisper](https://github.com/krisleech/wisper).
+instance, Ruby engineers will be familiar with asynchronous busses like
+[Celluloid](http://celluloid.io/), or the defunct
+[EventMachine](https://github.com/eventmachine/eventmachine); or synchronous
+busses like [wisper](https://github.com/krisleech/wisper).
 
 We believe these patterns to be valuable at the inter-application level. And
 indeed, numerous services (e.g. [Pusher](https://pusher.com/)), web technologies
