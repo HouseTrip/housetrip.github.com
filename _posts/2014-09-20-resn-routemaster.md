@@ -204,8 +204,9 @@ like any other application in our federation of apps.
 
 ### Fixing the many-calls problem
 
-Fixing this problem without changing the structure of our application diagram is
-pretty obvious: we need to _not_ make this many calls.  This means that the
+Fixing this problem without changing the structure of our application federation
+(as presented in the first section) or the architecture style (REST, Hypermedia) can
+seem straightforward: we need to _not_ make this many calls.  This means that the
 consumer application (the "facade" in our example) needs to have closer access
 to resource representations; in other words, it needs an application-local
 cache... which needs to be fresh, for fear of making the [eventual
@@ -238,7 +239,7 @@ In other words (and probably being dangerously pretentious about it):
 
 Time will tell, but we think we've driven a nail in the coffin of the first one.
 
-Tell use what you think!
+Tell us what you think!
 
 
 
