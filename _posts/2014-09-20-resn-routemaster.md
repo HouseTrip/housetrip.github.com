@@ -21,7 +21,7 @@ summary: |
 
 Adding lightweight state change notifications to the REST architecture style
 can alleviate some of its performance limitations, without violating its
-principles. It also obviates the tempation to revert from a RESTful, domain-
+principles. It also obviates the temptation to revert from a RESTful, domain-
 centric resource oriented architecture to an RPC-style, function-centric
 microservice architecture.
 
@@ -45,14 +45,14 @@ repository.
                                     ┌─>│ products   │
                                     │  └────────────┘
     ┌────────────┐   ┌────────────┐ │  ┌────────────┐
-    │ mobile app │──>│ facade app │─┼─>│ search     │
+    │ mobile app │──>│ façade app │─┼─>│ search     │
     └────────────┘   └────────────┘ │  └────────────┘
                                     │  ┌────────────┐
                                     └─>│ photos     │
                                        └────────────┘
 
 When a user performs a search on the native app, it makes 1 request to the
-facade to get a page of search results (20 entries). The facade must make
+façade to get a page of search results (20 entries). The façade must make
 one call to the search engine; follow the hypermedia links to make 20 calls
 for the 20 products; follow _their_ links to make 20 requests for 20 photos.
 
@@ -119,7 +119,7 @@ This is not to say that SOA is "bad" — [others][hailo] have followed a
 "microservices" SOA approach and implemented very successful and impressive
 RabbitMQ-based, function-centric approaches to distributed Web systems.  (albeit
 at the cost of introducing of an extra interoperation protocol). One of the
-tenets of REST is that HTTP is "enough"
+tenets of REST is that HTTP is "enough".
 
 In our opinion, any domains can be expressed in terms of CRUD operations on
 resources — although that does require surfacing some actions ("services") as
@@ -161,13 +161,13 @@ It's basically a game of: high consistency, low latency, pick one.
 
 ## Representational state notification
 
-Event busses are a common tool to implement the [reactor
+Event buses are a common tool to implement the [reactor
 pattern](http://en.wikipedia.org/wiki/Reactor_pattern) or the [pub-sub
 pattern](http://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern).  For
-instance, Ruby engineers will be familiar with asynchronous busses like
+instance, Ruby engineers will be familiar with asynchronous buses like
 [Celluloid](http://celluloid.io/), or the defunct
 [EventMachine](https://github.com/eventmachine/eventmachine); or synchronous
-busses like [wisper](https://github.com/krisleech/wisper).
+buses like [wisper](https://github.com/krisleech/wisper).
 
 We believe these patterns to be valuable at the inter-application level. And
 indeed, numerous services (e.g. [Pusher](https://pusher.com/)), web technologies
@@ -188,12 +188,12 @@ architectures.
 Routemaster is designed on purpose to not support RPC-style architectures, for
 instance by severely limiting payload contents: the _only_ events that the bus
 supports are notifications of **CRUD operations** on resources (in other words,
-events about a change in their representations). The _only_ information and
+events about a change in their representations). The _only_ information an
 event carries are the type of event, the name of the domain concept, and the
 authoritative URI of the resource.
 
-_Don't call us, we'll call you_: events received and delivered over HTTP so that
-the bus itself can scale to easily process a higher or lower, inbound or
+_Don't call us, we'll call you_: events are received and delivered over HTTP so
+that the bus itself can scale to easily process a higher or lower, inbound or
 outbound throughput of events with consistent latency.
 
 Routemaster aims to dispatch events with a median latency in the 50-100ms range,
@@ -207,7 +207,7 @@ like any other application in our federation of apps.
 Fixing this problem without changing the structure of our application federation
 (as presented in the first section) or the architecture style (REST, Hypermedia) can
 seem straightforward: we need to _not_ make this many calls.  This means that the
-consumer application (the "facade" in our example) needs to have closer access
+consumer application (the "façade" in our example) needs to have closer access
 to resource representations; in other words, it needs an application-local
 cache... which needs to be fresh, for fear of making the [eventual
 consistency][eventual-con] problem unmanageable.
@@ -237,7 +237,8 @@ In other words (and probably being dangerously pretentious about it):
 > There are two hard things in computer science: cache invalidation, naming
 > things, and off-by-one errors.
 
-Time will tell, but we think we've driven a nail in the coffin of the first one.
+Time will tell, but we think we've driven a nail into the coffin of the first
+one.
 
 Tell us what you think!
 
