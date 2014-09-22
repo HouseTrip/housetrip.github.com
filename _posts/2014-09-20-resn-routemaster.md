@@ -134,8 +134,9 @@ a "add a friend" remote call to a "friendship lifecycle" service.
 Any distributed system has known pitfalls and caveats. This applies to SOA, ROA,
 and of course to the REST architecture style specifically.
 
-Some are known as the [fallacies of distributed computing][fallacies]; in
-particular, the implicit assumption that:
+Some are known as the [fallacies of distributed computing][fallacies] (which
+[hold true](http://www.cse.unsw.edu.au/~cs9243/14s1/papers/fallacies.pdf), two
+decades in); in particular, the implicit assumption that:
 
 - Latency is zero
 - Bandwidth is infinite
