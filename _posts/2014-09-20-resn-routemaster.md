@@ -159,6 +159,9 @@ Unfortunately, this leaves ROA designers with two options:
 - Using `Cache-Control`: high client memory, low bandwidth, low consistency, low
   latency.
 
+Heroku has a [good
+intro](https://devcenter.heroku.com/articles/increasing-application-performance-with-http-cache-headers)
+on caching with HTTP.
 It's basically a game of: high consistency, low latency, pick one.
 
 
