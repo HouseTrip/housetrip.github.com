@@ -94,6 +94,8 @@ Spec::Runner.configure do
 
   SpecRequirer.setup(app_root: APP_ROOT.join('app'), components: components)
 
+  include SpecRequirer
+
   # spec_requirer does not (yet) have support for requiring outside the app directory, so we do these manually.
   def require_initializer(name)
     require APP_ROOT.join('config', 'initializers', name)
