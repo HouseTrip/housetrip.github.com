@@ -10,7 +10,7 @@ summary: |
     The why and how of writing specs without requiring Rails for legacy apps in order to move towards a hexagonal style architecture.
 ---
 
-In our MonoRail we have a _lot_ of specs, the majority of which `require 'spec_helper'`, which in turn requires Rails. This _is_ necessary for any specs which depend on the Rails framework like controller and acceptance tests.
+In our very large Rails app (or MonoRail as we like to call it) we have a _lot_ of specs, the majority of which `require 'spec_helper'`, which in turn requires Rails. This _is_ necessary for any specs which depend on the Rails framework like controller and acceptance tests.
 
 But for many specs, such as unit test, where we test one object in isolation and intergration tests, where we test the interactions between multiple collaborating objects, there is no need to boot the entire Rails framework.
 
