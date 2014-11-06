@@ -1,3 +1,72 @@
----
-redirect_to: "http://ptsochantaris.github.io/trailer/appcast.xml"
----
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
+	<channel>
+		<title>Trailer Changelog</title>
+		<link>http://dev.housetrip.com/trailer/appcast.xml</link>
+		<description>Most recent changes with links to updates.</description>
+		<language>en</language>
+
+		<item>
+			<title>Version 1.1.2</title>
+			<description><![CDATA[<font face="sans-serif" size="3"><ul>
+				<li>Added option for displaying PR labels in preferences</li>
+				</ul></font>]]></description>
+			<pubDate>Wed, 5 Nov 2014 19:30:00 +0000</pubDate>
+			<enclosure
+			url="http://dev.housetrip.com/trailer/trailer112.zip"
+			sparkle:version="1158"
+			sparkle:shortVersionString="1.1.2"
+			sparkle:dsaSignature="MC0CFBYNfLOg8/N5HbbVAdTVUTRxKEW4AhUAmgDlYC0P7sONKSFB2xRYPt7h+ME="
+			type="application/octet-stream"/>
+		</item>
+
+		<item>
+			<title>Version 1.1.1</title>
+			<description><![CDATA[<font face="sans-serif" size="3"><ul>
+				<li>Additional updates and cleanups from v1.1.0:</li>
+				<li>New support for multiple API servers, with optional error reporting per-server</li>
+				<li>API server settings should no longer reset after updates</li>
+				</ul></font>]]></description>
+			<pubDate>Sat, 1 Nov 2014 19:00:00 +0000</pubDate>
+			<enclosure
+			url="http://dev.housetrip.com/trailer/trailer111.zip"
+			sparkle:version="1155"
+			sparkle:shortVersionString="1.1.1"
+			sparkle:dsaSignature="MC0CFHtqhhl0QqvcwFZBBjHlZ8tx8JtkAhUAmD44DahHqzNkQH6fPpjYYCgP6pc="
+			type="application/octet-stream"/>
+		</item>
+
+		<item>
+			<title>Version 1.1.0</title>
+			<description><![CDATA[<font face="sans-serif" size="3"><ul>
+				<li>New support for multiple API servers, with optional error reporting per-server</li>
+				<li>API server settings should no longer reset after updates</li>
+				</ul></font>]]></description>
+			<pubDate>Fri, 31 Oct 2014 09:00:00 +0000</pubDate>
+			<enclosure
+			url="http://dev.housetrip.com/trailer/trailer110.zip"
+			sparkle:version="1152"
+			sparkle:shortVersionString="1.1.0"
+			sparkle:dsaSignature="MC4CFQDDXYUzHaWEBS/6scItN2P/p/4zMwIVAJXeE+OLlJgRmX6L3aypbMXbx8Sc"
+			type="application/octet-stream"/>
+		</item>
+
+		<item>
+			<title>Version 1.0.40</title>
+			<description><![CDATA[<font face="sans-serif" size="3"><ul>
+				<li>Correct status item appearance in all themes & display modes (including dark mode in Yosemite)</li>
+				<li>Inaccessible repositories will no longer be repeatedly reported every time watchlists are refreshed</li>
+				<li>PR dragging improvements</li>
+				<li>Sparkle auto-updater bumped up to v1.8</li>
+				</ul></font>]]></description>
+			<pubDate>Mon, 06 Oct 2014 09:00:00 +0000</pubDate>
+			<enclosure
+			url="http://dev.housetrip.com/trailer/trailer1040.zip"
+			sparkle:version="1147"
+			sparkle:shortVersionString="1.0.40"
+			sparkle:dsaSignature="MC4CFQCOX4/NAUMp+1HUQHkV5n2Fpyl/GQIVAMK/ZtSApXj+r/oxw6qWlX50FIp2"
+			type="application/octet-stream"/>
+		</item>
+		
+	</channel>
+</rss>
