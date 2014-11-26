@@ -158,14 +158,14 @@ To evaluate the design let's go back to the principles and evaluate the degree o
       el: this.$('.date-picker')
     });
 
-    [...]
+    // ...some more code
   },
 
   render: function() {
     this.behavior.triggerUpdate();
   }
 
-  [...]
+  // ...some more code
 });
 
 _.extend(HouseTrip.Views.SearchBarCalendar.prototype, HouseTrip.Helpers.Delegation);
@@ -215,8 +215,6 @@ HouseTrip.SearchBarCalendarController.prototype = _.extend({
     HouseTrip.Events.trigger('search_bar:calendar:update', status);
   },
 
-  [...]
-
   _onPickDate: function(date) {
     this.dates.pickDate(date);
 
@@ -227,7 +225,8 @@ HouseTrip.SearchBarCalendarController.prototype = _.extend({
     this.triggerUpdate('onPickDate');
   }
 
-  [...]
+  // ...some more code
+
 }, Backbone.Events);
 </pre> 
 
@@ -258,7 +257,7 @@ Finally, this is the view for the number of nights:
   },
 
   _setNumberOfNights: function(fromDate, toDate) {
-    [..compute the difference..]
+    // ...some more code to compute the difference
 
     this.$('.number-of-nights').text(numberOfNightsText);
   },
