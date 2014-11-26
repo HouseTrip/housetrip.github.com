@@ -106,21 +106,7 @@ Finally the original *calendar* class now have the responsibility to compose the
 
 {% img /images/2014-11-25/calendar_new_class_diagram.png 600 %}
 
-The typical interaction starts from the user clicking on some UI element. The backbone view associated to this area of the DOM capture the UI event and triggers the corresponding pub/sub event in the *HouseTrip.events* bus. The controller is subscribed to all the calendar events and work out what it should do for each of them orchestrating the domain objects. Finally, the controller trigger a *calendar:update* event to which the views are subscribed. This event provides a status read-only object that *serialise* the domain entities to be read by the view. This is a maybe unnecessary indirection that I introduced but I found it useful to separate the domain objects from the information needed by the views to be rendered. This is definitely an arguable design decision and the rationale behind it is to further decrese the coupling between the layers. Here it is the status object in all its glory:
-
-<pre>  
-  var status = {
-    active: this.visibility.isVisible('active'),
-    controlVisible: this.visibility.isVisible('control'),
-    pickerVisible: this.visibility.isVisible('picker'),
-    fromDate: this.dates.fromDate(),
-    toDate: this.dates.toDate(),
-    onFromDate: this.dates.is('onFromDate'),
-    onToDate: this.dates.is('onToDate'),
-    hoveredDate: this.hoveredDate,
-    hovering: event == 'onHoverDate'
-  };
-</pre>
+The typical interaction starts from the user clicking on some UI element. The backbone view associated to this area of the DOM capture the UI event and triggers the corresponding pub/sub event in the *HouseTrip.events* bus. The controller is subscribed to all the calendar events and work out what it should do for each of them orchestrating the domain objects. Finally, the controller trigger a *calendar:update* event to which the views are subscribed. This event provides a *status* object that *serialise* the domain entities to be read by the view. This is a maybe unnecessary indirection that I introduced but I found it useful to separate the domain objects from the information needed by the views to be rendered. You can find the details in the [controller code](#controller-code) shown in the next section.
 
 An example of interactions between these objects is shown in the sequence diagram underneath which starts when the user select a date from the picker panel:
 
@@ -173,7 +159,7 @@ _.extend(HouseTrip.Views.SearchBarCalendar.prototype, HouseTrip.Helpers.Delegati
 
 Here, arguably, we achieved a pretty good degree of *cohesiveness* and *composability* which are order of magnitudes above the previous implementation. In terms of coupling this class is only creating the sub-views but actually does not rely on them, so I am also confident that this is *loosely coupled*. On the other hand I don't think this class is context independent and this is why is namespaced under *SearchBar*. 
 
-Let's look at the controller now:
+Let's look at the <a name="controller-code">controller</a> now:
 
 <pre class="lang:js decode:true " title="the calendar controller" >
 HouseTrip.SearchBarCalendarController = function() {
@@ -207,9 +193,8 @@ HouseTrip.SearchBarCalendarController.prototype = _.extend({
       fromDate: this.dates.fromDate(),
       toDate: this.dates.toDate(),
       onFromDate: this.dates.is('onFromDate'),
-      onToDate: this.dates.is('onToDate'),
-      hoveredDate: this.hoveredDate,
-      hovering: event == 'onHoverDate'
+      onToDate: this.dates.is('onToDate')
+      // ...some more attributes for hovering state
     };
 
     HouseTrip.Events.trigger('search_bar:calendar:update', status);
@@ -277,7 +262,7 @@ Here I truly believe you can see the advantage of the approach. The view is *hig
 
 To wrap up this evaluation let's see the updated stats that Plato provides us:
 
-{% img /images/2014-11-25/plato_new_calendar.png %}
+{% img /images/2014-11-25/plato_new_calendar.png 500 %}
 
 We can make some simple observations on these data: 
 
