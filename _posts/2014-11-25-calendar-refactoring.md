@@ -67,7 +67,7 @@ This is what I usually define as an **iceberg class**. It is my personal belief 
 ## Code Quality Evaluation
 
 To many people it is probably obvious why this class is not an acceptable implementation, but I would like to use well known metrics to actually prove it.
-In order to assess the code quality I usually rely on the following empirical classification:
+In order to assess the code quality I usually rely on the following <a name="code-qualities" />empirical classification:
 
 * **Highly Cohesive**: the concepts expressed in the class are tightly connected.
 * **Loosely Coupled**: the class does not heavily relies on other ones.
@@ -88,7 +88,7 @@ Plato is not able to catch the soft details that we made explicit with the previ
 
 In order to get this calendar back in shape we need a plan. This is how I approached the problem:
 
-* Identify and the **presentation layer**, the **application layer** and the **domain layer**.
+* <a name="software-layers" />Identify and the **presentation layer**, the **application layer** and the **domain layer**.
 * For each layer identify a set of single responsibilities classes.
 * Design the interactions between the classes trying to constantly minimize the dependencies between them.
 
@@ -159,7 +159,7 @@ _.extend(HouseTrip.Views.SearchBarCalendar.prototype, HouseTrip.Helpers.Delegati
 
 Here, arguably, we achieved a pretty good degree of *cohesiveness* and *composability* which are order of magnitudes above the previous implementation. In terms of coupling this class is only creating the sub-views but actually does not rely on them, so I am also confident that this is *loosely coupled*. On the other hand I don't think this class is context independent and this is why is namespaced under *SearchBar*. 
 
-Let's look at the <a name="controller-code">controller</a> now:
+Let's look at the <a name="controller-code" /> controller now:
 
 <pre class="lang:js decode:true " title="the calendar controller" >
 HouseTrip.SearchBarCalendarController = function() {
@@ -270,8 +270,11 @@ We can make some simple observations on these data:
 * The reported complexity is always low, apart from the *control dates* view.
 * In general it *seems* (with some degree of mercy) that the classes follow the <a href="http://robots.thoughtbot.com/sandi-metz-rules-for-developers">Sandi Metz rules</a> regarding the complexity. No more than a 100 lines for each class, no more that 5 lines for each method.
 
-You can argue that the number of classes is definitely increased and that a newcomer to the code probably needs some minutes to review it's organization before being able to change it. Despite that I truly believe this design is easier to work with, easier to maintain, and easier to test (which is an entire different blog post, but you may already guess the advantages on this area).
+You can argue that the number of classes is definitely increased and that a newcomer to the code probably needs some minutes to review it's organization before being able to change it. Despite that, I truly believe this design is easier to work with, easier to maintain, and easier to test (which is an entire different blog post, but you may already guess the advantages on this area).
 
 ## Conclusions
 
-TODO
+In this blog post I presented an overview of how I handled the design of a frontend calendar. I used well known software design principles trying specifically trying to maximise the [qualities](#code-qualities) of the resulting classes and the separation between the different [software layers](#software-layers) of the calendar. Technologically I relied on Backbone for the views and to implement the pub/sub bus enabling the communication between the views and the controller. Finally the domain layer is only made of POJOs.
+
+In general I am definitely happy about the resulting code. Obviously everything I presented is subject to tradeoffs and I would love to hear your feedback in the comments!
+
