@@ -130,88 +130,61 @@ Please notice the business rule managed by the *controller*: if the user pick up
 
 ## Evaluate the new design
 
-To evaluate the design let's go back to the principles. *Theoretically* I should pick every class and check that it is *Highly Cohesive*, *Loosely Coupled*, *Easily Composable* and *Context Independent*. So let's have a look at a couple of them as an exemplification. The first one is the calendar:
+To evaluate the design let's go back to the principles and evaluate the degree of cohesiveness, coupling, composability and context independence for some key classes we produced. The first one is the calendar which simply acts as a composition mechanism. Here in the constructor we can see the elements we discussed:
 
 <pre class="lang:js decode:true " title="the new calendar class" >HouseTrip.Views.SearchBarCalendar = Backbone.View.extend({
-
-  initialize: function(options) {
-    this.behavior = new HouseTrip.SearchBarCalendarController({
-      model: this.model
+  initialize: function() {
+    this.calendarIcon = new HouseTrip.Views.SearchBarCalendarControlIcon({
+      el: this.$('.calendar-icon')
     });
 
-    this.calendarIcon = options.iconView || new HouseTrip.Views.SearchBarCalendarControlIcon({
-      el: this.$el
+    this.dates = new HouseTrip.Views.SearchBarCalendarControlDates({
+      el: this.$('.calendar-control-dates')
     });
 
-    this.dates = options.datesView || new HouseTrip.Views.SearchBarCalendarControlDates({
-      el: this.$el
+    this.numOfNights = new HouseTrip.Views.SearchBarCalendarControlNumOfNights({
+      el: this.$('.calendar-control-nights')
     });
 
-    this.numOfNights = options.numOfNightsView || new HouseTrip.Views.SearchBarCalendarControlNumOfNights({
-      el: this.$el
+    this.visibility = new HouseTrip.Views.SearchBarCalendarPickerVisibility({
+      el: this.$('.date-picker')
     });
 
-    this.visibility = options.pickerVisibilityView || new HouseTrip.Views.SearchBarCalendarPickerVisibility({
-      el: this.$el,
-      calendarPosition: options.calendarPosition
+    this.dates = new HouseTrip.Views.SearchBarCalendarPickerDates({
+      el: this.$('.date-picker')
     });
 
-    this.dates = options.pickerDatesView || new HouseTrip.Views.SearchBarCalendarPickerDates({
-      el: this.$el
+    this.removeDates = new HouseTrip.Views.SearchBarCalendarPickerRemoveDates({
+      el: this.$('.date-picker')
     });
 
-    this.removeDates = options.removeDateView || new HouseTrip.Views.SearchBarCalendarPickerRemoveDates({
-      el: this.$el
-    });
-
-    this.legacyInteface = new HouseTrip.Views.SearchBarCalendarLegacyInterface({
-      newCalendarView: this
-    });
-    this.delegateMethods(['activate', 'toggleCalendarManually', 'deactivate'], this.legacyInteface);
-
-    new HouseTrip.Views.DatepickerFactory({ $el: this.$el }).make();
-
-    this._afterDatepickerInitialization();
+    [...]
   },
 
   render: function() {
     this.behavior.triggerUpdate();
-  },
-
-  _afterDatepickerInitialization: function() {
-    this.removeDates.render();
-    this.dates.registerDatepickerCallbacks();
   }
 
+  [...]
 });
 
 _.extend(HouseTrip.Views.SearchBarCalendar.prototype, HouseTrip.Helpers.Delegation);
 </pre> 
-
-In this class there are some gotchas that I didn't discussed in the blog post because are irrelevant for what we are doing, specifically the *LegacyInterface* class and the *DatePickerFactory* class. The first one is needed to support some of the functionalities of the previous implementation while the second one is used to instantiate the foxrun datepicker.
 
 Here, arguably, we achieved a pretty good degree of *cohesiveness* and *composability* which are order of magnitudes above the previous implementation. In terms of coupling this class is only creating the sub-views but actually does not rely on them, so I am also confident that this is *loosely coupled*. On the other hand I don't think this class is context independent and this is why is namespaced under *SearchBar*. 
 
 Let's look at the controller now:
 
 <pre class="lang:js decode:true " title="the calendar controller" >
-HouseTrip.SearchBarCalendarController = function(options) {
-  this.initialize(options);
+HouseTrip.SearchBarCalendarController = function() {
+  this.initialize();
 };
 
 HouseTrip.SearchBarCalendarController.prototype = _.extend({
 
-  initialize: function(options) {
-    this.model = options.model;
-
-    this.dates = new HouseTrip.SearchBarCalendarDates({
-      fromDate: this.model.get('from_date'),
-      toDate: this.model.get('to_date')
-    });
-
-    this.visibility = new HouseTrip.SearchBarCalendarVisibility({
-      dates: this.dates
-    });
+  initialize: function() {
+    this.dates = new HouseTrip.SearchBarCalendarDates();
+    this.visibility = new HouseTrip.SearchBarCalendarVisibility();
 
     HouseTrip.Events.on('search_bar:calendar:activate', this._onActivate, this);
     HouseTrip.Events.on('search_bar:calendar:deactivate', this._onDeactivate, this);
@@ -227,9 +200,6 @@ HouseTrip.SearchBarCalendarController.prototype = _.extend({
   },
 
   triggerUpdate: function(event) {
-    this.model.set('from_date', this.dates.fromDate());
-    this.model.set('to_date', this.dates.toDate());
-
     var status = {
       active: this.visibility.isVisible('active'),
       controlVisible: this.visibility.isVisible('control'),
@@ -245,31 +215,7 @@ HouseTrip.SearchBarCalendarController.prototype = _.extend({
     HouseTrip.Events.trigger('search_bar:calendar:update', status);
   },
 
-  _onClickFromDate: function() {
-    this.visibility.show('picker');
-    this.dates.selectFromDate();
-
-    this.triggerUpdate('onClickFromDate');
-  },
-
-  _onClickToDate: function() {
-    this.visibility.show('picker');
-    this.dates.selectToDate();
-
-    this.triggerUpdate('onClickToDate');
-  },
-
-  _onHoverDate: function(date) {
-    this.hoveredDate = date;
-
-    this.triggerUpdate('onHoverDate');
-  },
-
-  _onPickerHide: function() {
-    this.visibility.hide('picker');
-
-    this.triggerUpdate('onPickerHide');
-  },
+  [...]
 
   _onPickDate: function(date) {
     this.dates.pickDate(date);
@@ -279,54 +225,20 @@ HouseTrip.SearchBarCalendarController.prototype = _.extend({
     }
 
     this.triggerUpdate('onPickDate');
-  },
-
-  _onActivate: function() {
-    this.visibility.toggle(true);
-
-    this.triggerUpdate('onActivate');
-  },
-
-  _onShowControl: function() {
-    this.visibility.show('control');
-
-    this.triggerUpdate('onActivate');
-  },
-
-  _onDeactivate: function() {
-    this.visibility.toggle(false);
-
-    this.triggerUpdate('onDeactivate');
-  },
-
-  _onClickCalendarIcon: function() {
-    this.visibility.toggle();
-
-    this.triggerUpdate('onClickCalendarIcon');
-  },
-
-  _onClickNotice: function() {
-    this.visibility.toggle(false);
-    this.dates.resetDates();
-
-    this.triggerUpdate('onClickNotice');
   }
+
+  [...]
 }, Backbone.Events);
 </pre> 
 
-Also here there are some gotchas that I didn't covered while talking about the design. The biggest one is the input *model* that I receive as a paramenter in the initialize method and that I keep in sync when I trigger the update event. This is a dependency against the rest of the code in our front-end to actually submit the search. 
-
-If we evaluate this code based on the previous principle arguably we can say that: (i) is highly cohesive, because all the verbs involved maps UI event to domain elements. Nothing more than that; (ii) is *somehow* loosely coupled since it heavily depends on the domain elements (expected), but it's not strictly tight with the views; (iii) *composability* and *context independence* are tricky to evaluate for controllers but in my opinion we didn't made any clear offense here. If you have comments on that I would be happy to hear them.
+I omitted most of the functions since they all do more all less what the *_onPickDate()* method is doing. If we evaluate this code based on the previous principle arguably we can say that: (i) is highly cohesive, because all the verbs involved maps UI event to domain elements. Nothing more than that; (ii) is *somehow* loosely coupled since it heavily depends on the domain elements (expected), but it's not strictly tight with the views; (iii) *composability* and *context independence* are tricky to evaluate for controllers but in my opinion we didn't made any clear offense here. If you have comments on that I would be happy to hear them.
 
 Finally, this is the view for the number of nights:
 
  
 <pre class="lang:js decode:true " title="The number of nights view" >HouseTrip.Views.SearchBarCalendarControlNumOfNights = Backbone.View.extend({
 
-  initialize: function(options) {
-    this.translations = this.$el.data('translations');
-    this.alwaysVisible = options.alwaysVisible !== undefined ? options.alwaysVisible : false;
-
+  initialize: function() {
     HouseTrip.Events.on('search_bar:calendar:update', this.render, this);
   },
 
@@ -337,7 +249,7 @@ Finally, this is the view for the number of nights:
 
     this._setNumberOfNights(status.fromDate, status.toDate);
 
-    if(status.controlVisible || this.alwaysVisible) {
+    if(status.controlVisible) {
       this._open();
 
     } else {
@@ -346,18 +258,9 @@ Finally, this is the view for the number of nights:
   },
 
   _setNumberOfNights: function(fromDate, toDate) {
-    var difference = null;
-    if(fromDate === null || toDate === null) {
-      difference = 0;
-    } else {
-      difference = HouseTrip.Helpers.Dates.numberOfNights(toDate, fromDate);
-    }
-    if(difference &lt; 0) difference = 0;
+    [..compute the difference..]
 
-    var nights = difference == 1 ? this.translations.inputs.night : this.translations.inputs.nights;
-    var nightsWithNumber = _.template(nights)({ nights: difference });
-
-    this.$('.number-of-nights').text(nightsWithNumber);
+    this.$('.number-of-nights').text(numberOfNightsText);
   },
 
   _close: function() {
