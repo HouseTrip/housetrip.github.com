@@ -7,14 +7,16 @@ author_role: Software Engineer
 author_url: http://www.alfredo.motta.name
 author_avatar: http://www.gravatar.com/avatar/c1044117a60a9c37a232cf8b6e2c87a8.png
 summary: |
-    Recently at HouseTrip I refactored the code of a complex frontend calendar. In this blog post I'll show you (i) how I translated the visual design into the code design, (ii) how I went beyond the basic Backbone.js patterns to make the calendar easier to understand and extend, and (iii) how the previous decisions affected the overall quality of the resulting code, hopefully using some kind of scientific metric.
+    Frontend components are hard to implement and more often than not the code reflects this complexity. In this blog post I will show you how I refactored the code of a complex frontend calendar sharing some of the findings that lead to a cleaner implementation.
 ---
 
 ## Introduction
 
-Recently at HouseTrip I refactored the code of a complex frontend calendar. In this blog post I'll show you (i) how I translated the visual design into the code design, (ii) how I went beyond the basic Backbone.js patterns to make the calendar easier to understand and extend, and (iii) how the previous decisions affected the overall quality of the resulting code, hopefully using some kind of scientific metric.
+Frontend components are hard to implement and more often than not the code reflects this complexity. In this blog post I will show you how I refactored the code of a complex frontend calendar sharing some of the findings that lead to a cleaner implementation.
 
-## Visual design
+First I'll give you a [quick overview](#sec-visual-design) of the calendar I am going to refactor. Then I will show you [the first implementation](#sec-iceberg) together with [some metrics](#sec-evaluation) demonstrating why I was not happy about it. Starting from here I will present you how I [refactored the code](#sec-refactoring) following some well know design principles. The resulting code is [evaluated](#sec-evaluation-2) against the same metrics used for the first implementation. 
+
+## <a name='sec-visual-design' />Visual design
 
 HouseTrip is a revolutionary holiday rental website where you can book a whole home for less than the price of a hotel room. When you land on the homepage you get asked promptly to enter the **destination** of your holiday, the **dates** and the **number of people**. The date selection functionality is offered by the calendar I am presenting here.
 
@@ -46,7 +48,7 @@ After the date selection is finished the *date picker* is closed and the search 
 
 Hopefully this is enough to give you an idea of the functionalities provided by this calendar. Let's now dig into the details of how this has been implemented, and why we decided to refactor it.
 
-## The Iceberg Class
+## <a name='sec-iceberg' />The Iceberg Class
 
 As I sad the goal was to refactor the existing calendar, so let's have a look at the overall design of the existing component as I found it. To better understand it, let me enlarge the picture for one second and let's see how the overall search bar looks like:
 
@@ -64,7 +66,7 @@ The one above is arguably not the best public interface ever, but this is not ou
 
 This is what I usually define as an **iceberg class**. It is my personal belief that in the agile world these kind of classes arise quite easily. Developers start a component that is small and sounds reasonable, and each time a *story* adds a new requirements, a number of helpers methods are piled up hiding important responsibilities and cluttering the code. Empirically I would say that when the number of private methods becomes greater than 10, quite easily this is the principle of an *iceber class*. In this magnificent specimen we can count 44 private methods.
 
-## Code Quality Evaluation
+## <a name='sec-evaluation' />Code Quality Evaluation
 
 To many people it is probably obvious why this class is not an acceptable implementation, but I would like to use well known metrics to actually prove it.
 In order to assess the code quality I usually rely on the following <a name="code-qualities" />empirical classification:
@@ -84,7 +86,7 @@ To complete the above assessment let's see what an empirical code quality librar
 
 Plato is not able to catch the soft details that we made explicit with the previous analysis. Nevertheless it is clear that there is an impact on *complexity* and *estimated probability of errors*. A more detailed report also highlights that the most offensive methods are the *render()* method (SLOC = 35) and the *onDatepickerHoverDate()* method (SLOC = 9).
 
-## Refactoring
+## <a name='sec-refactoring' />Refactoring
 
 In order to get this calendar back in shape we need a plan. This is how I approached the problem:
 
@@ -114,7 +116,7 @@ An example of interactions between these objects is shown in the sequence diagra
 
 Please notice the business rule managed by the *controller*: if the user pick up a date and both the *from date* and *to date* fields are present, hide the picker. Arguably, the if statement in the controller is the responsibility of a *service object*, but in this case it's so simple that would be ridicolous to add it.
 
-## Evaluate the new design
+## <a name='sec-evaluation-2' />Evaluate the new design
 
 To evaluate the design let's go back to the principles and evaluate the degree of cohesiveness, coupling, composability and context independence for some key classes we produced. The first one is the calendar which simply acts as a composition mechanism. Here in the constructor we can see the elements we discussed:
 
@@ -272,7 +274,7 @@ We can make some simple observations on these data:
 
 You can argue that the number of classes is definitely increased and that a newcomer to the code probably needs some minutes to review it's organization before being able to change it. Despite that, I truly believe this design is easier to work with, easier to maintain, and easier to test (which is an entire different blog post, but you may already guess the advantages on this area).
 
-## Conclusions
+## <a name='sec-conclusions' />Conclusions
 
 In this blog post I presented an overview of how I handled the design of a frontend calendar. I used well known software design principles trying specifically trying to maximise the [qualities](#code-qualities) of the resulting classes and the separation between the different [software layers](#software-layers) of the calendar. Technologically I relied on Backbone for the views and to implement the pub/sub bus enabling the communication between the views and the controller. Finally the domain layer is only made of POJOs.
 
