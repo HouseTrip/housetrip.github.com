@@ -20,31 +20,31 @@ First I'll give you a [quick overview](#sec-visual-design) of the calendar I am 
 
 HouseTrip is a revolutionary holiday rental website where you can book a whole home for less than the price of a hotel room. When you land on the homepage you promptly get asked to enter the **destination** of your holiday, the **dates** and the **number of people**. The date selection functionality is offered by the calendar I am presenting here.
 
-{% img /images/2014-11-25/housetrip_home_page.png 300 %}
+<img src="/images/2014-11-25/housetrip_home_page.png" width="300"/>
 
 As you can see the calendar does not live *alone* but it's inserted in the context of a *search bar*. All the elements of the search bar can be *active* or *inactive*. An element is in its *active* state if the user is currently interacting with it, the element is in the *inactive* state otherwise. When you open the home page the calendar is in its *inactive* state. In this state only the calendar icon is visible, as shown here:
 
-{% img /images/2014-11-25/calendar_closed_without_dates.png 300 %}
+<img src="/images/2014-11-25/calendar_closed_without_dates.png" width="300"/>
 
 As soon as you click on the calendar icon the calendar goes into its *active* state. In such state the *date picker* is open and it's possible to select the *start date* of your journey as shown here:
 
-{% img /images/2014-11-25/calendar_design.png 300 %}
+<img src="/images/2014-11-25/calendar_design.png" width="300"/>
 
 When the user click on the start date the date box in the search bar is updated with the selected date and the active date is moved to the end date as shown here:
 
-{% img /images/2014-11-25/calendar_start_date_selected.png 300 %}
+<img src="/images/2014-11-25/calendar_start_date_selected.png" width="300"/>
 
 At this point the user can choose the end date, bringing the calendar to the following state:
 
-{% img /images/2014-11-25/calendar_end_date_selected.png 300 %}
+<img src="/images/2014-11-25/calendar_end_date_selected.png" width="300"/>
 
 Notice that when the user is hovering a date but haven't chosen it yet, the corresponding box is highlighted with the hovered date, as shown here:
 
-{% img /images/2014-11-25/calendar_hovered_date.png %}
+<img src="/images/2014-11-25/calendar_hovered_date.png" />
 
 After the date selection is finished the *date picker* is closed and the search bar displays the selected dates in the corresponding boxes as follows:
 
-{% img /images/2014-11-25/calendar_closed_with_dates.png 300 %}
+<img src="/images/2014-11-25/calendar_closed_with_dates.png" width="300" />
 
 Hopefully this is enough to give you an idea of the functionality provided by this calendar. Let's now dig into the details of how this has been implemented, and why we decided to refactor it.
 
@@ -52,17 +52,17 @@ Hopefully this is enough to give you an idea of the functionality provided by th
 
 As I said the goal was to refactor the existing calendar, so let's have a look at the overall design of the existing component as I found it. To better understand it, let me enlarge the picture for one second and let's see what the overall search bar looks like:
 
-{% img /images/2014-11-25/search_bar_design.png %}
+<img src="/images/2014-11-25/search_bar_design.png" />
 
 there is one *backbone model* containing the information regarding the search that must be performed, and three sub-views holding the responsibilities of the three visual elements in the bar. Up to here nothing surprising, but let's dig into the design of the calendar.
 
 The public interface includes methods to *activate()* and *deactivate()* the calendar. The calendar is *active* when it's the currently opened element in the *search bar* interface, *inactive* otherwise. *startDate()* and *endDate()* return the currently selected dates, while *clearDates()* reset your selection. *toggleCalendarManually()*, *toggleDatePickerManually()* and *toggleDatePickerVisibility()* can be used to open/close the picker, and set the calendar to the active/inactive states explicitly.
 
-{% img /images/2014-11-25/monolith_public.png %}
+<img src="/images/2014-11-25/monolith_public.png" />
 
 The one above is arguably not the best public interface ever, but this is not our major problem. In fact the class itself is a quite big entity of **500+** lines of codes handling all the responsibilities related to the states that I described in the visual design. Here you can see the complete list of methods:
 
-{% img /images/2014-11-25/monolith_full.png %}
+<img src="/images/2014-11-25/monolith_full.png" />
 
 This is what I usually define as an **iceberg class**. It is my personal belief that in the agile world these kind of classes arise quite easily. Developers start a component that is small and sounds reasonable, and each time a *story* adds a new requirements, a number of helper methods are piled up hiding important responsibilities and cluttering the code. Empirically I would say that when the number of private methods becomes greater than 10, this is the definition of an *iceberg class*. In this magnificent specimen we can count 44 private methods.
 
@@ -82,7 +82,7 @@ Arguably the calendar class that I just showed is violating most of these princi
 
 To complete the above assessment let's see what an empirical code quality library like <a href="https://github.com/es-analysis/plato">https://github.com/es-analysis/plato</a> tells us:
 
-{% img /images/2014-11-25/calendar_old_complexity_gist1.png 600 %}
+<img src="/images/2014-11-25/calendar_old_complexity_gist1.png" width="600" />
 
 Plato is not able to catch the soft details that we made explicit with the previous analysis. Nevertheless it is clear that there is an impact on *complexity* and *estimated probability of errors*. A more detailed report also highlights that the most offensive methods are the *render()* method (SLOC = 35) and the *onDatepickerHoverDate()* method (SLOC = 9).
 
@@ -96,7 +96,7 @@ In order to get this calendar back in shape we need a plan. This is how I approa
 
 The concepts of *presentation layer*, *application layer* and *domain layer* have been perfectly described in [Domain Driven Design by E. Evans](http://goo.gl/V1nNa6). It is definitely a general purpose technique and can be applied to your software no matter the language you use and (often) the granularity of the code you are working on. The *presentation layer* in the calendar is expressed in terms of Backbone views. Each backbone view is bound to a single visual element of the calendar. By carefully analyzing the calendar we can actually find quite a number of entities that were "hidden" in the previous design and that are now highlighted here:
 
-{% img /images/2014-11-25/calendar_new_visual_components.png 600 %}
+<img src="/images/2014-11-25/calendar_new_visual_components.png" width="600" />
 
 You can identify two main areas in the calendar: the *control* area and the *date picker* area. These will be represented in the code by simple package namespacing. Inside each area we can identify visual components with single responsibilities: for the *control* we have the *calendar icon*, the *dates boxes* and the *number of nights*; for the *date picker* we have the *dates* and the *remove dates* action. The *dates* are handled using the <a href="http://foxrunsoftware.github.io/DatePicker/">foxrun datepicker library</a>, so we don't have to go deeper than that. A trickier responsibility that I identified later was a backbone view that is responsible to make the picker visible or not, you will see the class in the design that follows shortly.
 
@@ -106,13 +106,13 @@ In the *domain layer* I identified two classes based on the high-level requireme
 
 Finally the original *calendar* class now has the responsibility to compose the previously presented elements. The complete class diagram of the design is shown here:
 
-{% img /images/2014-11-25/calendar_new_class_diagram.png 600 %}
+<img src="/images/2014-11-25/calendar_new_class_diagram.png" width="600" />
 
 The typical interaction starts from the user clicking on some UI element. The backbone view associated to this area of the DOM captures the UI event and triggers the corresponding pub/sub event in the *HouseTrip.events* bus. The controller is subscribed to all the calendar events and works out what it should do for each of them by orchestrating the domain objects. Finally, the controller trigger a *calendar:update* event to which the views are subscribed. This event provides a *status* object that *serialise* the domain entities to be read by the view. This is a maybe unnecessary indirection that I introduced but I found it useful to separate the domain objects from the information needed by the views to be rendered. You can find the details in the [controller code](#controller-code) shown in the next section.
 
 An example of interactions between these objects is shown in the sequence diagram underneath which starts when the user selects a date from the picker panel:
 
-{% img /images/2014-11-25/calendar_new_sequence_diagram.png 600 %}
+<img src="/images/2014-11-25/calendar_new_sequence_diagram.png" width="600" />
 
 Note the business rule managed by the *controller*: if the user picks a date and both the *from date* and *to date* fields are present, hide the picker. Arguably, the if statement in the controller is the responsibility of a *service object*, but in this case it's so simple that would be ridiculous to add it.
 
@@ -264,7 +264,7 @@ Here I truly believe you can see the advantage of the approach. The view is *hig
 
 To wrap up this evaluation let's see the updated stats that Plato provides us:
 
-{% img /images/2014-11-25/plato_new_calendar.png 500 %}
+<img src="/images/2014-11-25/plato_new_calendar.png" width="500" />
 
 We can make some simple observations on these data: 
 
