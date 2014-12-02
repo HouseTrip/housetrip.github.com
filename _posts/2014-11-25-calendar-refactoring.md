@@ -276,7 +276,7 @@ You can argue that the number of classes has definitely increased and that a new
 
 ## <a name='sec-conclusions' />Conclusions
 
-In this blog post I presented an overview of how I handled the design of a frontend calendar. I used well known software design principles trying specifically trying to maximise the [qualities](#code-qualities) of the resulting classes and the separation between the different [software layers](#software-layers) of the calendar. Technologically I relied on Backbone for the views and to implement the pub/sub bus enabling the communication between the views and the controller. Finally the domain layer is only made of POJOs.
+In this blog post I presented an overview of how I handled the design of a frontend calendar. I used well known software design principles with the end goal of maximise the [qualities](#code-qualities) of the resulting classes and the separation between the different [software layers](#software-layers) of the calendar. Technologically I relied on Backbone for the views and to implement the pub/sub bus enabling the communication between the views and the controller. Finally the domain layer is only made of POJOs.
 
 In general I am definitely happy about the resulting code. Obviously everything I presented is subject to tradeoffs and I would love to hear your feedback in the comments!
 
