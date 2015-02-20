@@ -77,4 +77,6 @@ These example are also available as Jasmine specs in the [Github repository](htt
   </code>
 </pre>
 
-There is no reason to publish a 33 lines method function apart from sharing it and having the opportunity to discuss it with the community. You love fetch? Then go fetch [the repo on Github](https://github.com/mottalrd/underscore-fetch) and tell me what you think!
+There is no reason to publish a 33 lines method function apart from sharing it and having the opportunity to discuss it with the community. 
+
+You love fetch? Then go fetch [the repo on Github](https://github.com/mottalrd/underscore-fetch) and tell me what you think!
