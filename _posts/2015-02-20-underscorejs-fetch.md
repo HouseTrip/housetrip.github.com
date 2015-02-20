@@ -7,10 +7,10 @@ author_role: Software Engineer
 author_url: http://www.alfredo.motta.name
 author_avatar: http://www.gravatar.com/avatar/c1044117a60a9c37a232cf8b6e2c87a8.png
 summary: |
-    If you are a Rubyist you are probably comfortable using the #fetch method on a day-to-day basis but when you are developing in Javascript this sweetness is not immediately available. Here is why I wrote underscorejs-fetch.
+    If you are a Rubyist you are probably comfortable using the #fetch method on a day-to-day basis but when you are developing in Javascript this sweetness is not immediately available. This is why I wrote underscorejs-fetch.
 ---
 
-If you are a Rubyist you are probably comfortable using the [#fetch](http://ruby-doc.org/core-2.2.0/Hash.html#method-i-fetch) method on a day-to-day basis. The gist of it's usage is the following:
+If you are a Rubyist you are probably comfortable using the [#fetch](http://ruby-doc.org/core-2.2.0/Hash.html#method-i-fetch) method on a day-to-day basis. The gist of its usage is the following:
 
 <pre>
   <code class="ruby">
