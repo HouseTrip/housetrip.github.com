@@ -14,13 +14,12 @@ If you are a Rubyist you are probably comfortable using the [#fetch](http://rub
 
 <pre>
   <code class="ruby">
-    h = { "a" =&gt; 100, "b" =&gt; 200 }
-    h.fetch("a")                            #=&gt; 100
-    h.fetch("z", "go fish")                 #=&gt; "go fish"
-    h.fetch("z") { |el| "go fish, #{el}"}   #=&gt; "go fish, z"
+    item = { name: 'pen', color: 'blue' }
+    item.fetch(:name)                                     #=> 'pen'
 
-    h = { "a" =&gt; 100, "b" =&gt; 200 }
-    h.fetch("z") #=&gt; prog.rb:2:in `fetch': key not found (KeyError)
+    item.fetch(:price)                                    #=> key not found error
+    item.fetch(:price, '2$')                              #=> '2$'
+    item.fetch(:price) { |key| "the #{key.to_s} is 2$"}   #=> "the price is 2$"
   </code>
 </pre>
 
@@ -31,8 +30,8 @@ So I went ahead and I [implemented it myself](https://github.com/mottalrd/under
 
 <pre>
   <code class="javascript">
-    var object = { color: 'blue' };
-    _.fetch(object, 'color', 'blue'); //=&gt; blue
+    var item = { name: 'pen', color: 'blue' };
+    _.fetch(item, 'name'); //=> pen
   </code>
 </pre>
 
@@ -40,8 +39,8 @@ On the other hand if the property is not available, you get an *Attribute not fo
 
 <pre>
   <code class="javascript">
-    var object = { };
-    _.fetch(object, 'color'); //=&gt; Error('Attribute not found');
+    var item = { name: 'pen', color: 'blue' };
+    _.fetch(item, 'price'); //=> Error('Attribute not found');
   </code>
 </pre>
 
@@ -49,8 +48,8 @@ Now the sweetest part of *fetch*. When the property you are asking can't be foun
 
 <pre>
   <code class="javascript">
-    var object = { };
-    _.fetch(object, 'color', 'black'); //=&gt; 'black'
+    var item = { name: 'pen', color: 'blue' };
+    _.fetch(item, 'price', '2$'); //=> '2$'
   </code>
 </pre>
 
@@ -58,12 +57,11 @@ Finally if you are a of sophisticated person you also have the option to pass a 
 
 <pre>
   <code class="javascript">
-    var object = { };
-    var condition = 1;
-    _.fetch(object, 'color', function() { 
-      return condition == 1 ? 'black' : 'blue'; 
+    var item = { name: 'pen', color: 'blue' };
+    _.fetch(item, 'price', function(key) { 
+      return "The " + key + " cannot be found"; 
     });
-    //=&gt; 'black'
+    //=> 'The price cannot be found'
   </code>
 </pre>
 
