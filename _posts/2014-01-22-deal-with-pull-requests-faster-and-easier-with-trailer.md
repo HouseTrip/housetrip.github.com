@@ -5,10 +5,10 @@ published: true
 author: Paul Tsochantaris
 author_role: Developer
 author_url: http://github.com/ptsochantaris
-summary: Introducing <a href="http://dev.housetrip.com/trailer/" target="_blank">Trailer</a> from HouseTrip, a simple menu bar app that helps you manage your GitHub pull requests. It's one feature we felt was lacking from our workflow!
+summary: Introducing <a href="http://ptsochantaris.github.io/trailer/" target="_blank">Trailer</a> from HouseTrip, a simple menu bar app that helps you manage your GitHub pull requests. It's one feature we felt was lacking from our workflow!
 ---
 
-Introducing <a href="http://dev.housetrip.com/trailer/" target="_blank">Trailer</a> from HouseTrip, a simple menu bar app that helps you manage your GitHub pull requests. It's one feature we felt was lacking from our workflow!
+Introducing <a href="http://ptsochantaris.github.io/trailer/" target="_blank">Trailer</a> from HouseTrip, a simple menu bar app that helps you manage your GitHub pull requests. It's one feature we felt was lacking from our workflow!
 
 ### 1cm of menubar is a lot to ask
 
@@ -20,7 +20,7 @@ Surely then, a giant app suite that provides an MS-office-like bundle of kitchen
 
 Or perhaps, a simple menu that provides the one feature we felt was sorely lacking from our workflow.  Sometimes the feature is the app, and that is good.
 
-So we made <a href="http://dev.housetrip.com/trailer" target="_blank">Trailer</a>!
+So we made <a href="http://ptsochantaris.github.io/trailer/" target="_blank">Trailer</a>!
 
 <img src="/images/2014-01-10/screenshot.png" alt="Trailer App Screen Shot" style="border:none;box-shadow: none;margin:0;"/>
 
