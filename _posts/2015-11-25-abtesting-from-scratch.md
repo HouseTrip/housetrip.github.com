@@ -7,7 +7,7 @@ author_role: Software Engineer
 author_url: http://www.alfredo.motta.name
 author_avatar: http://www.gravatar.com/avatar/c1044117a60a9c37a232cf8b6e2c87a8.png
 summary: |
-  If you work in a diligent web development business you probably know what an A/B test is. However its fashinating statistical theory is usually left behind. Understanding the basics can help you avoid common pitfalls, better design your experiments, and ultimately do a better job in improving the effectiveness of your website.
+  If you work in a diligent web development business you probably know what an A/B test is. However its fascinating statistical theory is usually left behind. Understanding the basics can help you avoid common pitfalls, better design your experiments, and ultimately do a better job in improving the effectiveness of your website.
 
   Please hold tight, and enjoy a pleasant statistical journey with the help of R and some math. You will not be disappointed.
 ---
@@ -23,13 +23,13 @@ After 1 week may collect the following numbers:
 
 <a href="/images/2015-11-25-abtesting-from-scratch/table.png"><img src="/images/2015-11-25-abtesting-from-scratch/table.png" alt="Experiment example" width="600" style="box-shadow: none; border: none"/></a>
 
-If at this point you are willing to conclude that the B variant outperforms A be aware you are taking a very naïve approach. Results can vary on a weekly basis because of the intrinsic randomness of the experiment. Put it simply, you may be plain wrong. A more thorough approach is to estimate the likelihood of B being better than A given the number we measured, and statistics is the best tool around for this kind of job.
+If at this point you are willing to conclude that the B variant outperforms A be aware you are taking a very naïve approach. Results can vary on a weekly basis because of the intrinsic randomness of the experiment. Put it simply, you may be plain wrong. A more thorough approach would be to estimate the likelihood of B being better than A given the number we measured, and statistics is the best tool around for this kind of job.
 
 ## Statistical modeling
 
 Statisticians love urns and, guess what, our problem can be modeled as an extraction from two different urns. Both urns have a certain ratio of red and green balls. Red balls are customers who end up paying while green balls are customers who leave.
 
-Does the urn belonging to variant B have a greater proportion of red balls comparent to the other one? We can estimate this ratio by doing an extraction with replacement [<a href="#footnotes">2</a>] from the urn. We extract a finite number of balls from each urn and we measure the proportions. In this type of experiment each time we pick a ball we also put it back to the urn to keep the proportions intact.
+Does the urn belonging to variant B have a greater proportion of red balls compared to the other one? We can estimate this ratio by doing an extraction with replacement [<a href="#footnotes">2</a>] from the urn. We extract a finite number of balls from each urn and we measure the proportions. In this type of experiment each time we pick a ball we also put it back to the urn to keep the proportions intact.
 
 <div>
 <div style="float: left;">
@@ -69,12 +69,12 @@ qplot(x, y, xlab="Number of successes", ylab="Probability") + xlim(0, 60)
 
 <a href="/images/2015-11-25-abtesting-from-scratch/binomial_example.png"><img src="/images/2015-11-25-abtesting-from-scratch/binomial_example.png" width="600" style="box-shadow: none; border: none"/></a>
 
-Make sense right? The chances of having exactly k successes cumulates around the value of 30, which is the true proportion of red/green balls in our urn.
+Makes sense, doesn't it? The chances of having exactly k successes cumulates around the value of 30, which is the true proportion of red/green balls in our urn.
 
 <h2>Naïve experiment assessment</h2>
 Now that we know how statisticans models our problem let's go back to our <a href="#conversion_table">conversions table</a>.
 
-One way of assessing if B is better than A is to plot their expected distributions. <em>Assuming that </em>A follows a Binomial distribution with <em>p=0.01</em> (we had 100 conversions over 10.000 trials) and that B follows a Binomial distribution with <em>p=0.012</em> (we had 120 conversions over 10.000 trials) this is how they relate to each other:
+One way of assessing if B is better than A is to plot their expected distributions. <em>Assuming that </em>A follows a Binomial distribution with <em>p=0.01</em> (we had 100 conversions over 10000 trials) and that B follows a Binomial distribution with <em>p=0.012</em> (we had 120 conversions over 10000 trials) this is how they relate to each other:
 
 <pre class="lang:r decode:true">
 x_a =  1:10000
@@ -112,7 +112,7 @@ But hold on one minute. How do we know that <em>p_a = 0.01</em> and <em>p_b = 0
 
 In order to estimate what is the true mean of our variants statisticians rely on the Central Limit Theorem (CLT) [<a href="#footnotes">6</a>] which states that <em>the sampling distribution of any statistic</em> <em>will be normal or nearly normal, if the sample size is large enough</em>.
 
-In our case we are trying to estimate the mean of the sampling distribution of the proportions <em>p_a</em> and <em>p_b</em> for our variants. Suppose you run your A/B test experiment <em>N=100</em> times and that each time you collect <em>n=10.000</em> samples you will end up having for variant A:
+In our case we are trying to estimate the mean of the sampling distribution of the proportions <em>p_a</em> and <em>p_b</em> for our variants. Suppose you run your A/B test experiment <em>N=100</em> times and that each time you collect <em>n=10000</em> samples you will end up having for variant A:
 
 <a href="/images/2015-11-25-abtesting-from-scratch/clt1.png"><img src="/images/2015-11-25-abtesting-from-scratch/clt1.png" style="box-shadow: none; border: none"/></a>
 
@@ -231,7 +231,7 @@ pbinom(117, 10000, 0.012)
 
 which means that we have a <em>~= 40%</em> chance to conclude our experiment did not have any effect, while in reality there was some.
 
-That's seems harsh to me. What can we do? Apply the first law of the modern age of statistics which is, <em>get more data. </em>Assuming we can double our data and get <em>20.000</em> visitors instead of <em>10.000</em> and that we measure the same proportions, our <i>Type II </i>error will go down drammatically<a name="type_ii_error_increase_population"></a>:
+That's seems harsh to me. What can we do? Apply the first law of the modern age of statistics which is, <em>get more data. </em>Assuming we can double our data and get <em>20.000</em> visitors instead of <em>10000</em> and that we measure the same proportions, our <i>Type II </i>error will go down drammatically<a name="type_ii_error_increase_population"></a>:
 
 <pre class="lang:r decode:true">qbinom(0.95, 20000, 0.01) # critical value at which we reject the null-hypothesis
 # =&gt; 223
