@@ -7,23 +7,23 @@ author_role: Software Engineer
 author_url: http://www.alfredo.motta.name
 author_avatar: http://www.gravatar.com/avatar/c1044117a60a9c37a232cf8b6e2c87a8.png
 summary: |
-  If you work in a diligent web development business you probably know what an A/B test is. However its fascinating statistical theory is usually left behind. Understanding the basics can help you avoid common pitfalls, better design your experiments, and ultimately do a better job in improving the effectiveness of your website.
+  If you work in a diligent web development business you probably know what an A/B test is. However, its fascinating statistical theory is usually left behind. Understanding the basics can help you avoid common pitfalls, better design your experiments, and ultimately do a better job in improving the effectiveness of your website.
 
-  Please hold tight, and enjoy a pleasant statistical journey with the help of R and some math. You will not be disappointed.
+  Please hold tight, and enjoy a pleasant statistical journey with the help of R and some maths. You will not be disappointed.
 ---
 
 An A/B test is a randomized, controlled experiment in which the <em>performance</em> of two product variants are compared. Those variants are usually called A and B [<a href="#footnotes">1</a>]. From a business perspective we want to know if the <em>performance</em> of a certain variant outperforms the other.
 
-As an example let's take a typical checkout page where we want to assess if a green is more effective than an orange one.
+As an example let's take a typical checkout page where we want to assess if a green checkout button is more effective than an orange one.
 
 <a href="/images/2015-11-25-abtesting-from-scratch/abtestingexample.png"><img src="/images/2015-11-25-abtesting-from-scratch/abtestingexample.png" alt="Experiment example" width="400" height="257" style="box-shadow: none; border: none"/></a>
 
-After 1 week may collect the following numbers:
+After 1 week we may collect the following numbers:
 <a name="conversion_table"></a>
 
 <a href="/images/2015-11-25-abtesting-from-scratch/table.png"><img src="/images/2015-11-25-abtesting-from-scratch/table.png" alt="Experiment example" width="600" style="box-shadow: none; border: none"/></a>
 
-If at this point you are willing to conclude that the B variant outperforms A be aware you are taking a very naïve approach. Results can vary on a weekly basis because of the intrinsic randomness of the experiment. Put it simply, you may be plain wrong. A more thorough approach would be to estimate the likelihood of B being better than A given the number we measured, and statistics is the best tool around for this kind of job.
+If at this point you are willing to conclude that the B variant outperforms A be aware you are taking a very naïve approach. Results can vary on a weekly basis because of the intrinsic randomness of the experiment. Put simply, you may be plain wrong. A more thorough approach would be to estimate the likelihood of B being better than A given the number we measured, and statistics is the best tool around for this kind of job.
 
 ## Statistical modeling
 
@@ -72,7 +72,7 @@ qplot(x, y, xlab="Number of successes", ylab="Probability") + xlim(0, 60)
 Makes sense, doesn't it? The chances of having exactly k successes cumulates around the value of 30, which is the true proportion of red/green balls in our urn.
 
 <h2>Naïve experiment assessment</h2>
-Now that we know how statisticans models our problem let's go back to our <a href="#conversion_table">conversions table</a>.
+Now that we know how statisticians model our problem let's go back to our <a href="#conversion_table">conversions table</a>.
 
 One way of assessing if B is better than A is to plot their expected distributions. <em>Assuming that </em>A follows a Binomial distribution with <em>p=0.01</em> (we had 100 conversions over 10000 trials) and that B follows a Binomial distribution with <em>p=0.012</em> (we had 120 conversions over 10000 trials) this is how they relate to each other:
 
@@ -96,7 +96,7 @@ ggplot(data = data)+
 
 <a href="/images/2015-11-25-abtesting-from-scratch/ab_testing_binomial_distributions.png"><img src="/images/2015-11-25-abtesting-from-scratch/ab_testing_binomial_distributions.png" width="600" style="box-shadow: none; border: none"/></a>
 
-So <em>if the true mean </em>of the two distribution is <em>p_a = 0.01</em> and <em>p_b = 0.012</em> respectively we can conclude that B is better than A. If we repeat the experiment several times (always with 10000 participants) for A we will get <em>most of the times </em>values between <em>70</em> and <em>129</em> while for B we will get values between <em>87</em> and <em>152</em>. You can check these boundaries on the plot, or you can compute them manually with the <em>3 times standard deviation </em>rule of thumb [<a href="#footnotes">5</a>].
+So <em>if the true mean </em>of the two distribution is <em>p_a = 0.01</em> and <em>p_b = 0.012</em> respectively we can conclude that B is better than A. If we repeat the experiment several times (always with 10000 participants) for A we will get <em>most of the time </em>values between <em>70</em> and <em>129</em> while for B we will get values between <em>87</em> and <em>152</em>. You can check these boundaries on the plot, or you can compute them manually with the <em>3 times standard deviation </em>rule of thumb [<a href="#footnotes">5</a>].
 
 <pre class="lang:r decode:true">
 n=10000; p=0.01; q=1-p; mean=100
@@ -106,7 +106,7 @@ n=10000; p=0.012; q=1-p; mean=120
 paste(mean - 3 * sqrt(n*p*q), ",", mean + 3 * sqrt(n*p*q))
 </pre>
 
-But hold on one minute. How do we know that <em>p_a = 0.01</em> and <em>p_b = 0.012</em> are indeed the <em>true means</em> of our distributions? In the end we simply did one extraction from our urns. If these numbers are wrong are distributions will look different and the previous analysis will be flawed. Can we do better?
+But hold on one minute. How do we know that <em>p_a = 0.01</em> and <em>p_b = 0.012</em> are indeed the <em>true means</em> of our distributions? In the end we only did one extraction from our urns. If these numbers are wrong our distributions will look different and the previous analysis will be flawed. Can we do better?
 
 ## More rigorous experiment assessment
 
@@ -120,7 +120,7 @@ and the CLT tells us that these are normally distributed with parameters:
 
 <a href="/images/2015-11-25-abtesting-from-scratch/clt2.png"><img src="/images/2015-11-25-abtesting-from-scratch/clt2.png" style="box-shadow: none; border: none"/></a>
 
-where <a href="/images/2015-11-25-abtesting-from-scratch/clt3.png"><img src="/images/2015-11-25-abtesting-from-scratch/clt3.png" style="display: inline; box-shadow: none; border: none; height: 24px"/></a> is the standard deviation of the binomial distribution. I know, this is hard to believe and proving these numbers goes definitely beyond the scope of this blog post so you will find some math heavy material in the footnotes [<a href="#footnotes">7</a>] [<a href="#footnotes">8</a>].
+where <a href="/images/2015-11-25-abtesting-from-scratch/clt3.png"><img src="/images/2015-11-25-abtesting-from-scratch/clt3.png" style="display: inline; box-shadow: none; border: none; height: 24px"/></a> is the standard deviation of the binomial distribution. I know, this is hard to believe and proving these numbers goes definitely beyond the scope of this blog post so you will find some maths-heavy material in the footnotes [<a href="#footnotes">7</a>] [<a href="#footnotes">8</a>].
 
 Back to our question, what is the true mean of <em>p_a</em> and <em>p_b</em>? Well, we don't know really, but they are distributed normally like this<a name="mean_distributions"></a>:
 
@@ -143,7 +143,7 @@ ggplot(data = data)+
 
 <a href="/images/2015-11-25-abtesting-from-scratch/clt4.png"><img src="/images/2015-11-25-abtesting-from-scratch/clt4.png" width="600" style="box-shadow: none; border: none"/></a>
 
-As you can see we are dealing with a risky business here. There is a good chance that the estimation of the <em>true value </em>of <em>p_a</em> and <em>p_b</em> is not correct since they can span between all the values plotted above. For a good number of them <em>p_a</em> may actually outperform <em>p_b</em> violating the conclusion we did in the previous section. There is no magic bullet that will solve this problem, this is the intrinsic nature of the probabilistic world in which we leave. However, we can do our best to quantify the risk and take a conscious decision.
+As you can see we are dealing with a risky business here. There is a good chance that the estimation of the <em>true values </em>of <em>p_a</em> and <em>p_b</em> are not correct since they can span anywhere between all the values plotted above. For a good number of them <em>p_a</em> may actually outperform <em>p_b</em> violating the conclusion we did in the previous section. There is no magic bullet that will solve this problem, this is the intrinsic nature of the probabilistic world in which we live. However, we can do our best to quantify the risk and take a conscious decision.
 
 ## Quantitative evaluation
 
@@ -151,7 +151,7 @@ In the previous section we have seen that <i>it is likely</i> that Variant B is 
 
 In a series of papers in the early 20th century, J. Neyman and E. S. Pearson developed a decision-theoretic approach to hypothesis-testing [<a href="#footnotes">9</a>]. The theory was later extended and generalised by Wald [<a href="#footnotes">10</a>]. For a full account of the theory, see the book of Lehmann and Romano [<a href="#footnotes">11</a>].
 
-In this framework we state an hypothesis (also called <em>null-hypothesis</em>) and by looking at the number we will try to reject it. In our example we hypothesize that the true conversion of our visitors is <em>p_a</em> and that the proportion <em>p_b</em> we collected in the B variant is simply due by chance. In other words we assume that our real world visitors behave like in variant A and we quantify the probability of seen variant B's proportions under this hypothesis.
+In this framework we state a hypothesis (also called <em>null-hypothesis</em>) and by looking at the number we will try to reject it. In our example we hypothesize that the true conversion of our visitors is <em>p_a</em> and that the proportion <em>p_b</em> we collected in the B variant is simply due to chance. In other words we assume that our real world visitors behave like in variant A and we quantify the probability of seeing variant B's proportions under this hypothesis.
 
 So, what is the probability of having <em>120</em> or more conversions if the true mean of the binomial distribution is <em>p_a = 0.01</em>? We simply have to sum the probability of all possible events:
 
@@ -178,7 +178,7 @@ probability of success
                  0.012
 </pre>
 
-I deliberaly specified <em>alternative = "greater"</em> in the function call to compute the chance of getting more than 120. But there are other ways [<a href="#footnotes">12</a>] to approach the problem. The value we are looking for is the p-value [<a href="#footnotes">13</a>] <em>0.0276</em> which is exactly the probability of getting more than 120 successes, i.e. <em>P(X_a &gt;= 120)</em>. Visually it corresponds to the area under the right end tail of the distribution of A:
+I deliberately specified <em>alternative = "greater"</em> in the function call to compute the chance of getting more than 120. But there are other ways [<a href="#footnotes">12</a>] to approach the problem. The value we are looking for is the p-value [<a href="#footnotes">13</a>] <em>0.0276</em> which is exactly the probability of getting more than 120 successes, i.e. <em>P(X_a &gt;= 120)</em>. Visually it corresponds to the area under the right end tail of the distribution of A:
 
 <pre class="lang:r decode:true">
 x_a =  1:10000
@@ -204,7 +204,7 @@ A <em>Type I </em>error is the probability of rejecting the null-hypothesis wh
 
 A <em>Type II </em>error is the probability of failing to reject the null-hypothesis when the null-hypothesis is false. In our example this happens when we conclude the AB test variant has no effect, while in reality it actually did.
 
-In the previous section we quantified the probability of <em>Type </em><em>I </em>error, which is equivalent to the p-value returned by the <em>binom.test</em> function. To quantify the the <em>Type II </em>error we need to know for what<em> <em>pvalue = &alpha;</em> </em>we are willing to reject the <em>null-hypothesis.</em> It is common common practice to use <em>&alpha; = 0.05</em> so I'll just go with that.
+In the previous section we quantified the probability of <em>Type </em><em>I </em>error, which is equivalent to the p-value returned by the <em>binom.test</em> function. To quantify the <em>Type II </em>error we need to know for what <em>pvalue = &alpha;</em> we are willing to reject the <em>null-hypothesis.</em> It is common practice to use <em>&alpha; = 0.05</em> so I'll just go with that.
 
 Now, what is the critical number of conversions such that we reject the <em>null-hypothesis </em>at <em>&alpha; = 0.05</em>? This is called the quantile [<a href="#footnotes">14</a>] and it is simply the <em>x_&alpha;</em> such that:
 
@@ -260,7 +260,7 @@ qplot(n, v, xlab="P(type II error)", ylab="# Observations")
 
 which seems a fair result, starting from <em>30.000</em> visitors we can safely assume that our probability or <em>Type II</em> error will be low.
 
-The analysis I just presented it is flawed by a fundamental assumption. To estimate the <em>Type I</em> error we assumed that <em>p_b</em> is exactly <em>0.012</em> while to estimate the <em>Type II </em>error we assumed that <em>p_a</em> is exactly <em>0.01</em>. We know from the CLT that this is not exactly true and the distributions of those values span across a certain range (see <a href="#mean_distributions">here</a>). So let's see what happens if I take several points across these distributions, for example the 1%, 25%, 50%, 75%, 99% quantiles and check what happens to our hypothesis testing errors.
+The analysis as I just presented it is flawed by a fundamental assumption. To estimate the <em>Type I</em> error we assumed that <em>p_b</em> is exactly <em>0.012</em> while to estimate the <em>Type II </em>error we assumed that <em>p_a</em> is exactly <em>0.01</em>. We know from the CLT that this is not exactly true and the distributions of those values span across a certain range (see <a href="#mean_distributions">here</a>). So let's see what happens if I take several points across these distributions, for example the 1%, 25%, 50%, 75%, 99% quantiles and check what happens to our hypothesis testing errors.
 
 For <em>Type II </em>errors I first collect the possible values of <em>p_a</em> for my parametric analysis:
 
@@ -309,9 +309,9 @@ which produces the following:
 
 <a href="/images/2015-11-25-abtesting-from-scratch/type_i_and_ii_4.png"><img src="/images/2015-11-25-abtesting-from-scratch/type_i_and_ii_4.png" width="600" style="box-shadow: none; border: none"/></a>
 
-where the green line is the same as the one plotted <a href="#type_ii_error_increase_population">here</a>. It is quite interesting to observe at the pink line corresponding to <em>p_a = 0.0123</em>. This is actually the worst case scenario for us since we picked a value that is greater than <em>p_b = 0.012</em> and because of that our <em>Type II </em>error actually increase with the number of observations! However it is also worth mention that this values is very unlikely because the more data I collect the more the uncertainty around the values of <em>p_a</em> decrease. You may also notice that the lines in the graph are quite thick, and this is because discrete tests like the binomial one [<a href="#footnotes">15</a>] have quite large oscillations [<a href="#footnotes">16</a>].
+where the green line is the same as the one plotted <a href="#type_ii_error_increase_population">here</a>. It is quite interesting to observe the pink line at <em>p_a = 0.0123</em>. This is the worst case scenario for us since we picked a value that is greater than <em>p_b = 0.012</em> and because of that our <em>Type II </em>error actually increases with the number of observations! However it is also worth mentioning that this value is very unlikely because the more data I collect the more the uncertainty around the values of <em>p_a</em> decrease. You may also notice that the lines in the graph are quite thick, and this is because discrete tests like the binomial one [<a href="#footnotes">15</a>] have quite large oscillations [<a href="#footnotes">16</a>].
 
-Same type of parametric analysis can be performed on the <i>Type I </i>error. <a href="#binomial_test">Previously</a> we saw how to compute it with the <em>binom.test()</em> function, but we can do the computation manually as follows when <em>p_a=0.01</em> and <em>p_b=0.012</em>:
+The same type of parametric analysis can be performed on the <i>Type I </i>error. <a href="#binomial_test">Previously</a> we saw how to compute it with the <em>binom.test()</em> function, but we can do the computation manually as follows when <em>p_a=0.01</em> and <em>p_b=0.012</em>:
 
 <pre class="lang:r decode:true ">
 pbinom(119, 10000, 0.01, lower.tail=FALSE)
@@ -353,20 +353,20 @@ which plots the following:
 
 as in the <em>Type II </em>error we notice that for <em>p_b = 0.009</em> the <em>Type I </em>error actually increase with the amount of data but this value become more and more unlikely as the data grows.
 
-It also very interesting to notice how the value of the two type of errors goes down at a completely different rate. Overall, with this design, we are more likely to stick with the "<em>button color makes no difference</em>" conclusion. When the reality is that button color makes no difference, the tests will stick to reality most of the times (<i>Type I error goes down quickly</i>). When the reality is that button color does make a difference, the test does take the risk of saying there is actually no difference between the two (<em>Type II error goes down slowly</em>).
+It also very interesting to notice how the value of the two type of errors goes down at a completely different rate. Overall, with this design, we are more likely to stick with the "<em>button colour makes no difference</em>" conclusion. When the reality is that button colour makes no difference, the tests will stick to reality most of the times (<i>Type I error goes down quickly</i>). When the reality is that button colour does make a difference, the test does take the risk of saying there is actually no difference between the two (<em>Type II error goes down slowly</em>).
 
 <h2>Estimate the sample size</h2>
 Before wrapping up let's make a step back and position ourself back in time before we started the experiment. How we can estimate for how long we should run our experiment in order to be confident that our results are statistically significant? To answer this question you simply need to use the same tools we just saw, from a different perspective.
 
 First, you need to make an estimate around your current baseline conversion. If you use <a href="https://analytics.google.com">google analytics</a> it should be straightforward to know what is the conversion of your checkout page with the green button.
 
-Second, you need to make a guess on what type of <em>effect size</em> you are willing to detect. In our example we would have chosen an effect size of 20% (and incredibly after collecting the numbers being right). In various disciplines effect sizes have been standardised to make different experiment comparable. Most famous effect size measure is <em>Cohen's d </em>[<a href="#footnotes">17</a>] [<a href="#footnotes">18</a>].
+Second, you need to make a guess on the <em>effect size</em> you are willing to detect (<em>minimum detectable effect size</em>). In our example we would have chosen an effect size of 20%. In various disciplines effect sizes have been standardised to make different experiments comparable. Most famous effect size measure is <em>Cohen's d </em>[<a href="#footnotes">17</a>] [<a href="#footnotes">18</a>].
 
 Third, you need to assert what risk you are willing to take on the <em>Type I error</em>, or equivalently, what <em>&alpha;</em> level you are willing to choose for your <em>p-value</em>.<em> </em>This is the value you will refer to at the end of the experiment to make your conclusion.
 
 Finally, you need to assert what risk you are willing to take on the <em>Type II error</em>, or equivalently, how likely you are willing to say your orange button did not perfomed better when in reality there was an effect (i.e. orange button is better). This is equivalent to the <em>power</em>, where you assert how likely you are going to be correct when you conclude that the orange button is better, when it is actually real.
 
-Mathematically speaking computing the required sample size seems to be a difficult problem in general and I would like to point you to the footnotes for a deeper discussion [<a href="#footnotes">19</a>] [<a href="#footnotes">20</a>]. Here I will show the approach take from the Engineering statistics handbook [<a href="#footnotes">21</a>].
+Mathematically speaking computing the required sample size seems to be a difficult problem in general and I would like to point you to the footnotes for a deeper discussion [<a href="#footnotes">19</a>] [<a href="#footnotes">20</a>]. Here I will show the approach taken from the Engineering statistics handbook [<a href="#footnotes">21</a>].
 
 First, we look at the statistics:
 
@@ -379,11 +379,11 @@ and we would like to compute the sample size <em>n </em>such that:
 (2) P(reject H0 | H0 is false) = <em>power</em> = 1 - &beta;
 </p>
 
-Now, you have to use some faith and intuition. What is the smalles value of &delta;, say &delta;_min, we care about? Our minimum detectable effect size we are estimating before the experiment! You can imagine &delta;_min is a function of both (1) and (2). The smallest value in (1) for which we start rejecting is:
+Now, you have to use some faith and intuition. What is the smallest value of &delta;, say &delta;_min, that we care about? Our minimum detectable effect size! You can imagine &delta;_min is a function of both (1) and (2). The smallest value in (1) for which we start rejecting is:
 
 <a href="/images/2015-11-25-abtesting-from-scratch/sample_size2.png"><img src="/images/2015-11-25-abtesting-from-scratch/sample_size2.png" style="box-shadow: none; border: none"/></a>
 
-while the smallest value in (2) for which we start reject is:
+while the smallest value in (2) for which we start rejecting is:
 
 <a href="/images/2015-11-25-abtesting-from-scratch/sample_size3.png"><img src="/images/2015-11-25-abtesting-from-scratch/sample_size3.png" style="box-shadow: none; border: none"/></a>
 
@@ -422,11 +422,11 @@ which seems to be consistent with the simulations we did <a href="#type_ii_error
 <h2>Wrapping up</h2>
 In this blog post we took a simple conversion table and we did a step by step statistical analysis of our results. Our experiment is designed like an extraction with replacement from an urn which is modelled with a binomial distribution.
 
-We concluded that given the observed data the checkout page with the orange button is 20% more likely (<em>(0.012 - 0.01) / 0.01</em>) to convert than the one with the green button. If the green button is equivalent to the orange button (no effect), we did the wrong conclusion with a probability of <em>2.76%</em> (<em>P(type I error)</em>, also called <em>p-value</em>). If the orange button is better than the green button, we did the right conclusion with a probability of <em>60%</em> (<em>1 - P(type II error)</em>, also called the <em>power</em>). In this same scenario (orange button is better) if we double the number of visitors in our experiment our probability of being correct (power) will go up to <em>86%</em>. Finally, we reviewed how to estimate the required sample size for our experiment in advance with a handy formula.
+We concluded that given the observed data the checkout page with the orange button is 20% more likely (<em>(0.012 - 0.01) / 0.01</em>) to convert than the one with the green button. If the green button is equivalent to the orange button (no effect), we came to the wrong conclusion with a probability of <em>2.76%</em> (<em>P(type I error)</em>, also called <em>p-value</em>). If the orange button is better than the green button, we came to the right conclusion with a probability of <em>60%</em> (<em>1 - P(type II error)</em>, also called the <em>power</em>). In this same scenario (orange button is better) if we double the number of visitors in our experiment our probability of being correct (power) will go up to <em>86%</em>. Finally, we reviewed how to estimate the required sample size for our experiment in advance with a handy formula.
 
-It is worth mention that in practice you rarely use a binomial test but I belive the simplicity of the distribution makes it adequate for this type of presentation. A better resource on choosing the right test can be found in the references [<a href="#footnotes">24</a>].
+It is worth mentioning that in practice you rarely use a binomial test but I belive the simplicity of the distribution makes it adequate for this type of presentation. A better resource on choosing the right test can be found in the references [<a href="#footnotes">24</a>].
 
-If you enjoyed this blog post you shall also <a href="https://twitter.com/mottalrd">follow me</a> on twitter. Let me know your comments!
+If you enjoyed this blog post you can also <a href="https://twitter.com/mottalrd">follow me</a> on twitter. Let me know your comments!
 
 <h2>References</h2>
 
